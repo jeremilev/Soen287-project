@@ -18,3 +18,10 @@ For teacher:
 - [ ] Assign grades
 - [ ] View reports and statistics
 ---
+### List of documents that need to be created, updated, and submitted during demo days.
+
+- [ ] List of features that have been implemented.
+- [ ] List of features that will be implemented for the next deliverable.
+- [ ] Teamwork discussion sheet.
+- [ ] <em>Installation guide (how to deploy the website)</em>.
+- [ ] <em>User guide documentation</em>.
