@@ -3,24 +3,14 @@ body {
     padding: 0px;
   }
 
-  .leftSide {
-    display: flex;
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 160px; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    top: 1; /* Leaves some room for header */
-    left: 0;
-    background-color: #84A98C;
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;
-  }
 
 /* Image properties */
-img{
+.Himg{
   /* display: block; */
+  margin-left: 15%;
   height: 70px;
   width: 70px;
-  border-radius: 50%;
+  border-radius: 90%;
   object-fit: contain;
 }
 
@@ -28,7 +18,7 @@ img{
   .header {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     background-color: #D9D9D9;
     height: 80px;
@@ -46,6 +36,26 @@ img{
     min-width: 0;
   }
 
+  .leftSide {
+    display: flex;
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 160px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    top: 1; /* Leaves some room for header */
+    left: 0;
+    background-color: #84A98C;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+  }
+
   .rightSide{
     display: flex;
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 160px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    top: 1; /* Leaves some room for header */
+    right: 0;
+    background-color: #52796F;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
   }
