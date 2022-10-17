@@ -3,16 +3,8 @@ body {
     padding: 0px;
   }
 
-.header {
-    height: 0vh;
-    padding: 60px;
-    text-align: center;
-    background: #D9D9D9;
-    color: black;
-    font-size: 30px;
-  }
-
-  .sidenav {
+  .leftSide {
+    display: flex;
     height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 160px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
@@ -21,4 +13,32 @@ body {
     background-color: #84A98C;
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
+  }
+
+/* Image properties */
+img{
+  display: block;
+  object-fit: scale-down;
+}
+
+
+  .header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #D9D9D9;
+    height: 50px;
+    width: auto;
+  }
+
+
+  .item{
+    display: flex;
+    max-height: 90%;
+    width: auto;
+    min-width: 0;
+  }
+
+  .rightSide{
+    display: flex;
   }
