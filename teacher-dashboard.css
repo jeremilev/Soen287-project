@@ -7,9 +7,10 @@ body {
 /* Image properties */
 .Himg{
   /* display: block; */
-  margin-left: 15%;
+
   height: 70px;
   width: 70px;
+  margin-left: 10%;
   border-radius: 90%;
   object-fit: contain;
 }
@@ -26,6 +27,20 @@ body {
   }
 
   .header > * {
+    flex-basis: 100%;
+  }
+
+  .container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: aliceblue;
+    height: 60px;
+    width: 100px;
+    margin-left: 5%;
+    margin-right: 5%
+  }
+  .container > * {
     flex-basis: 100%;
   }
 
