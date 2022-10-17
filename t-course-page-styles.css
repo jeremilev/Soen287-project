@@ -14,9 +14,16 @@ img {
     border-radius: 50%;
 }
 
-a {
+button {
     text-decoration: none;
 }
+
+a,
+a:visited {
+    text-decoration: none;
+    color: #000000;
+}
+
 
 .navbar {
     display: flex;
@@ -30,7 +37,7 @@ a {
     background: #D9D9D9;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .container {
@@ -60,7 +67,7 @@ a {
     display: flex;
     flex-direction: column;
     width: 70%;
-    height: 2040px;
+    height: min-content;
 }
 
 .course-card {
@@ -75,7 +82,21 @@ a {
     box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25);
 }
 
+.course-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.course-buttons-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
 .right-panel {
+    /*The fixed position is causing problems */
     position: fixed;
     right: 0;
     top: 0;
@@ -84,36 +105,86 @@ a {
 }
 
 .right-panel-top {
-    height: 50%;
+    height: 40%;
+    overflow: auto;
     width: 100%;
+    padding-top: 10vh;
+    padding-left: 2em;
+    padding-right: 2em;
     background: #CAD2C5;
 }
 
 .right-panel-bottom {
     background: #52796F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 50%;
+    height: 60%;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 30px;
+}
+
+.calendar-container {
+    background: white;
+}
+
+#school-logo-navbar {
+    margin-left: 5rem;
 }
 
 #school-name {
     text-justify: center;
     font-style: normal;
     font-size: xxx-large;
-    font-weight: 200;
+    font-weight: 100;
     text-transform: uppercase;
     color: #000000;
+    margin-left: 1rem;
+    opacity: .8;
+}
+
+#help-icon {
+    margin-left: 17em;
+    opacity: .5;
+}
+
+#teacher-name-navbar {
+    margin-left: 4em;
+    font-size: xx-large;
+    font-weight: 700;
+    opacity: .75;
+}
+
+#teacher-profile-img {
+    margin-left: 2em;
+}
+
+#menu-icon {
+    margin-left: 2em;
+    opacity: .7;
 }
 
 #course-name {
     font-size: xx-large;
     text-transform: capitalize;
+    color: #000000;
 }
 
+.item-learning-resources {
+    font-size: x-large;
+    margin-bottom: 15px;
+}
 
 .material-symbols-outlined {
     font-variation-settings:
         'FILL' 0,
-        'wght' 500,
+        'wght' 600,
         'GRAD' 0,
         'opsz' 48
+}
+
+.icons-md-45 {
+    font-size: 45px !important;
 }
