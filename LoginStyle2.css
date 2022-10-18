@@ -32,42 +32,32 @@ body{
 
 .SOContent button{
     color: white;
-        font-size: large;
-        margin-top: 30px;
-        margin-bottom: 10px;
-        margin-left: 10vw;
-        background-color: #52796F;
-        width: 100px;
-        border-radius: 20px;
-        border: none;
-        height: 40px;
+    font-size: large;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    margin-left: 10vw;
+    background-color: #52796F;
+    width: 100px;
+    border-radius: 20px;
+    border: none;
+    height: 40px;
 }
 
-.studentButton:hover{
+.studentButton{
     border-radius: 100px;
     background-color: white;
-    width: 102%;
+    width: 100%;
     margin-left: 100px;
 }
 
-.studentButton:hover button{
+.studentButton button{
    background-color:  white;
    color: black;
 }
 
-
-.professorButton:hover{
-    border-radius: 100px;
-    background-color: white;
-    width: 102%;
+.professorButton{
     margin-left: 100px;
 }
-
-.professorButton:hover button{
-   background-color:  white;
-   color: black;
-}
-
 
 
 

@@ -4,6 +4,7 @@
         <title>Login Page</title>
         <link rel="stylesheet" href="LoginStyle2.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+        <script src=".\LoginPage.js"></script>
         <meta charset="UTF-16">
 
         <!--fontawesome link-->
@@ -14,8 +15,8 @@
         <div class="switchOptions">
             <div class="SOContent">
                 <div class="box"></div>
-               <div class="studentButton"><button id="student">Student</button></div>
-               <div class="professorButton"><button id="professor">Professor</button></div>
+               <div class="studentButton" id="studButton"><button onclick=clickStudent() id="student">Student</button></div>
+               <div class="professorButton" id="profbutton"><button onclick=clickProf() id="professor">Professor</button></div>
             </div>
         </div>
         <div class="loginPage">
