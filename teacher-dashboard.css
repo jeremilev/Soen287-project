@@ -71,6 +71,7 @@ body {
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     top: 1; /* Leaves some room for header */
     right: 0;
+    align-items: center;
     background-color: #52796F;
     overflow-x: hidden; /* Disable horizontal scroll */
     /* padding-top: 20px; */
@@ -84,21 +85,26 @@ body {
     display: flex;
     flex-direction: column;
     background-color:#CAD2C5;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     right: 0;
-    height: 50%;
+    height: 40%;
     width: 320px;
     object-fit: contain;
   }
 
   .calendarBackground{
     display: flex;
-    flex-direction: column;
-    background-color: #52796F;
+    background-color:white;
     position: fixed;
-    right: 0;
-    height: 100%;
-    width: 320px;
-    width: auto;
-    object-fit: contain;
+    justify-content: center;
+    bottom: 13%;
+    height: 30%;
+    width: 220px;
+    padding-bottom: 30px;
+
+    /*Make corners rounded*/
+    margin: auto;
+    border-radius:1em;
   }
