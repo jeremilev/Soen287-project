@@ -19,7 +19,7 @@ body {
   .header {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background-color: #D9D9D9;
     height: 80px;
@@ -34,11 +34,10 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: aliceblue;
-    height: 60px;
-    width: 100px;
-    margin-left: 5%;
-    margin-right: 5%
+    height: 70px;
+    width: 90px;
+    margin-left: 1%;
+    margin-right: 1%
   }
   .container > * {
     flex-basis: 100%;
@@ -53,6 +52,7 @@ body {
 
   .leftSide {
     display: flex;
+    flex-direction: column;
     height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 160px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
@@ -65,12 +65,40 @@ body {
 
   .rightSide{
     display: flex;
+    flex-direction: column;
     height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 160px; /* Set the width of the sidebar */
+    width: 320px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     top: 1; /* Leaves some room for header */
     right: 0;
     background-color: #52796F;
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;
+    /* padding-top: 20px; */
+  }
+
+  .rightSide > * {
+    flex-basis: 100%;
+  }
+
+  .learningResources {
+    display: flex;
+    flex-direction: column;
+    background-color:#CAD2C5;
+    position: fixed;
+    right: 0;
+    height: 50%;
+    width: 320px;
+    object-fit: contain;
+  }
+
+  .calendarBackground{
+    display: flex;
+    flex-direction: column;
+    background-color: #52796F;
+    position: fixed;
+    right: 0;
+    height: 100%;
+    width: 320px;
+    width: auto;
+    object-fit: contain;
   }
