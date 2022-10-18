@@ -6,23 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Teacher Dashboard</title>
     <link rel="stylesheet" href="teacher-dashboard.css">
+    <!-- Google font import  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600;800;900&display=swap"
+        rel="stylesheet">
+        <!-- import icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   </head>
   <body>
 
     <div class="header">
-      <div class = "container">
-        <div class = "item"><img src="Logo.png" class = "Himg"></div>
+      <div class = "header_container" style="margin-right: 20%">
+        <div class = "Himg"><img src="Logo.png" class = "Himg"></div>
         <div class = "item">Concordia University</div>
       </div>
-      <div class = "container">
-        <div class = "item"><img src= "ProfPic.png" class = "Himg"> </div>
+      <div class = "header_container">
+        <div class = "Himg"><img src= "ProfPic.png" class = "Himg"> </div>
         <div class = "item">Teacher Name</div>
       </div>
-      <div class = "container">
-        <div class = "item">Help button</div>
-        <div class = "item">Hamburger Menu</div>
+      <div class = "header_container"style="margin-left: 25%">
+        <div class = "item"> 
+          <a id="menu-icon" class="material-symbols-outlined icons-md-45">help</a>
+        </div>
+        <div class = "item">
+          <a id="menu-icon" class="material-symbols-outlined icons-md-45">menu</a>
+        </div>
       </div>
     </div>
+
 
 
     <div class="leftSide">
@@ -30,7 +43,7 @@
 
       <div class = "rightSide">
         <div class = "learningResources">
-          <h1>Learning Resources</h1>
+          <h2>Learning Resources</h2>
           <ul>
             <li><a href="https://concordia.ca/">Concordia.ca</a></li>
             <li><a href="https://library.concordia.ca/">Library</a></li>
@@ -38,10 +51,15 @@
           </ul>
         </div>
         <div class = "calendarBackground">
-          <h1>Calendar</h1>
+          <h2>Calendar</h2>
         </div>
 
       </div>
+
+      <div class="main_panel">
+      </div>
+
+
 
 
 	<script src="index.js"></script>
