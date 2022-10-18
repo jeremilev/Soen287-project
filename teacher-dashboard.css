@@ -1,0 +1,202 @@
+body {
+  font-family: 'Inter';
+  background-color: #D9D9D9;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Image properties */
+.Himg{
+  display: block;
+  height: 70px;
+  width: 70px;
+  border-radius: 90%;
+  object-fit: contain;
+}
+
+
+  .header {
+    display: flex;
+    position: sticky;
+    z-index: 1;
+    box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25);
+    top:0;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #D9D9D9;
+    height: 80px;
+    width: auto;
+  }
+
+  .header > * {
+    flex-basis: 100%;
+  }
+
+  .header_container{
+    display: flex;
+    position: sticky;
+    justify-content: space-around;
+    align-items: center;
+    height: 70px;
+    width: 90px;
+  }
+
+  .header_container > * {
+    flex-basis: 100%;
+  }
+
+  .item{
+    display: flex;
+    max-height: 90%;
+    width: auto;
+    min-width: 0;
+  }
+
+  .leftSide {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 160px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    top: 1; /* Leaves some room for header */
+    left: 0;
+    background-color: #84A98C;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+  }
+
+  .rightSide{
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 320px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    top: 1; /* Leaves some room for header */
+    right: 0;
+    align-items: center;
+    background-color: #52796F;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    /* padding-top: 20px; */
+  }
+
+  .rightSide > * {
+    flex-basis: 100%;
+  }
+
+  .learningResources {
+    display: flex;
+    flex-direction: column;
+    background-color:#CAD2C5;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 0;
+    height: 40%;
+    width: 320px;
+    object-fit: contain;
+  }
+
+  .calendarBackground{
+    display: flex;
+    background-color:white;
+    position: fixed;
+    justify-content: center;
+    bottom: 13%;
+    height: 30%;
+    width: 220px;
+    padding-bottom: 30px;
+    box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25);
+
+    /*Make corners rounded*/
+    margin: auto;
+    border-radius:1em;
+  }
+
+  .main_panel{
+    display: flex;
+    flex-direction: column;
+    background-color:white;
+    justify-content: center;
+    align-items: center;
+
+    width: auto;
+    height: auto;
+    padding-top: 40px;
+    margin-top: 5%;
+    margin-left: 15%;
+    margin-right:25%;
+    margin-bottom: 2%;
+    box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25);
+    border-radius: 2em;
+    }
+
+    .mp_course{
+      display: flex;
+      flex-direction: row;
+      background-color: #D9D9D9;
+      border:#84A98C;
+      border-style: dotted;
+      align-items: center;
+      justify-content: center;
+      width: 80%;
+      height: 200px;
+      margin-top: 5%;
+      margin-left: 15%;
+      margin-right:15%;
+      margin-bottom: 2%;
+      border-radius: 2em;
+      box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    .mp_course1{
+      display:flex;
+      flex-wrap:wrap;
+      flex-direction: column;
+      background-color: #52796F;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+      color: white;
+      height: 80%;
+      margin-left: 3%;
+      border-style: solid;
+      border-radius: 2em;
+      box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25);
+    }
+    .mp_course2{
+      display: flex;
+      flex-direction: column;
+      margin: 10%;
+      align-items: center;
+      justify-content: space-between;
+      height:80%;
+      flex-grow:2;
+      border-radius: 2em;
+    }
+    .mp_course2_items{
+      display:flex;
+      justify-content: center;
+      align-items: center;;
+      background-color: #84A98C;
+      width: 100%;
+      height: 20%;
+      border-radius: 1em;
+      border:#CAD2C5;
+      border-style: inset;
+      box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25);
+    }
+
+/* Symbols and Icons */
+  .material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 600,
+        'GRAD' 0,
+        'opsz' 48
+}
+
+.icons-md-45 {
+    font-size: 45px !important;
+}
