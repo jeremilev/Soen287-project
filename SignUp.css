@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #52796F;
+}
+
+
+.container{
+    display: flex;
+    height: 500px;
+    width: 500px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 30px;
+}
+
+
+.SignUpPage h2{
+    font-size: 30px;
+    color: #2F3E46;
+    margin-bottom: 30px;
+    margin-left: 20%;
+    font-family: Inter;
+    font-weight: lighter;
+}
+
+
+
+.SignUpPage select{
+    border: none;
+    margin-left: 7%;
+    font-size: 16px;
+    color: #2F3E46;
+
+}
+
+.SignUpPage button{
+    color: white;
+    font-size: large;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    margin-left: 18px;
+    background-color: #52796F;
+    width: 200px;
+    border-radius: 20px;
+    border: none;
+    height: 40px;
+}
+
+.SignUpPage input{
+    font-size: 16px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 2px;
+    margin: 20px;
+    margin-bottom: 10px;
+    width: 200px;
+}
+
+.SignUpPage a{
+    text-decoration-line: none;
+    color: #356398;
+    margin-left: 18px;
+}
