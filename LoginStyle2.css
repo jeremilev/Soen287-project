@@ -1,36 +1,36 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     background-color: #52796F;
     height: 100vh;
     margin-top: 0;
 }
 
-.container{
-    display:flex;
+.container {
+    display: flex;
     height: 100%;
     width: 100%;
     margin: auto;
 }
 
-.switchOptions{
+.switchOptions {
     display: flex;
     background-color: #52796F;
     flex: 2;
     align-items: center;
 }
 
-.SOContent{
+.SOContent {
     height: 5vh;
     width: 100%;
     flex-direction: column;
 }
 
-.SOContent button{
+.SOContent button {
     color: white;
     font-size: large;
     margin-top: 30px;
@@ -43,68 +43,74 @@ body{
     height: 40px;
 }
 
-.studentButton{
+.studentButton {
     border-radius: 100px;
     background-color: white;
     width: 100%;
     margin-left: 100px;
 }
 
-.studentButton button{
-   background-color:  white;
-   color: black;
+.studentButton button {
+    background-color: white;
+    color: black;
 }
 
-.professorButton{
+.professorButton {
     margin-left: 100px;
 }
 
 
 
 /*login Page*/
-.loginPage{
+.loginPage {
     background-color: white;
-    display:flex;
+    display: flex;
     flex: 5;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.loginPage h2{
+.loginPage h2 {
     font-size: 30px;
     color: #2F3E46;
     margin-right: 18px;
     margin-bottom: 30px;
     font-family: Inter;
     font-weight: lighter;
-    }
+}
 
-    .loginPage button{
-        color: white;
-        font-size: large;
-        margin-top: 30px;
-        margin-bottom: 10px;
-        margin-left: 18px;
-        background-color: #52796F;
-        width: 200px;
-        border-radius: 20px;
-        border: none;
-        height: 40px;
-    }
-    
-    .loginPage input{
-        font-size: 16px;
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        padding: 2px;
-        margin: 20px;
-        width: 200px;
-    }
-    
-    .loginPage a{
-        text-decoration-line: none;
-        color: #356398;
-        margin-left: 18px;
-    }
+.loginPage a {
+    align-self: center;
+}
+
+.loginPage button {
+    color: white;
+    font-size: large;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    background-color: #52796F;
+    width: 200px;
+    border-radius: 20px;
+    border: none;
+    height: 40px;
+    cursor: pointer;
+    align-self: center;
+    margin-left: 18px;
+}
+
+.loginPage input {
+    font-size: 16px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 2px;
+    margin: 20px;
+    width: 200px;
+}
+
+.loginPage a {
+    text-decoration-line: none;
+    color: #356398;
+    margin-left: 18px;
+}
