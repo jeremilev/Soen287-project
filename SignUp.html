@@ -23,11 +23,11 @@
                 <br>
                 <input type="text" name="LastName" id="lastName" placeholder="Last Name">
                 <br>
-                <input type="text" name="username" id="username" placeholder="Username">
+                <input type="email" name="username" id="username" placeholder="Username">
                 <br>
                 <input type="password" name="password" id="password" placeholder="Password">
                 <br>
-                <button id="signUpButton">Sign Up</button>
+                <button id="submitButton">Sign Up</button>
                 <br>
                 <a href="Login.html">Already have an account? Sign in!</a>
             </form>
@@ -36,5 +36,53 @@
 
     </div>
 </body>
+<script type="module">
+    
+
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyBgFGNCDCuhhPGm8dkQujxuix0VpJbS3N0",
+        authDomain: "soen287-14875.firebaseapp.com",
+        databaseURL: "https://soen287-14875-default-rtdb.firebaseio.com",
+        projectId: "soen287-14875",
+        storageBucket: "soen287-14875.appspot.com",
+        messagingSenderId: "32157055896",
+        appId: "1:32157055896:web:d35e1510c1e470604e49ed"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+
+    submitButton.addEventListener('click', (e)=> {
+
+        event.preventDefault();
+        var email = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+        console.log(email + " " +  password);
+
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            // ... user.uid
+            alert("user creation was successful");
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+            alert(errorMessage);
+        });
+
+    });
+</script>
 
 </html>
