@@ -85,13 +85,17 @@
                 </select>
                 <i class="material-symbols-outlined icons-md-45 close-btn">close</i>
             </div>
-            <div>
+            <div id="overlay-assignment-options">
                 <div id="overlay-new-assignment-btn">
                     New Assignment
                     <i class="material-symbols-outlined btn-icon">post_add</i>
                 </div>
+                <div id="existing-assignment">
+                    list of existing assignments
+                </div>
+
             </div>
-            <div id="assignment-layout" class="overlay-panel-content">
+            <div id="assignments-layout" class="overlay-panel-content">
                 <form action="">
                     <label for="assignment-title">Assignment title:</label>
                     <input id="assignment-title" type="text">
@@ -107,11 +111,91 @@
                     </div>
                 </form>
             </div>
-            <div id="announcement-layout" class="overlay-panel-content"></div>
-            <div id="grades-layout" class="overlay-panel-content"></div>
+            <div id="announcements-layout" class="overlay-panel-content">
+                <form action="">
+                    <label for="announcement-title">Announcement title:</label>
+                    <input id="announcement-title" type="text">
+                    <label for="announcement-subject">Subject:</label>
+                    <input id="announcement-subject" type="text">
+                    <label for="announcement-description">Description:</label>
+                    <input id="announcement-description" type="text">
+                </form>
+            </div>
+            <div id="grades-layout" class="overlay-panel-content">
+                <select name="" id="assessment-list">
+                    <option value="assessmentname">Assessment 1</option>
+                    <option value="assessmentname">Assessment 2</option>
+                    <option value="assessmentname">Midterm name</option>
+                    <option value="addassessment">Add new assessment</option>
+                </select>
+                <label for="assessment-weight">Assessment weight</label>
+                <input type="number" name="" value="10.0" id="assessment-weight" disabled>
+                <label for="">out of 100</label>
+                <ul>
+                    <li class="row-display student-grade">
+                        <a href="">Student name</a>
+                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
+                        <input type="number" value="75" name="" id="grade-nb" disabled>
+                        <label for="grade-nb">/100</label>
+                        <div style="background-color: red;">tag</div>
+                    </li>
+                    <li class="row-display student-grade">
+                        <a href="">Student name</a>
+                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
+                        <input type="number" value="75" name="" id="grade-nb" disabled>
+                        <label for="grade-nb">/100</label>
+                        <div style="background-color: red;">tag</div>
+                    </li>
+                    <li class="row-display student-grade">
+                        <a href="">Student name</a>
+                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
+                        <input type="number" value="75" name="" id="grade-nb" disabled>
+                        <label for="grade-nb">/100</label>
+                        <div style="background-color: red;">tag</div>
+                    </li>
+                    <li class="row-display student-grade">
+                        <a href="">Student name</a>
+                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
+                        <input type="number" value="75" name="" id="grade-nb" disabled>
+                        <label for="grade-nb">/100</label>
+                        <div style="background-color: red;">tag</div>
+                    </li>
+                    <li class="row-display student-grade">
+                        <a href="">Student name</a>
+                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
+                        <input type="number" value="75" name="" id="grade-nb" disabled>
+                        <label for="grade-nb">/100</label>
+                        <div style="background-color: red;">tag</div>
+                    </li>
+                    <li class="row-display student-grade">
+                        <a href="">Student name</a>
+                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
+                        <input type="number" value="75" name="" id="grade-nb" disabled>
+                        <label for="grade-nb">/100</label>
+                        <div style="background-color: red;">tag</div>
+                    </li>
+                    <li class="row-display student-grade">
+                        <a href="">Student name</a>
+                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
+                        <input type="number" value="75" name="" id="grade-nb" disabled>
+                        <label for="grade-nb">/100</label>
+                        <div style="background-color: red;">tag</div>
+                    </li>
+                    <li class="row-display student-grade">
+                        <a href="">Student name</a>
+                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
+                        <input type="number" value="75" name="" id="grade-nb" disabled>
+                        <label for="grade-nb">/100</label>
+                        <div style="background-color: red;">tag</div>
+                    </li>
+
+                </ul>
+            </div>
             <div id="new-file-layout" class="overlay-panel-content">
-                <label for="">Week:</label>
-                <input type="date" name="" id="New-file-">
+                <label for="new-file">New file:</label>
+                <input type="file" name="" id="new-file">
+                <label for="">Attach to Week: </label>
+                <input type="date" name="" id="">
                 </select>
             </div>
 
