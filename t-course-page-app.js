@@ -25,6 +25,34 @@ menuIcon.addEventListener('click', function () {
 const overlayContainer = document.querySelector('#overlay-container');
 const overlayPanel = document.querySelector('#overlay-panel');
 
+const navItemAssignment = document.querySelector('#overlay-nav-item-assignments');
+const navItemAnnouncements = document.querySelector('#overlay-nav-item-announcements');
+const navItemGrades = document.querySelector('#overlay-nav-item-grades');
+const navItemFiles = document.querySelector('#overlay-nav-item-files');
+
+overlayNavItems = [navItemAssignment, navItemAnnouncements, navItemGrades, navItemFiles];
+
+navItemAssignment.addEventListener('click', function () {
+    const assignmentLayout = document.getElementById('assignment-layout');
+    assignmentLayout.style.display = "flex";
+})
+
+navItemAnnouncements.addEventListener('click', function () {
+    const announcementLayout = document.getElementById('announcement-layout');
+    announcementLayout.style.display = "flex";
+})
+
+navItemGrades.addEventListener('click', function () {
+    const gradesLayout = document.getElementById('grades-layout');
+    gradesLayout.style.display = "flex";
+})
+
+navItemFiles.addEventListener('click', function () {
+    const filesLayout = document.getElementById('files-layout');
+    filesLayout.style.display = "flex";
+})
+
+
 
 const attachFileBtns = [];
 for (let i = 0; i < AllIcons.length; i++) {
@@ -47,4 +75,4 @@ for (let i = 0; i < AllIcons.length; i++) {
     }
 }
 
-console.log(attachFileBtns)
+console.log(attachFileBtns);
