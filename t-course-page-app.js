@@ -1,3 +1,19 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const AllIcons = document.querySelectorAll('.material-symbols-outlined');
 
 
