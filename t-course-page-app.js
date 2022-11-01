@@ -1,17 +1,4 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import { getAnnouncementsArray } from '/queries.js';
 
 
 const AllIcons = document.querySelectorAll('.material-symbols-outlined');
@@ -46,7 +33,7 @@ const navItemAnnouncements = document.querySelector('#overlay-nav-item-announcem
 const navItemGrades = document.querySelector('#overlay-nav-item-grades');
 const navItemFiles = document.querySelector('#overlay-nav-item-files');
 
-overlayNavItems = [navItemAssignment, navItemAnnouncements, navItemGrades, navItemFiles];
+let overlayNavItems = [navItemAssignment, navItemAnnouncements, navItemGrades, navItemFiles];
 
 const assigmentOptions = document.getElementById('overlay-assignment-options')
 const assignmentLayout = document.getElementById('assignments-layout');
@@ -64,10 +51,14 @@ navItemAssignment.addEventListener('click', function () {
 
 })
 
+const generalInfoBlock = document.getElementById('general-info-block');
+const courseDescription = document.getElementById('course-description');
 navItemAnnouncements.addEventListener('click', function () {
 
 
     announcementLayout.style.display = "flex";
+
+    //Object.keys(obj).length
 
     assigmentOptions.style.display = "none";
     assignmentLayout.style.display = "none";
@@ -129,6 +120,15 @@ for (let i = 0; i < AllIcons.length; i++) {
             overlayContainer.style.display = "flex";
             overlayPanel.style.display = "flex";
             announcementLayout.style.display = "flex";
+
+            /*
+            WORKED
+            var a = document.createElement('div');
+            a.classList.add("foo");
+            a.textContent = "DID IT WORK?"
+            generalInfoBlock.appendChild(a);
+            */
+
         })
     } else if (AllIcons[i].innerText == "close") {
         AllIcons[i].addEventListener('click', function () {
