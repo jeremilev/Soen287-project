@@ -23,19 +23,56 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 
-// Query: user-list
+// Query: user-list 
 
+//QUERIES ALL USERS
+/*
 const querySnapshot = await getDocs(collection(db, "users"));
 querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
     console.log(doc.id, " => ", doc.data());
 });
+*/
 
-// Query: list announcements
+//QUERY: all courses
+export const getCourses = async function () {
+
+    //Get the data from the reference above
+    const querySnapshot = await getDocs(collection(db, "courses"));
+    var courses = null;
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+    })
+}
+
+//QUERY: all students within a course **Imperfect, need to find a way to standardized the document name inside the collection studentList
+export const getStudentList = async function (className) {
+
+    //studentList is a collection and collections don't contain fields, only documents can contain fields, 
+    //so collections must have documents that then, in turn, contain the data.
+    //Here, studentList is a collection, jteSOJD0LO8AbUxMlXcM is a document. Else it throws an error
+    const docRef = doc(db, "courses", className, "studentList", 'jteSOJD0LO8AbUxMlXcM');
+
+    const docSnap = await getDoc(docRef);
+
+    //If exists
+    if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+        //Get the data from that document: IE get the FIELDS DATA
+
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+
+}
 
 
-//Turn this into a function
+getStudentList("COMP232-A");
 
+
+// Query: list of announcements
 export const getAnnouncementsArray = async function () {
     //Specify path with commas, so you get database/courses/COMP232-A
     const docRef = doc(db, "courses", "COMP232-A");
@@ -60,9 +97,10 @@ export const getAnnouncementsArray = async function () {
 }
 
 let announcementsObj = await getAnnouncementsArray();
+/*formats to access nested keys and values
 let announcement = announcementsObj[Object.keys(announcementsObj)[0]];
 console.log(announcement[Object.keys(announcement)[0]]);
-
+*/
 
 
 

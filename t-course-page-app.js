@@ -3,6 +3,46 @@ import { getAnnouncementsArray } from '/queries.js';
 
 const AllIcons = document.querySelectorAll('.material-symbols-outlined');
 
+/*
+    FUNCTIONS for dynamic creation of elements, (after fetching data from the database, 
+    it needs to be rendered, these functions create the elements to display).
+
+*/
+
+//DOESNT WORK 
+const overlayAnnouncementList = document.getElementById('overlay-announcement-list')
+const displayAnnouncements = function (announcementsMap) {
+    for (let i = 0; i < announcementsMap.length; i++) {
+        let container = document.createElement('div');
+        let subject = document.createElement('div');
+        let description = document.createElement('div');
+        let descriptionText = document.createElement('pre');
+        subject.innerText('Midterm date');
+        descriptionText.innerText("giwbwi wegiw wg ibgwigbwigbwi w biwggibwbgw igbwi bgwibgwib gwib  wib giwb ");
+
+
+        container.classList.add('announcement-container');
+        subject.classList.add('announcement-subject');
+        description.classList.add('announcement-description');
+
+        description.appendChild(descriptionText);
+
+        container.appendChild(subject);
+        container.appendChild(description);
+        console.log(container);
+        overlayAnnouncementList.appendChild(container);
+    }
+
+    /*
+    WORKED
+    var a = document.createElement('div');
+    a.classList.add("foo");
+    a.textContent = "DID IT WORK?"
+    generalInfoBlock.appendChild(a);
+    */
+}
+
+
 
 /*
     MENU ICON: OVERLAY
@@ -120,14 +160,7 @@ for (let i = 0; i < AllIcons.length; i++) {
             overlayContainer.style.display = "flex";
             overlayPanel.style.display = "flex";
             announcementLayout.style.display = "flex";
-
-            /*
-            WORKED
-            var a = document.createElement('div');
-            a.classList.add("foo");
-            a.textContent = "DID IT WORK?"
-            generalInfoBlock.appendChild(a);
-            */
+            displayAnnouncements(5);
 
         })
     } else if (AllIcons[i].innerText == "close") {
@@ -145,7 +178,6 @@ for (let i = 0; i < AllIcons.length; i++) {
 }
 
 console.log(attachFileBtns);
-
 
 /*
 const gradesInput = document.querySelector('#grade-nb');
