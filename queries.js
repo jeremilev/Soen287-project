@@ -65,15 +65,28 @@ export const getStudentList = async function (className) {
         // doc.data() will be undefined in this case
         console.log("No such document!");
     }
-
 }
 
+//Query: all assessments within a course
+export const getAssessments = async function (className) {
 
-getStudentList("COMP232-A");
+    //Fetch multiple docs (every assessment is a doc)
+    const querySnapshot = await getDocs(collection(db, "courses", className, "assessments"));
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+    })
+}
+//getAssessments("COMP232-A");
+
+//Query: a specific assignment within a course and its info 
+
+
+//Query: a particular student within a course, to display that student's grades.
 
 
 // Query: list of announcements
-export const getAnnouncementsArray = async function () {
+export const getAnnouncements = async function () {
     //Specify path with commas, so you get database/courses/COMP232-A
     const docRef = doc(db, "courses", "COMP232-A");
 
@@ -96,8 +109,8 @@ export const getAnnouncementsArray = async function () {
     return announcements;
 }
 
-let announcementsObj = await getAnnouncementsArray();
 /*formats to access nested keys and values
+let announcementsObj = await getAnnouncements();
 let announcement = announcementsObj[Object.keys(announcementsObj)[0]];
 console.log(announcement[Object.keys(announcement)[0]]);
 */

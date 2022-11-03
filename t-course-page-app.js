@@ -1,4 +1,4 @@
-import { getAnnouncementsArray } from '/queries.js';
+import { getAnnouncements } from '/queries.js';
 
 
 const AllIcons = document.querySelectorAll('.material-symbols-outlined');
