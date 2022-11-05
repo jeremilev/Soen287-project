@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js';
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js';
-import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
+import { getFirestore, collection, addDoc, getDoc, getDocs, doc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -36,3 +36,20 @@ const db = getFirestore(app);
 //   } catch (e) {
 //     console.error("Error adding document: ", e);
 //   }
+
+//Test to read documents.
+const querySnapshot = await getDocs(collection(db, "Users"));
+querySnapshot.forEach((doc) => {
+  console.log(`${doc.id} => ${doc.data()}`);
+});
+
+
+//THIS WORKS! Accessing a specific field of a document. 
+const docRef = doc(db, "Users", "S1IBkMUJEUXHrf9V6Ys2"); //Returns a reference to a document
+const docSnap = await getDoc(docRef); //Returns a snapshot of document reference
+if (docSnap.exists()) {
+    console.log("Document name:", docSnap.get("name")); 
+  } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+  }
