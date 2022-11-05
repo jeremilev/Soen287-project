@@ -25,6 +25,9 @@ const analytics = getAnalytics(app);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
+
+//Intermediate tests to dynamically displaying a different number of course cards depending on number of courses a user has in database:
+
 // //Succesful test to see if I can add a collection and document to the db.
 // try {
 //     const docRef = await addDoc(collection(db, "users"), {
@@ -37,19 +40,27 @@ const db = getFirestore(app);
 //     console.error("Error adding document: ", e);
 //   }
 
-//Test to read documents.
-const querySnapshot = await getDocs(collection(db, "Users"));
-querySnapshot.forEach((doc) => {
-  console.log(`${doc.id} => ${doc.data()}`);
-});
+// //Successful test to read documents.
+// const querySnapshot = await getDocs(collection(db, "Users"));
+// querySnapshot.forEach((doc) => {
+//   console.log(`${doc.id} => ${doc.data()}`);
+// });
 
 
-//THIS WORKS! Accessing a specific field of a document. 
-const docRef = doc(db, "Users", "S1IBkMUJEUXHrf9V6Ys2"); //Returns a reference to a document
-const docSnap = await getDoc(docRef); //Returns a snapshot of document reference
-if (docSnap.exists()) {
-    console.log("Document name:", docSnap.get("name")); 
-  } else {
-    // doc.data() will be undefined in this case
-    console.log("No such document!");
-  }
+// //Successful test to access and log to console: a specific field of a document. 
+// const docRef = doc(db, "Users", "S1IBkMUJEUXHrf9V6Ys2"); //Returns a reference to a document
+// const docSnap = await getDoc(docRef); //Returns a snapshot of document reference
+// if (docSnap.exists()) {
+//     console.log("Document name:", docSnap.get("name")); 
+//   } else {
+//     // doc.data() will be undefined in this case
+//     console.log("No such document!");
+//   }
+
+
+//   //Succesful test to add a DOM element through JS, and appending to the main_panel:
+//   let div = document.createElement('div');
+//         div.className = 'mp_course';
+//         div.innerHTML = '<p>CreateElement example</p>';
+//         document.body.appendChild(div);
+//         document.getElementById('main_panel').appendChild(div);
