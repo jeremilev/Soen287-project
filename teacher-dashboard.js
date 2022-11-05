@@ -64,3 +64,13 @@ const db = getFirestore(app);
 //         div.innerHTML = '<p>CreateElement example</p>';
 //         document.body.appendChild(div);
 //         document.getElementById('main_panel').appendChild(div);
+
+// ID's for reference: 
+// John: g6hCS9rOmXVXEsHsyCDU
+// Jeremi: S1IBkMUJEUXHrf9V6Ys2
+
+// //Successful test to Find how many courses a user has in their Firestore course collection
+// const docRef = doc(db, "Users", "S1IBkMUJEUXHrf9V6Ys2");
+// const docSnap = await getDoc(docRef);
+// let courseArray = docSnap.get("Courses");
+// console.log(courseArray.length);
