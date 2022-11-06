@@ -26,7 +26,71 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
 
-//Intermediate tests to dynamically displaying a different number of course cards depending on number of courses a user has in database:
+// ID's for reference: 
+// John: g6hCS9rOmXVXEsHsyCDU
+// Jeremi: S1IBkMUJEUXHrf9V6Ys2
+
+//define snapshot of user and courselist
+const id = "g6hCS9rOmXVXEsHsyCDU";
+const userRef = doc(db, "Users", id);
+const userSnap = await getDoc(userRef);
+const courselistSnap = userSnap.get("Courses");
+const size = courselistSnap.length;
+
+//TODO: Find a way to not mix the HTML and JavaScript code like "div.innerHTML = ..."
+//TODO: Have each course card direct to that course's page.
+
+//Iterate over courseList and create a course card for each course
+for (var i = 0; i < size; i++){
+  //Get the course name at index i
+  var courseRef = courselistSnap[i];
+  var courseSnap = await getDoc(courseRef);
+  var courseName= courseSnap.get("name");
+
+  //Add course card div inside the main_panel
+  let div = document.createElement('div');
+        div.className = 'mp_course';
+        div.setAttribute("id", "mp_course");
+
+        div.innerHTML = `
+        <div class="mp_course1">
+
+        <a class="main-page-a-tag" href="t-course-page.html">
+          <h3>` + courseName +`</h3>
+        </a>
+      </div>
+      <div class="mp_course2">
+        <div class="mp_course2_items">Add Assignment</div>
+        <div class="mp_course2_items">Input Marks</div>
+        <div class="mp_course2_items">View Report</div>
+      </div>`;
+
+        document.getElementById('main_panel').appendChild(div);
+}
+
+
+//---------------------------------------------------//
+// Intermediate tests that may be useful references: //
+//---------------------------------------------------//
+
+
+// docRef.get().then((doc) => {
+//     if (doc.exists) {
+//         const arrayField = doc.data().arrayField; 
+
+//         // arrayField is a JavaScript Array, you can use any method or property  
+//         // e.g. get index 0
+//         const arrayFieldFirstElement = arrayField[0];
+//         console.log(arrayFieldFirstElement);
+
+//     } else {
+//         // doc.data() will be undefined in this case
+//         console.log("No such document!");
+//     }
+// }).catch((error) => {
+//     console.log("Error getting document:", error);
+// });
+
 
 // //Succesful test to see if I can add a collection and document to the db.
 // try {
@@ -45,49 +109,3 @@ const db = getFirestore(app);
 // querySnapshot.forEach((doc) => {
 //   console.log(`${doc.id} => ${doc.data()}`);
 // });
-
-
-// //Successful test to access and log to console: a specific field of a document. 
-// const docRef = doc(db, "Users", "S1IBkMUJEUXHrf9V6Ys2"); //Returns a reference to a document
-// const docSnap = await getDoc(docRef); //Returns a snapshot of document reference
-// if (docSnap.exists()) {
-//     console.log("Document name:", docSnap.get("name")); 
-//   } else {
-//     // doc.data() will be undefined in this case
-//     console.log("No such document!");
-//   }
-
-
-// ID's for reference: 
-// John: g6hCS9rOmXVXEsHsyCDU
-// Jeremi: S1IBkMUJEUXHrf9V6Ys2
-
-
-// //Successful test to Find how many courses a user has in their Firestore course collection
-const docRef = doc(db, "Users", "g6hCS9rOmXVXEsHsyCDU");
-const docSnap = await getDoc(docRef);
-let courseArray = docSnap.get("Courses");
-var size = courseArray.length;
-console.log(size);
-
-//TODO: Find a way to not mix the HTML and JavaScript code like this:
-//Successful test to dynamically add divs depending on student's course list length.
-for (var i = 0; i < size; i++){
-  //Succesful test to add a DOM element through JS, and appending to the main_panel:
-  let div = document.createElement('div');
-        div.className = 'mp_course';
-        div.setAttribute("id", "mp_course");
-        div.innerHTML = `
-        <div class="mp_course1">
-
-        <a class="main-page-a-tag" href="t-course-page.html">
-          <h3>COMP 248</h3>
-        </a>
-      </div>
-      <div class="mp_course2">
-        <div class="mp_course2_items">Add Assignment</div>
-        <div class="mp_course2_items">Input Marks</div>
-        <div class="mp_course2_items">View Report</div>
-      </div>`;
-        document.getElementById('main_panel').appendChild(div);
-}
