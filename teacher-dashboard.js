@@ -58,19 +58,36 @@ const db = getFirestore(app);
 //   }
 
 
-//   //Succesful test to add a DOM element through JS, and appending to the main_panel:
-//   let div = document.createElement('div');
-//         div.className = 'mp_course';
-//         div.innerHTML = '<p>CreateElement example</p>';
-//         document.body.appendChild(div);
-//         document.getElementById('main_panel').appendChild(div);
-
 // ID's for reference: 
 // John: g6hCS9rOmXVXEsHsyCDU
 // Jeremi: S1IBkMUJEUXHrf9V6Ys2
 
+
 // //Successful test to Find how many courses a user has in their Firestore course collection
-// const docRef = doc(db, "Users", "S1IBkMUJEUXHrf9V6Ys2");
-// const docSnap = await getDoc(docRef);
-// let courseArray = docSnap.get("Courses");
-// console.log(courseArray.length);
+const docRef = doc(db, "Users", "g6hCS9rOmXVXEsHsyCDU");
+const docSnap = await getDoc(docRef);
+let courseArray = docSnap.get("Courses");
+var size = courseArray.length;
+console.log(size);
+
+//TODO: Find a way to not mix the HTML and JavaScript code like this:
+//Successful test to dynamically add divs depending on student's course list length.
+for (var i = 0; i < size; i++){
+  //Succesful test to add a DOM element through JS, and appending to the main_panel:
+  let div = document.createElement('div');
+        div.className = 'mp_course';
+        div.setAttribute("id", "mp_course");
+        div.innerHTML = `
+        <div class="mp_course1">
+
+        <a class="main-page-a-tag" href="t-course-page.html">
+          <h3>COMP 248</h3>
+        </a>
+      </div>
+      <div class="mp_course2">
+        <div class="mp_course2_items">Add Assignment</div>
+        <div class="mp_course2_items">Input Marks</div>
+        <div class="mp_course2_items">View Report</div>
+      </div>`;
+        document.getElementById('main_panel').appendChild(div);
+}
