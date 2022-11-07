@@ -9,13 +9,52 @@ const AllIcons = document.querySelectorAll('.material-symbols-outlined');
 
 */
 
+const generalInfoBlock = document.getElementById('general-info-block');
+
+const courseDescription = document.getElementById('course-description');
+const displayAnnouncements = async function () {
+    var announcementsMap = await getAnnouncements();
+
+    for (let i = 0; i < Object.keys(announcementsMap).length; i++) {
+        //Create elements to hold data
+        var container = document.createElement('div');
+        var subject = document.createElement('div');
+        var descriptionContainer = document.createElement('div');
+        var descriptionText = document.createElement('p');
+
+        //Assign data from announcementsMap
+        let announcement = announcementsMap[Object.keys(announcementsMap)[i]];
+
+        //Get data by key name
+        subject.innerText = announcement['subject'] + " - " + announcement['datePublished'].toDate().toDateString();
+        descriptionText.innerText = announcement['description'];
+
+        //Give them css formatting
+        container.classList.add('announcement-container');
+        subject.classList.add('announcement-subject');
+        descriptionContainer.classList.add('announcement-description');
+
+        //Add elements to the main container to form a component
+        descriptionContainer.appendChild(descriptionText);
+        container.appendChild(subject);
+        container.appendChild(descriptionContainer);
+
+        //Add elements to the DOM at the right location
+        generalInfoBlock.insertBefore(container, courseDescription);
+    }
+}
+
+displayAnnouncements();
+/*
 //DOESNT WORK 
+const 
+
 const overlayAnnouncementList = document.getElementById('overlay-announcement-list')
 const displayAnnouncements = function (announcementsMap) {
     for (let i = 0; i < announcementsMap.length; i++) {
         let container = document.createElement('div');
         let subject = document.createElement('div');
-        let description = document.createElement('div');
+        let descriptionContainer = document.createElement('div');
         let descriptionText = document.createElement('pre');
         subject.innerText('Midterm date');
         descriptionText.innerText("giwbwi wegiw wg ibgwigbwigbwi w biwggibwbgw igbwi bgwibgwib gwib  wib giwb ");
@@ -23,12 +62,12 @@ const displayAnnouncements = function (announcementsMap) {
 
         container.classList.add('announcement-container');
         subject.classList.add('announcement-subject');
-        description.classList.add('announcement-description');
+        descriptionContainer.classList.add('announcement-description');
 
-        description.appendChild(descriptionText);
+        descriptionContainer.appendChild(descriptionText);
 
         container.appendChild(subject);
-        container.appendChild(description);
+        container.appendChild(descriptionContainer);
         console.log(container);
         overlayAnnouncementList.appendChild(container);
     }
@@ -40,7 +79,8 @@ const displayAnnouncements = function (announcementsMap) {
     a.textContent = "DID IT WORK?"
     generalInfoBlock.appendChild(a);
     */
-}
+
+
 
 
 
@@ -90,9 +130,6 @@ navItemAssignment.addEventListener('click', function () {
     filesLayout.style.display = "none";
 
 })
-
-const generalInfoBlock = document.getElementById('general-info-block');
-const courseDescription = document.getElementById('course-description');
 navItemAnnouncements.addEventListener('click', function () {
 
 
@@ -162,6 +199,17 @@ for (let i = 0; i < AllIcons.length; i++) {
             announcementLayout.style.display = "flex";
             displayAnnouncements(5);
 
+        })
+    } else if (AllIcons[i].innerText == "percent") {
+        AllIcons[i].addEventListener('click', function () {
+            overlayContainer.style.display = "flex";
+            overlayPanel.style.display = "flex";
+
+            assignmentLayout.style.display = "none"
+            assigmentOptions.style.display = "none";
+            announcementLayout.style.display = "none";
+            gradesLayout.style.display = "flex";
+            filesLayout.style.display = "none";
         })
     } else if (AllIcons[i].innerText == "close") {
         AllIcons[i].addEventListener('click', function () {

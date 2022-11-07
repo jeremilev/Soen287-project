@@ -77,7 +77,7 @@ export const getAssessments = async function (className) {
         console.log(doc.id, " => ", doc.data());
     })
 }
-//getAssessments("COMP232-A");
+getAssessments("COMP232-A");
 
 //Query: a specific assignment within a course and its info 
 
@@ -113,9 +113,19 @@ export const getAnnouncements = async function () {
 let announcementsObj = await getAnnouncements();
 let announcement = announcementsObj[Object.keys(announcementsObj)[0]];
 console.log(announcement[Object.keys(announcement)[0]]);
+
+let announcementsObj = await getAnnouncements();
+let announcement = announcementsObj[Object.keys(announcementsObj)[0]];
+console.log(announcement[Object.keys(announcement)[0]]);
+console.log(announcement['description']);
 */
 
 
+/*
+export const addAnnouncement = async function () {
+
+}
+*/
 
 
 //reference to courses:
