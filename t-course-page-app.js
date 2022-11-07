@@ -197,8 +197,6 @@ for (let i = 0; i < AllIcons.length; i++) {
             overlayContainer.style.display = "flex";
             overlayPanel.style.display = "flex";
             announcementLayout.style.display = "flex";
-            displayAnnouncements(5);
-
         })
     } else if (AllIcons[i].innerText == "percent") {
         AllIcons[i].addEventListener('click', function () {
