@@ -25,6 +25,19 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
 
 </head>
 
@@ -41,6 +54,158 @@
             <i id="menu-icon" class="material-symbols-outlined icons-md-45">menu</i>
         </div>
     </nav>
+    <div id="overlay-menu-icon">
+        <div class="row-display">
+            <a href="">
+                <i class="material-symbols-outlined icons-md-45">person</i>
+            </a>
+            <a href="">Account information</a>
+        </div>
+        <div>
+            <label for="">dark mode</label>
+            <input type="radio">
+        </div>
+        <div class="row-display">
+            <a href="Login.html">
+                <i class="material-symbols-outlined icons-md-45">logout</i>
+            </a>
+            <a href="Login.html">Logout</a>
+        </div>
+    </div>
+
+    <div id="overlay-container">
+        <div id="overlay-panel">
+            <div id="overlay-panel-header">
+                <div id="overlay-navbar">
+                    <div id="overlay-nav-item-assignments" class="overlay-nav-item">Assignments</div>
+                    <div id="overlay-nav-item-announcements" class="overlay-nav-item">Annoucements</div>
+                    <div id="overlay-nav-item-grades" class="overlay-nav-item">Grades</div>
+                    <div id="overlay-nav-item-files" class="overlay-nav-item">Files</div>
+                </div>
+                </select>
+                <i class="material-symbols-outlined icons-md-45 close-btn">close</i>
+            </div>
+            <div id="overlay-assignment-options">
+                <div id="overlay-new-assignment-btn">
+                    New Assignment
+                    <i class="material-symbols-outlined btn-icon">post_add</i>
+                </div>
+                <div id="existing-assignment">
+                    list of existing assignments
+                </div>
+
+            </div>
+            <div id="assignments-layout" class="overlay-panel-content">
+                <form action="">
+                    <label for="assignment-title">Assignment title:</label>
+                    <input id="assignment-title" type="text">
+                    <label for="assignment-description">Description:</label>
+                    <input id="assignment-description" type="text">
+                    <label for="assignment-files">Attach file:</label>
+                    <input type="file" name="" id="assignment-files">
+                    <label for="assignment-due-date">Due date:</label>
+                    <input type="date" name="" id="assignment-due-date">
+                    <div class="row-display">
+                        <label for="assignment-visible">Visible to students: </label>
+                        <input type="checkbox" name="" id="assignment-visible">
+                    </div>
+                </form>
+            </div>
+            <div id="announcements-layout" class="overlay-panel-content">
+                <form action="">
+                    <label for="announcement-title">Announcement title:</label>
+                    <input id="announcement-title" type="text">
+                    <label for="announcement-subject">Subject:</label>
+                    <input id="announcement-subject" type="text">
+                    <label for="announcement-description">Description:</label>
+                    <input id="announcement-description" type="text">
+                </form>
+                <div id="overlay-announcement-list" class="announcement-list">
+
+                </div>
+
+            </div>
+            <div id="grades-layout" class="overlay-panel-content">
+                <select name="" id="assessment-list">
+                    <option value="overall">Overall grade</option>
+                    <option value="assessmentname">Assessment 1</option>
+                    <option value="assessmentname">Assessment 2</option>
+                    <option value="assessmentname">Midterm name</option>
+                    <option value="addassessment">Add new assessment</option>
+                </select>
+                <label for="assessment-weight">Assessment weight</label>
+                <input type="number" name="" value="10.0" id="assessment-weight" disabled>
+                <label for="">out of 100</label>
+                <ul>
+                    <li class="row-display student-grade">
+                        <a href="">Student name</a>
+                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
+                        <input type="number" value="75" name="" id="grade-nb" disabled>
+                        <label for="grade-nb">/100</label>
+                        <div style="background-color: red;">tag</div>
+                    </li>
+                    <li class="row-display student-grade">
+                        <a href="">Student name</a>
+                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
+                        <input type="number" value="75" name="" id="grade-nb" disabled>
+                        <label for="grade-nb">/100</label>
+                        <div style="background-color: red;">tag</div>
+                    </li>
+                    <li class="row-display student-grade">
+                        <a href="">Student name</a>
+                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
+                        <input type="number" value="75" name="" id="grade-nb" disabled>
+                        <label for="grade-nb">/100</label>
+                        <div style="background-color: red;">tag</div>
+                    </li>
+                    <li class="row-display student-grade">
+                        <a href="">Student name</a>
+                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
+                        <input type="number" value="75" name="" id="grade-nb" disabled>
+                        <label for="grade-nb">/100</label>
+                        <div style="background-color: red;">tag</div>
+                    </li>
+                    <li class="row-display student-grade">
+                        <a href="">Student name</a>
+                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
+                        <input type="number" value="75" name="" id="grade-nb" disabled>
+                        <label for="grade-nb">/100</label>
+                        <div style="background-color: red;">tag</div>
+                    </li>
+                    <li class="row-display student-grade">
+                        <a href="">Student name</a>
+                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
+                        <input type="number" value="75" name="" id="grade-nb" disabled>
+                        <label for="grade-nb">/100</label>
+                        <div style="background-color: red;">tag</div>
+                    </li>
+                    <li class="row-display student-grade">
+                        <a href="">Student name</a>
+                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
+                        <input type="number" value="75" name="" id="grade-nb" disabled>
+                        <label for="grade-nb">/100</label>
+                        <div style="background-color: red;">tag</div>
+                    </li>
+                    <li class="row-display student-grade">
+                        <a href="">Student name</a>
+                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
+                        <input type="number" value="75" name="" id="grade-nb" disabled>
+                        <label for="grade-nb">/100</label>
+                        <div style="background-color: red;">tag</div>
+                    </li>
+
+                </ul>
+            </div>
+            <div id="new-file-layout" class="overlay-panel-content">
+                <label for="new-file">New file:</label>
+                <input type="file" name="" id="new-file">
+                <label for="">Attach to Week: </label>
+                <input type="date" name="" id="">
+                </select>
+            </div>
+
+        </div>
+    </div>
     <div class="container">
         <div class="left-panel"></div>
         <div class="middle-panel">
@@ -61,25 +226,26 @@
                     </div>
                     <div class="course-buttons-container">
                         <div role="button" class="card-header-btn">
-                            <i id="btn-icon" class="material-symbols-outlined">post_add</i>
-                            assignment
+                            <i class="material-symbols-outlined icons-md-45 btn-icon">groups</i>
                         </div>
                         <div role="button" class="card-header-btn">
-                            <i id="btn-icon" class="material-symbols-outlined">campaign</i>
-                            announcement
+                            <i class="material-symbols-outlined btn-icon">post_add</i>
                         </div>
                         <div role="button" class="card-header-btn">
-                            <i id="btn-icon" class="material-symbols-outlined">attach_file</i>
-                            new file
+                            <i class="material-symbols-outlined btn-icon">campaign</i>
                         </div>
                     </div>
                 </div>
                 <div class="card-week-block">
                     <hr>
-                    <div class="week-dates-div">
+                    <div id="general-info-block" class="week-dates-div">
                         <h2 class="week-dates">General Information</h2>
+                        <div role="button" class="card-header-btn">
+                            <i class="material-symbols-outlined btn-icon">attach_file_add</i>
+                        </div>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, ratione. Enim odio error impedit
+                    <p id="course-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, ratione.
+                        Enim odio error impedit
                         ab?
                         Modi quaerat laudantium maiores hic repellendus et quo, nam enim, quisquam non velit minima
                         unde.
@@ -163,6 +329,8 @@
         <a href="">(en)</a>
         <a href="">Contact us</a>
     </footer>
+    <script type="module" src="t-course-page-app.js"></script>
+    <script type="module" src="queries.js"></script>
 </body>
 
 </html>

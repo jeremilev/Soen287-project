@@ -12,6 +12,11 @@ body {
     background: #E6E6E6;
 }
 
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
 img {
     height: 70px;
     width: 70px;
@@ -29,6 +34,7 @@ a:visited {
     color: #000000;
 }
 
+
 hr {
     width: 85%;
     margin-left: 3em;
@@ -38,6 +44,18 @@ ul {
     list-style: none;
 }
 
+.row-display {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.column-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 
 .navbar {
     display: flex;
@@ -45,10 +63,10 @@ ul {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 9999;
+    z-index: 999;
     height: 5.625rem;
     width: 100%;
-    background: #D9D9D9;
+    background: #E9E9E9;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     align-items: center;
     justify-content: flex-start;
@@ -150,7 +168,7 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Breadcrumb_Navi
 
 .course-buttons-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
     padding: 20px 5px
@@ -160,11 +178,11 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Breadcrumb_Navi
     margin-bottom: 10px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    border-radius: 50px;
-    width: 100%;
+    justify-content: center;
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
     opacity: .6;
-    padding: 7px 6px 7px 14px;
     font-family: inter;
     font-size: large;
     font-weight: 800;
@@ -178,7 +196,7 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Breadcrumb_Navi
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
-#btn-icon {
+.btn-icon {
     border-radius: 50%;
     font-size: xx-large !important;
     margin-right: 5px;
@@ -188,6 +206,13 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Breadcrumb_Navi
 
 .card-week-block {
     margin-bottom: 3em;
+}
+
+.week-dates-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 
@@ -342,6 +367,172 @@ footer a:last-child {
     margin-right: 5%;
 }
 
+.close-btn {
+    cursor: pointer;
+}
+
+#overlay-menu-icon {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    padding-top: 5.625rem;
+    right: 0;
+    top: 0;
+    width: 17%;
+    height: 35%;
+    background: white;
+    justify-content: center;
+    align-items: center;
+    z-index: 998;
+    border-radius: 15px;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+#overlay-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#overlay-panel {
+    display: none;
+    flex-direction: column;
+    height: 60vh;
+    width: 35%;
+    border-radius: 15px;
+    background: white;
+    z-index: 6;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+#overlay-panel-header {
+    display: flex;
+    flex-direction: row;
+    height: 10%;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid;
+}
+
+#overlay-navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 10px;
+
+}
+
+.overlay-nav-item {
+    margin-right: 10px;
+    border: solid;
+    cursor: pointer;
+}
+
+.overlay-panel-content {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+}
+
+.overlay-panel-content form {
+    display: flex;
+    flex-direction: column;
+}
+
+#overlay-assignment-options {
+    display: none;
+}
+
+#overlay-new-assignment-btn {
+    cursor: pointer;
+}
+
+#assigments-layout {
+    display: none;
+}
+
+.announcement-list {
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+}
+
+.announcement-container {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    height: 15vh;
+    width: 100%;
+    padding: 20px, 10%, 20px, 10%;
+    border-radius: 10px;
+}
+
+.announcement-subject {
+    height: 20%;
+    font-size: large;
+    font-weight: 200;
+    width: 40%;
+    display: flex;
+    padding-left: 5%;
+    justify-content: flex-start;
+    align-content: center;
+    background: #84A98C;
+    color: #E9E9E9;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.announcement-description {
+    display: flex;
+    width: 100%;
+    height: 80%;
+    background: white;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#announcement-layout {
+    display: none;
+}
+
+#grades-layout {
+    display: none;
+    overflow: auto;
+}
+
+.student-grade {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 35px;
+}
+
+#new-file-layout {
+    display: none;
+}
+
+
+select {
+    width: fit-content;
+}
+
+input {
+    width: fit-content;
+}
+
 #school-logo-navbar {
     margin-left: 5rem;
 }
@@ -399,6 +590,11 @@ footer a:last-child {
     margin-left: 2em;
     opacity: .7;
     cursor: pointer;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
 }
 
 #info-icon {
@@ -424,4 +620,10 @@ footer a:last-child {
 
 .icons-md-45 {
     font-size: 45px !important;
+}
+
+.foo {
+    height: 10px;
+    width: 10px;
+    background: #355070;
 }
