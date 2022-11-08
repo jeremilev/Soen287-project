@@ -1,5 +1,28 @@
-import { getAnnouncements } from '/queries.js';
+import { getAnnouncements, getAssessments } from '/queries.js';
 
+
+
+
+//SEMESTER START
+/*
+const semesterStart = new Date(2022, 8, 5);
+const setWeekDatesSemester = function (semesterStart) {
+    console.log(semesterStart);
+    const semesterWeeks = [];
+    for (let i = 0; i < 16; i++) {
+        let weekStart = Date.prototype.addDays(semesterStart, 0)
+        console.log(weekStart);
+
+        let weekEnd = new Date()
+        weekEnd.setDate(weekStart.getDate() + 7);
+        semesterWeeks.push([weekStart, weekEnd]);
+
+    }
+    return semesterWeeks;
+}
+let semesterWeeks = setWeekDatesSemester(semesterStart);
+console.log(semesterWeeks);
+*/
 
 const AllIcons = document.querySelectorAll('.material-symbols-outlined');
 
@@ -12,8 +35,8 @@ const AllIcons = document.querySelectorAll('.material-symbols-outlined');
 const generalInfoBlock = document.getElementById('general-info-block');
 
 const courseDescription = document.getElementById('course-description');
-const displayAnnouncements = async function () {
-    var announcementsMap = await getAnnouncements();
+const displayAnnouncements = async function (className) {
+    var announcementsMap = await getAnnouncements(className);
 
     for (let i = 0; i < Object.keys(announcementsMap).length; i++) {
         //Create elements to hold data
@@ -43,44 +66,91 @@ const displayAnnouncements = async function () {
         generalInfoBlock.insertBefore(container, courseDescription);
     }
 }
-
-displayAnnouncements();
-/*
-//DOESNT WORK 
-const 
-
-const overlayAnnouncementList = document.getElementById('overlay-announcement-list')
-const displayAnnouncements = function (announcementsMap) {
-    for (let i = 0; i < announcementsMap.length; i++) {
-        let container = document.createElement('div');
-        let subject = document.createElement('div');
-        let descriptionContainer = document.createElement('div');
-        let descriptionText = document.createElement('pre');
-        subject.innerText('Midterm date');
-        descriptionText.innerText("giwbwi wegiw wg ibgwigbwigbwi w biwggibwbgw igbwi bgwibgwib gwib  wib giwb ");
+const className = "COMP232-A";
+displayAnnouncements("COMP232-A");
 
 
+const displayAssessments = async function (className) {
+    var assessmentsMap = await getAssessments(className);
+    for (let i = 0; i < Object.keys(assessmentsMap).length; i++) {
+        var container = document.createElement('div');
+        var title = document.createElement('div');
+        var descriptionContainer = document.createElement('div');
+        var rowDisplayDiv = document.createElement('div');
+        var dueDate = document.createElement('h4');
+        var descriptionText = document.createElement('p');
+        var file = document.createElement('a');
+        var visibilityIcon = document.createElement('i');
+
+        let assessment = assessmentsMap[Object.keys(assessmentsMap)[i]];
+        console.log(assessment);
+        //Give them css formatting **FOR NOW COPIED FROM ABOVE
         container.classList.add('announcement-container');
-        subject.classList.add('announcement-subject');
+        title.classList.add('announcement-subject');
+        title.style.background = "#52796F"
         descriptionContainer.classList.add('announcement-description');
+        file.classList.add('week-block-links');
+        visibilityIcon.classList.add('material-symbols-outlined');
+        visibilityIcon.classList.add('icons-md-45');
+        rowDisplayDiv.classList.add('row-display');
+        rowDisplayDiv.style.justifyContent = "space-between";
+        //Is it visible?
+        if (assessment['visible']) {
+            visibilityIcon.innerText = "visibility";
+        } else {
+            visibilityIcon.innerText = "visibility_off";
+        }
+        //Make sure it is changeable
+        //*****THIS DOES NOT UPDATE INSIDE THE DATABASE AS OF YET
+        visibilityIcon.addEventListener('click', () => {
+            if (visibilityIcon.innerText == "visibility") {
+                visibilityIcon.innerText = "visibility_off";
 
+            } else if (visibilityIcon.innerText == "visibility_off") {
+                visibilityIcon.innerText = "visibility";
+            }
+        })
+
+
+        //get title from assessment
+        let assessmentTitle = Object.keys(assessmentsMap)[i];
+        title.innerText = assessmentTitle + " - " + assessment['datePublished'].toDate().toDateString();
+        //get dueDate from assessment
+        console.log(assessment.dueDate.toDate());
+        dueDate.innerText = "Due date: " + assessment.dueDate.toDate().toDateString();
+        dueDate.style.color = "red";
+        dueDate.style.fontWeight = 700;
+
+        //get description from assessment
+        if (assessment.description == "") {
+            descriptionText.style.display = "none";
+        } else {
+            descriptionText.innerText = assessment.description;
+        }
+
+
+        //get file from assessment
+        //FOR NOW FAKE FILE
+        const pdfImg = document.createElement('img');
+        pdfImg.classList.add("pdf-img");
+        pdfImg.src = "pdf-img.png";
+        file.appendChild(pdfImg)
+        file.innerText = assessmentTitle + ".pdf"
+
+        //Appending elements 
+        rowDisplayDiv.appendChild(dueDate);
+        rowDisplayDiv.appendChild(visibilityIcon);
+        descriptionContainer.appendChild(rowDisplayDiv);
         descriptionContainer.appendChild(descriptionText);
-
-        container.appendChild(subject);
+        descriptionContainer.appendChild(file);
+        container.appendChild(title);
         container.appendChild(descriptionContainer);
-        console.log(container);
-        overlayAnnouncementList.appendChild(container);
+
+        generalInfoBlock.appendChild(container);
     }
 
-    /*
-    WORKED
-    var a = document.createElement('div');
-    a.classList.add("foo");
-    a.textContent = "DID IT WORK?"
-    generalInfoBlock.appendChild(a);
-    */
-
-
+}
+displayAssessments("COMP232-A");
 
 
 

@@ -2,6 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
 import { getFirestore, collection, addDoc, query, where, doc, getDocs, getDoc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
+import { getStorage, list } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,6 +23,7 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
+const storage = getStorage(app);
 
 // Query: user-list 
 
@@ -69,26 +71,42 @@ export const getStudentList = async function (className) {
 
 //Query: all assessments within a course
 export const getAssessments = async function (className) {
-
+    var assessments = {};
     //Fetch multiple docs (every assessment is a doc)
     const querySnapshot = await getDocs(collection(db, "courses", className, "assessments"));
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
+        //console.log(doc.id, " => ", doc.data());
+        assessments[doc.id] = doc.data();
     })
+    return assessments;
 }
-getAssessments("COMP232-A");
 
-//Query: a specific assignment within a course and its info 
+//returns {assignment 1: {...}, assignment2: {...}}
+
+//Query: change visibility of a particular assignment
 
 
 //Query: a particular student within a course, to display that student's grades.
 
 
+/*
+
+//Query:  get a file from storage DOESNT WORK
+export const getFiles = async function () {
+    const listRef = ref(storage, "assessmentInstructions");
+    const firstPage = await list(listRef, { maxResults: 10 })
+
+    return firstPage;
+}
+
+let a = getFiles();
+console.log(a);
+*/
 // Query: list of announcements
-export const getAnnouncements = async function () {
+export const getAnnouncements = async function (className) {
     //Specify path with commas, so you get database/courses/COMP232-A
-    const docRef = doc(db, "courses", "COMP232-A");
+    const docRef = doc(db, "courses", className);
 
     //Get the data from the reference above
     const docSnap = await getDoc(docRef);

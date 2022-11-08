@@ -409,7 +409,7 @@ footer a:last-child {
     display: none;
     flex-direction: column;
     height: 60vh;
-    width: 35%;
+    width: 55%;
     border-radius: 15px;
     background: white;
     z-index: 6;
@@ -471,14 +471,16 @@ footer a:last-child {
 
 .announcement-container {
     display: flex;
-    height: 20px;
+    min-height: 20px;
+    height: fit-content;
+    max-height: 800px;
     flex-direction: column;
-    height: 10vh;
     width: 100%;
-    padding: 20px, 10%, 20px, 10%;
+    padding: 20px, 10%, 10px, 10%;
     border-radius: 10px;
     margin-top: 15px;
     border-bottom: solid;
+    padding-bottom: 2%;
 }
 
 .announcement-subject {
@@ -498,6 +500,7 @@ footer a:last-child {
 
 .announcement-description {
     display: flex;
+    flex-direction: column;
     height: 80%;
     background: white;
     padding-left: 5%;
