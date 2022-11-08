@@ -26,10 +26,6 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
 
-// ID's for reference (fake database):
-// John: g6hCS9rOmXVXEsHsyCDU
-// Jeremi: S1IBkMUJEUXHrf9V6Ys2
-
 // ID's for reference (real database):
 const id1 = "48OqM7Q2oSWYaKRujIWG"  //1 course
 const id2 = "2bZba8mhiWTYjyayqRSH" //2 courses
@@ -72,45 +68,3 @@ for (var i = 0; i < size; i++){
 
         document.getElementById('main_panel').appendChild(div);
 }
-
-
-//---------------------------------------------------//
-// Intermediate tests that may be useful references: //
-//---------------------------------------------------//
-
-
-// docRef.get().then((doc) => {
-//     if (doc.exists) {
-//         const arrayField = doc.data().arrayField; 
-
-//         // arrayField is a JavaScript Array, you can use any method or property  
-//         // e.g. get index 0
-//         const arrayFieldFirstElement = arrayField[0];
-//         console.log(arrayFieldFirstElement);
-
-//     } else {
-//         // doc.data() will be undefined in this case
-//         console.log("No such document!");
-//     }
-// }).catch((error) => {
-//     console.log("Error getting document:", error);
-// });
-
-
-// //Succesful test to see if I can add a collection and document to the db.
-// try {
-//     const docRef = await addDoc(collection(db, "users"), {
-//       first: "Ada",
-//       last: "Lovelace",
-//       born: 1815
-//     });
-//     console.log("Document written with ID: ", docRef.id);
-//   } catch (e) {
-//     console.error("Error adding document: ", e);
-//   }
-
-// //Successful test to read documents.
-// const querySnapshot = await getDocs(collection(db, "Users"));
-// querySnapshot.forEach((doc) => {
-//   console.log(`${doc.id} => ${doc.data()}`);
-// });
