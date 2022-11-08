@@ -9,13 +9,13 @@ import { getFirestore, collection, addDoc, getDoc, getDocs, doc } from 'https://
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBfrNo-3SfrFNNti469KwNpTv2iCKxVwSQ",
-  authDomain: "john-test-e329f.firebaseapp.com",
-  projectId: "john-test-e329f",
-  storageBucket: "john-test-e329f.appspot.com",
-  messagingSenderId: "211133334632",
-  appId: "1:211133334632:web:e09f037587a5a655a0a7dd",
-  measurementId: "G-CV815CMGL5"
+  apiKey: "AIzaSyBgFGNCDCuhhPGm8dkQujxuix0VpJbS3N0",
+  authDomain: "soen287-14875.firebaseapp.com",
+  databaseURL: "https://soen287-14875-default-rtdb.firebaseio.com",
+  projectId: "soen287-14875",
+  storageBucket: "soen287-14875.appspot.com",
+  messagingSenderId: "32157055896",
+  appId: "1:32157055896:web:d35e1510c1e470604e49ed"
 };
 
 // Initialize Firebase
@@ -26,15 +26,20 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
 
-// ID's for reference: 
+// ID's for reference (fake database):
 // John: g6hCS9rOmXVXEsHsyCDU
 // Jeremi: S1IBkMUJEUXHrf9V6Ys2
 
+// ID's for reference (real database):
+const id1 = "48OqM7Q2oSWYaKRujIWG"  //1 course
+const id2 = "2bZba8mhiWTYjyayqRSH" //2 courses
+
+
 //define snapshot of user and courselist
-const id = "g6hCS9rOmXVXEsHsyCDU";
-const userRef = doc(db, "Users", id);
+const id = id2;
+const userRef = doc(db, "users", id);
 const userSnap = await getDoc(userRef);
-const courselistSnap = userSnap.get("Courses");
+const courselistSnap = userSnap.get("courseList");
 const size = courselistSnap.length;
 
 //TODO: Find a way to not mix the HTML and JavaScript code like "div.innerHTML = ..."
