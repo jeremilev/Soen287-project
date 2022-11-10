@@ -37,6 +37,13 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
 
 
 </head>
@@ -136,63 +143,7 @@
                 <label for="assessment-weight">Assessment weight</label>
                 <input type="number" name="" value="10.0" id="assessment-weight" disabled>
                 <label for="">out of 100</label>
-                <ul>
-                    <li class="row-display student-grade">
-                        <a href="">Student name</a>
-                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
-                        <input type="number" value="75" name="" id="grade-nb" disabled>
-                        <label for="grade-nb">/100</label>
-                        <div style="background-color: red;">tag</div>
-                    </li>
-                    <li class="row-display student-grade">
-                        <a href="">Student name</a>
-                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
-                        <input type="number" value="75" name="" id="grade-nb" disabled>
-                        <label for="grade-nb">/100</label>
-                        <div style="background-color: red;">tag</div>
-                    </li>
-                    <li class="row-display student-grade">
-                        <a href="">Student name</a>
-                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
-                        <input type="number" value="75" name="" id="grade-nb" disabled>
-                        <label for="grade-nb">/100</label>
-                        <div style="background-color: red;">tag</div>
-                    </li>
-                    <li class="row-display student-grade">
-                        <a href="">Student name</a>
-                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
-                        <input type="number" value="75" name="" id="grade-nb" disabled>
-                        <label for="grade-nb">/100</label>
-                        <div style="background-color: red;">tag</div>
-                    </li>
-                    <li class="row-display student-grade">
-                        <a href="">Student name</a>
-                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
-                        <input type="number" value="75" name="" id="grade-nb" disabled>
-                        <label for="grade-nb">/100</label>
-                        <div style="background-color: red;">tag</div>
-                    </li>
-                    <li class="row-display student-grade">
-                        <a href="">Student name</a>
-                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
-                        <input type="number" value="75" name="" id="grade-nb" disabled>
-                        <label for="grade-nb">/100</label>
-                        <div style="background-color: red;">tag</div>
-                    </li>
-                    <li class="row-display student-grade">
-                        <a href="">Student name</a>
-                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
-                        <input type="number" value="75" name="" id="grade-nb" disabled>
-                        <label for="grade-nb">/100</label>
-                        <div style="background-color: red;">tag</div>
-                    </li>
-                    <li class="row-display student-grade">
-                        <a href="">Student name</a>
-                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
-                        <input type="number" value="75" name="" id="grade-nb" disabled>
-                        <label for="grade-nb">/100</label>
-                        <div style="background-color: red;">tag</div>
-                    </li>
+                <ul id="student-list-and-grades">
 
                 </ul>
             </div>
@@ -226,6 +177,9 @@
                     </div>
                     <div class="course-buttons-container">
                         <div role="button" class="card-header-btn">
+                            <i class="material-symbols-outlined icons-md-45 btn-icon">percent</i>
+                        </div>
+                        <div role="button" class="card-header-btn">
                             <i class="material-symbols-outlined icons-md-45 btn-icon">groups</i>
                         </div>
                         <div role="button" class="card-header-btn">
@@ -236,14 +190,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-week-block">
+                <div id="general-info-block" class="card-week-block">
                     <hr>
-                    <div id="general-info-block" class="week-dates-div">
-                        <h2 class="week-dates">General Information</h2>
+                    <div class="week-dates-div">
+                        <h2 id="general-information-header" class="week-dates">General Information</h2>
                         <div role="button" class="card-header-btn">
                             <i class="material-symbols-outlined btn-icon">attach_file_add</i>
                         </div>
                     </div>
+                    <h3 class="week-dates">Announcements</h3>
                     <p id="course-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, ratione.
                         Enim odio error impedit
                         ab?
@@ -256,6 +211,8 @@
                             Soen287_Course_Syllabus.pdf
                         </a>
                     </div>
+                    <h3 class="week-dates">Assessments</h3>
+
                 </div>
                 <div class="card-week-block">
                     <hr>

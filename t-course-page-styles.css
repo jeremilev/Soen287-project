@@ -409,7 +409,7 @@ footer a:last-child {
     display: none;
     flex-direction: column;
     height: 60vh;
-    width: 35%;
+    width: 55%;
     border-radius: 15px;
     background: white;
     z-index: 6;
@@ -451,6 +451,11 @@ footer a:last-child {
     flex-direction: column;
 }
 
+#assignment-description {
+    width: 60%;
+    height: 70px;
+}
+
 #overlay-assignment-options {
     display: none;
 }
@@ -471,16 +476,20 @@ footer a:last-child {
 
 .announcement-container {
     display: flex;
+    min-height: 20px;
+    height: fit-content;
+    max-height: 800px;
     flex-direction: column;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    height: 15vh;
     width: 100%;
-    padding: 20px, 10%, 20px, 10%;
+    padding: 20px, 10%, 10px, 10%;
     border-radius: 10px;
+    margin-top: 15px;
+    border-bottom: solid;
+    padding-bottom: 2%;
 }
 
 .announcement-subject {
-    height: 20%;
+    height: 30%;
     font-size: large;
     font-weight: 200;
     width: 40%;
@@ -496,7 +505,7 @@ footer a:last-child {
 
 .announcement-description {
     display: flex;
-    width: 100%;
+    flex-direction: column;
     height: 80%;
     background: white;
     padding-left: 5%;

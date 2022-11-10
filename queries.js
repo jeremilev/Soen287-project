@@ -1,7 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
-import { getFirestore, collection, addDoc, query, where, doc, getDocs, getDoc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
+import { getFirestore, collection, addDoc, query, where, doc, getDocs, getDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
+import { getStorage, list } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,6 +23,7 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
+const storage = getStorage(app);
 
 // Query: user-list 
 
@@ -69,26 +71,87 @@ export const getStudentList = async function (className) {
 
 //Query: all assessments within a course
 export const getAssessments = async function (className) {
-
+    var assessments = {};
     //Fetch multiple docs (every assessment is a doc)
     const querySnapshot = await getDocs(collection(db, "courses", className, "assessments"));
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
+        //console.log(doc.id, " => ", doc.data());
+        assessments[doc.id] = doc.data();
     })
+    return assessments;
 }
-//getAssessments("COMP232-A");
+/*
+let a = await getAssessments("COMP232-A");
+console.log(a);
+console.log(Object.keys(a));
+//returns {assignment 1: {...}, assignment2: {...}}
+*/
+//Query:
+export const getAssessmentGrades = async function (className, assessmentName) {
 
-//Query: a specific assignment within a course and its info 
+    const docRef = doc(db, "courses", className, "assessments", assessmentName);
+
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+        let assessment = docSnap.data();
+        console.log(assessment['submissions']);
+        return assessment['submissions'];
+        //Get the data from that document: IE get the FIELDS DATA
+
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+        return "Server not responding... Try again in a few minutes";
+    }
+}
+//let a = await getAssessmentGrades("COMP232-A", "Assignment 1");
+
+//Update grades
+//the data parameter is an object of key:value pairs that are to be overridden or added inside the specified doc
+
+
+
+export const updateGrade = function (className, assessmentName, grade) {
+    const docRef = doc(db, "courses", className, "assessments", assessmentName);
+
+    /*
+    const data = {
+        submissions: {401}
+    }
+    */
+    updateDoc(docRef, data).then(docRef => {
+        console.log('updated successfully')
+    })
+        .catch(error => {
+            console.log(error);
+        })
+}
+//Query: change visibility of a particular assignment
 
 
 //Query: a particular student within a course, to display that student's grades.
 
 
+/*
+
+//Query:  get a file from storage DOESNT WORK
+export const getFiles = async function () {
+    const listRef = ref(storage, "assessmentInstructions");
+    const firstPage = await list(listRef, { maxResults: 10 })
+
+    return firstPage;
+}
+
+let a = getFiles();
+console.log(a);
+*/
 // Query: list of announcements
-export const getAnnouncements = async function () {
+export const getAnnouncements = async function (className) {
     //Specify path with commas, so you get database/courses/COMP232-A
-    const docRef = doc(db, "courses", "COMP232-A");
+    const docRef = doc(db, "courses", className);
 
     //Get the data from the reference above
     const docSnap = await getDoc(docRef);
@@ -113,9 +176,19 @@ export const getAnnouncements = async function () {
 let announcementsObj = await getAnnouncements();
 let announcement = announcementsObj[Object.keys(announcementsObj)[0]];
 console.log(announcement[Object.keys(announcement)[0]]);
+
+let announcementsObj = await getAnnouncements();
+let announcement = announcementsObj[Object.keys(announcementsObj)[0]];
+console.log(announcement[Object.keys(announcement)[0]]);
+console.log(announcement['description']);
 */
 
 
+/*
+export const addAnnouncement = async function () {
+
+}
+*/
 
 
 //reference to courses:
