@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
   </head>
+
   <body>
     <div class="header">
       <div class="logo">
@@ -25,11 +26,126 @@
         <img class="profile-picture-logo" src="/pictures/blue-circle.png" />
       </div>
     </div>
+    <div class="grades-overlay-container" id="grades-overlay-container">
+      <div class="grades-overlay-panel" id="grades-overlay-panel">
+        <div class="grades-overlay-header" id="grades-overlay-panel-header">
+          <div class="grades-overlay-navbar" id="grades-overlay-navbar">
+            <div class="grades-overlay-nav-item" id="grades-overlay-nav-title">
+              Grades
+            </div>
+            <div
+              class="grades-overlay-nav-item"
+              id="grades-overlay-blank-space"
+            ></div>
+            <div class="grades-overlay-nav-item" id="grades-overlay-close">
+              Close &times;
+            </div>
+          </div>
+        </div>
+        <div class="grades-overlay-layout" id="grades-overlay-layout"></div>
+      </div>
+    </div>
 
-    <div class="main-page">
+    <div class="main-page" id="main-page">
       <div class="left-side"></div>
       <div class="middle-section">
         <div class="course-card">
+          <div class="course-buttons">
+            <div role="button" id="view-grades-btn">View Grade</div>
+          </div>
+          <div class="course-name">
+            <h1>Course Name</h1>
+            <hr />
+          </div>
+          <div class="course-info">
+            <h2>16-22 October</h2>
+            <p class="course-text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
+              ratione. Enim odio error impedit ab? Modi quaerat laudantium
+              maiores hic repellendus et quo, nam enim, quisquam non velit
+              minima unde.
+            </p>
+            <hr />
+          </div>
+          <div class="course-info">
+            <h2>23-29 October</h2>
+            <p class="course-text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
+              ratione. Enim odio error impedit ab? Modi quaerat laudantium
+              maiores hic repellendus et quo, nam enim, quisquam non velit
+              minima unde.
+            </p>
+            <hr />
+          </div>
+
+          <div class="course-info">
+            <h2>30 October - November 5</h2>
+            <p class="course-text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
+              ratione. Enim odio error impedit ab? Modi quaerat laudantium
+              maiores hic repellendus et quo, nam enim, quisquam non velit
+              minima unde.
+            </p>
+            <hr />
+          </div>
+          <div class="course-info">
+            <h2>6-12 November</h2>
+            <p class="course-text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
+              ratione. Enim odio error impedit ab? Modi quaerat laudantium
+              maiores hic repellendus et quo, nam enim, quisquam non velit
+              minima unde.
+            </p>
+
+            <hr />
+          </div>
+          <div class="course-info">
+            <h2>13-19 November</h2>
+            <p class="course-text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
+              ratione. Enim odio error impedit ab? Modi quaerat laudantium
+              maiores hic repellendus et quo, nam enim, quisquam non velit
+              minima unde.
+            </p>
+            <hr />
+          </div>
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="right-side-top"></div>
+        <div class="right-side-bottom">
+          <div class="top-calendar"></div>
+          <div class="calendar">Calendar</div>
+          <div class="bottom-calendar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!--
+    <div class="header">
+      <div class="logo">
+        <img class="concordia-logo" src="pictures/books.jpeg" />
+      </div>
+      <div class="header-title">CONCORDIA</div>
+      <div class="blank-space"></div>
+      <div class="question-mark">
+        <i class="material-symbols-outlined">help</i>
+      </div>
+      <div class="teacher-name">Teacher Name</div>
+      <div class="profile-picture">
+        <img class="profile-picture-logo" src="/pictures/blue-circle.png" />
+      </div>
+    </div>
+
+    
+
+    <div class="main-page" id="overlay">
+      <div class="left-side"></div>
+      <div class="middle-section">
+        <div class="course-card">
+          <div class="course-buttons">
+            
+          </div>
           <div class="course-name">
             <h1>Course Name</h1>
             <hr />
@@ -107,5 +223,9 @@
         </div>
       </div>
     </div>
+-->
+    <script type="module" src="student-course-test.js"></script>
+
+    <script type="module" src="student-course-page.js"></script>
   </body>
 </html>
