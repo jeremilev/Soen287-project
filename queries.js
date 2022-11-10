@@ -95,7 +95,6 @@ export const getAssessmentGrades = async function (className, assessmentName) {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
         let assessment = docSnap.data();
         console.log(assessment['submissions']);
         return assessment['submissions'];
@@ -111,24 +110,28 @@ export const getAssessmentGrades = async function (className, assessmentName) {
 
 //Update grades
 //the data parameter is an object of key:value pairs that are to be overridden or added inside the specified doc
-
-
-
-export const updateGrade = function (className, assessmentName, grade) {
+//THIS WORKS
+export const updateGrade = async function (className, assessmentName, studentId, newGrade) {
     const docRef = doc(db, "courses", className, "assessments", assessmentName);
 
-    /*
-    const data = {
-        submissions: {401}
-    }
-    */
-    updateDoc(docRef, data).then(docRef => {
+    var data = await getAssessmentGrades(className, assessmentName);
+
+    console.log(data[studentId]);
+    data[studentId]['grade'] = newGrade;
+
+    updateDoc(docRef, {
+        submissions: data
+    }).then(docRef => {
         console.log('updated successfully')
     })
         .catch(error => {
             console.log(error);
         })
+
 }
+
+//await updateGrade("COMP232-A", "Assignment 1", "40133776", 40);
+
 //Query: change visibility of a particular assignment
 
 
@@ -136,15 +139,15 @@ export const updateGrade = function (className, assessmentName, grade) {
 
 
 /*
-
+ 
 //Query:  get a file from storage DOESNT WORK
 export const getFiles = async function () {
     const listRef = ref(storage, "assessmentInstructions");
     const firstPage = await list(listRef, { maxResults: 10 })
-
+ 
     return firstPage;
 }
-
+ 
 let a = getFiles();
 console.log(a);
 */
