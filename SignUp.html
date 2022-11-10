@@ -37,7 +37,7 @@
     </div>
 </body>
 <script type="module">
-    
+
 
     // // Import the functions you need from the SDKs you need
     // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
@@ -62,13 +62,13 @@
     // const auth = getAuth();
 
 
-    
 
-    
-        // Import the functions you need from the SDKs you need
+
+
+    // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
-    import { collection, addDoc, getFirestore} from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js"; 
+    import { collection, addDoc, setDoc, doc, getFirestore } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js";
     import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
 
     // TODO: Add SDKs for Firebase products that you want to use
@@ -95,11 +95,11 @@
     const occupation = document.getElementById('occupation');
     var isProf = false;
     var occ;
-    occupation.addEventListener('change', function handleChange(event){
+    occupation.addEventListener('change', function handleChange(event) {
         occ = occupation.options[occupation.selectedIndex].value;
-        if(occ == "Professor"){
-            isProf=true;
-        }else{
+        if (occ == "Professor") {
+            isProf = true;
+        } else {
             isProf = false;
         }
         console.log(occ, isProf)
@@ -109,65 +109,59 @@
 
 
     //creates new user and ads to realtime databse for firebase auth
-    submitButton.addEventListener('click', (e)=> {
-    event.preventDefault();
-    var email = document.getElementById('username').value;
-    var password = document.getElementById('password').value;
-   
+    submitButton.addEventListener('click', async (e) => {
+        event.preventDefault();
+        var email = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
 
-    console.log(email + " " +  password);
 
-    createUserWithEmailAndPassword(auth, email, password, isProf)
-    .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        ////////////////////////////fix  var userID = user.uid;/////////////////
-        const userID = user.uid;
-        // ... user.uid
-        set(ref(database, 'users/' + userID), {
-            isProf: isProf,
-            email: email,
-            password: password,
-            uid: userID
-        })
-        .then(() => {
-            alert('user created successfully');
+        console.log(email + " " + password);
+
+        await createUserWithEmailAndPassword(auth, email, password, isProf)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                ////////////////////////////fix  var userID = user.uid;/////////////////
+                const userID = user.uid;
+                localStorage.setItem('userId', user.uid)
+
+                // ... user.uid
+                set(ref(database, 'users/' + userID), {
+                    isProf: isProf,
+                    email: email,
+                    password: password,
+                    uid: userID
+                })
+                    .then(() => {
+
+                        alert('user created successfully');
+                        return userID;
+                    })
+                    .catch((error) => {
+                        alert(error);
+                    });
             })
             .catch((error) => {
-            alert(error);
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+                alert(errorMessage);
             });
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-        alert(errorMessage);
+
+        await setDoc(doc(db, "users", localStorage.userId), {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            email: document.getElementById('username').value,
+            password: document.getElementById('password').value,
+            isProf: isProf
+        }).then(() => {
+            console.log("added doc")
+            localStorage.clear();
+        })
+
+
     });
 
-    });
-
-
-    //adds info to firestore database
-    submitButton.addEventListener('click', async () =>{
-
-        event.preventDefault();
-        
-    // Add a new document with a generated id.
-    const docRef = await addDoc(collection(db, "users"), {
-        occupation: occ,
-        firstName: document.getElementById('firstName').value,
-        lastName: document.getElementById('lastName').value,
-        email: document.getElementById('username').value,
-        password: document.getElementById('password').value,
-        isProf: isProf
-    });
-    console.log("Document written with ID: ", docRef.id);
-    // console.log("this is the uid", userID) // fix this
-    
-    })
-
-
-    
 
 
 

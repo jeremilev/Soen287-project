@@ -68,3 +68,5 @@ for (var i = 0; i < size; i++) {
 
   document.getElementById('main_panel').appendChild(div);
 }
+
+console.log(localStorage.userId);
