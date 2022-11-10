@@ -5,7 +5,6 @@ const gradesOverlayContainer = document.getElementById('grades-overlay-container
 console.log(gradesOverlayContainer);
 const gradesOverlayPanel = document.getElementById('grades-overlay-panel');
 console.log(gradesOverlayPanel);
- const gradesOverlayLayout = document.getElementById('grades-overlay-layout'); 
 const viewGradesBtn = document.getElementById("view-grades-btn");
 console.log(viewGradesBtn);
 
