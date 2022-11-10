@@ -1,4 +1,4 @@
-import { getAnnouncements, getAssessments, getAssessmentGrades } from '/queries.js';
+import { getAnnouncements, getAssessments, getAssessmentGrades, updateGrade } from '/queries.js';
 
 
 
@@ -161,7 +161,9 @@ displayAssessments("COMP232-A");
                     </li>
 
 */
-
+/*
+        This function dynamically displays student grades ****AND**** allows user to update student grades
+*/
 const displayStudentGrades = async function (className, assessmentName) {
     var studentGrades = await getAssessmentGrades(className, assessmentName);
     const studentListUl = document.getElementById("student-list-and-grades");
@@ -170,21 +172,28 @@ const displayStudentGrades = async function (className, assessmentName) {
         var studentName = document.createElement('a');
         var studentIdInput = document.createElement('input');
         var studentGrade = document.createElement('input');
+        var confirmChangeBtn = document.createElement('input');
         var gradeTotalLabel = document.createElement('label');
         var submissionBadge = document.createElement('div');
         submissionBadge.style.color = "white";
         gradeTotalLabel.innerText = "/100";
 
 
+
+
         studentGradeItem.classList.add('row-display');
         studentGradeItem.classList.add('student-grade');
 
-        studentName.innerText = "Dimitri Kwrjriw";
+        studentName.innerText = studentGrades[Object.keys(studentGrades)[i]].firstName + " " + studentGrades[Object.keys(studentGrades)[i]].lastName;
         //studentName.innerText = studentGrades[Object.keys(studentGrades)[i]];
 
         studentIdInput.type = "text";
         studentIdInput.disabled = true;
         studentIdInput.value = Object.keys(studentGrades)[i];
+
+        confirmChangeBtn.type = "submit";
+        confirmChangeBtn.value = "Confirm change"
+        confirmChangeBtn.style.display = "none";
 
         studentGrade.type = "number";
         studentGrade.value = studentGrades[Object.keys(studentGrades)[i]].grade;
@@ -192,14 +201,27 @@ const displayStudentGrades = async function (className, assessmentName) {
         if (studentGrades[Object.keys(studentGrades)[i]].submitted) {
             submissionBadge.innerText = "submitted";
             submissionBadge.style.background = "green";
+            confirmChangeBtn.style.display = "flex";
         } else {
             submissionBadge.innerText = "pending";
             submissionBadge.style.background = "red";
+            studentGrade.disabled = true;
         }
+        /* 
+            To update grades, see event below
+        */
+        confirmChangeBtn.addEventListener('click', async (e) => {
+            let id = e.currentTarget.previousElementSibling.previousElementSibling.value;
+            let grade = e.currentTarget.previousElementSibling.value;
+            await updateGrade(className, assessmentName, id, grade);
+        })
 
         studentGradeItem.appendChild(studentName);
         studentGradeItem.appendChild(studentIdInput);
+
         studentGradeItem.appendChild(studentGrade);
+        studentGradeItem.appendChild(confirmChangeBtn);
+
         studentGradeItem.appendChild(gradeTotalLabel);
         studentGradeItem.appendChild(submissionBadge);
 

@@ -95,7 +95,19 @@ export const getAssessmentGrades = async function (className, assessmentName) {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
+
         let assessment = docSnap.data();
+        /*
+        DOES NOT WORK: trying to fetch data for every student by their reference
+        for (let i = 0; i < Object.keys(assessment['submissions']).length; i++) {
+            for (let j = 0; j< Object.keys(assessment['submissions'])[i].length;j++) {
+                if (Object.keys(assessment['submissions'])[i]['userId']) {
+                    let id = Object.keys(assessment['submissions'])[i]['userId'];
+                    let studentData = await getDoc(doc(db, "users", id));
+                }
+            }
+        }
+        */
         console.log(assessment['submissions']);
         return assessment['submissions'];
         //Get the data from that document: IE get the FIELDS DATA
@@ -117,7 +129,11 @@ export const updateGrade = async function (className, assessmentName, studentId,
     var data = await getAssessmentGrades(className, assessmentName);
 
     console.log(data[studentId]);
-    data[studentId]['grade'] = newGrade;
+    try {
+        data[studentId]['grade'] = newGrade;
+    } catch (error) {
+        alert('Could not update the grade: ' + error);
+    }
 
     updateDoc(docRef, {
         submissions: data
@@ -130,7 +146,7 @@ export const updateGrade = async function (className, assessmentName, studentId,
 
 }
 
-//await updateGrade("COMP232-A", "Assignment 1", "40133776", 40);
+//await updateGrade("COMP232-A", "Assignment 1", "40133776", 90);
 
 //Query: change visibility of a particular assignment
 
@@ -193,22 +209,4 @@ export const addAnnouncement = async function () {
 }
 */
 
-
-//reference to courses:
-/*
-const coursesRef = collection(db, "courses");
-const announcementsRef = query(coursesRef, where("Document Id", "==", "COMP232-A"))
-const getAnnouncements = await getDoc(announcementsRef).then;
-*/
-/*
-try {
-    const docRef = await addDoc(collection(db, "User"), {
-        fName: "firstname",
-        last: "lastname",
-        born: 1815
-    });
-    console.log("Document written with ID: ", docRef.id);
-} catch (e) {
-    console.error("Error adding document: ", e);
-}
-*/
+//getUserInfo
