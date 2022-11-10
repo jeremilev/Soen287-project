@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
-import { getFirestore, collection, addDoc, query, where, doc, getDocs, getDoc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
+import { getFirestore, collection, addDoc, query, where, doc, getDocs, getDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
 import { getStorage, list } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js";
 
@@ -89,7 +89,6 @@ console.log(Object.keys(a));
 */
 //Query:
 export const getAssessmentGrades = async function (className, assessmentName) {
-    var students = {};
 
     const docRef = doc(db, "courses", className, "assessments", assessmentName);
 
@@ -110,9 +109,26 @@ export const getAssessmentGrades = async function (className, assessmentName) {
 }
 //let a = await getAssessmentGrades("COMP232-A", "Assignment 1");
 
+//Update grades
+//the data parameter is an object of key:value pairs that are to be overridden or added inside the specified doc
 
 
 
+export const updateGrade = function (className, assessmentName, grade) {
+    const docRef = doc(db, "courses", className, "assessments", assessmentName);
+
+    /*
+    const data = {
+        submissions: {401}
+    }
+    */
+    updateDoc(docRef, data).then(docRef => {
+        console.log('updated successfully')
+    })
+        .catch(error => {
+            console.log(error);
+        })
+}
 //Query: change visibility of a particular assignment
 
 
