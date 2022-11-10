@@ -179,6 +179,8 @@ for (let i = 0; i < AllIcons.length; i++) {
 
 console.log(attachFileBtns);
 
+console.log(localStorage);
+
 /*
 const gradesInput = document.querySelector('#grade-nb');
 

@@ -106,12 +106,14 @@
     })
 
 
+
+
     //creates new user and ads to realtime databse for firebase auth
     submitButton.addEventListener('click', (e)=> {
-
     event.preventDefault();
     var email = document.getElementById('username').value;
     var password = document.getElementById('password').value;
+   
 
     console.log(email + " " +  password);
 
@@ -119,11 +121,14 @@
     .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
+        ////////////////////////////fix  var userID = user.uid;/////////////////
+        const userID = user.uid;
         // ... user.uid
-        set(ref(database, 'users/' + user.uid), {
+        set(ref(database, 'users/' + userID), {
             isProf: isProf,
             email: email,
-            password: password
+            password: password,
+            uid: userID
         })
         .then(() => {
             alert('user created successfully');
@@ -142,7 +147,6 @@
     });
 
 
-
     //adds info to firestore database
     submitButton.addEventListener('click', async () =>{
 
@@ -158,7 +162,15 @@
         isProf: isProf
     });
     console.log("Document written with ID: ", docRef.id);
+    // console.log("this is the uid", userID) // fix this
+    
     })
+
+
+    
+
+
+
 
 </script>
 
