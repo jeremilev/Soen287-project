@@ -1,5 +1,16 @@
-import { getAnnouncements, getAssessments, getAssessmentGrades, updateGrade } from '/queries.js';
+import { getAnnouncements, getAssessments, getAssessmentGrades, updateGrade, createAnnouncement, getCurrentUserInfo } from '/queries.js';
 
+const userId = localStorage.getItem('userId');
+
+const userInfo = await getCurrentUserInfo(userId);
+
+const teacherName = document.getElementById('teacher-name-navbar');
+teacherName.innerText = userInfo['firstName'] + " " + userInfo['lastName'];
+
+const currentCourse = localStorage.getItem('currentCourse');
+console.log(currentCourse);
+const courseName = document.getElementById('course-name');
+courseName.innerText = currentCourse;
 
 
 
@@ -44,12 +55,23 @@ const displayAnnouncements = async function (className) {
         var subject = document.createElement('div');
         var descriptionContainer = document.createElement('div');
         var descriptionText = document.createElement('p');
+        var closeBtn = document.createElement('i');
+        closeBtn.classList.add('material-symbols-outlined');
+        closeBtn.innerText = "close";
+        closeBtn.style.color = "red";
+        closeBtn.style.opacity = ".8";
+
+        closeBtn.addEventListener('click', (e) => {
+            e.target.parentNode.parentNode.remove();
+        })
 
         //Assign data from announcementsMap
         let announcement = announcementsMap[Object.keys(announcementsMap)[i]];
 
+        let date = new Date(announcement['datePublished']);
         //Get data by key name
-        subject.innerText = announcement['subject'] + " - " + announcement['datePublished'].toDate().toDateString();
+        subject.innerText = announcement['subject'] + " - " + date.toDateString();
+        subject.appendChild(closeBtn);
         descriptionText.innerText = announcement['description'];
 
         //Give them css formatting
@@ -66,8 +88,18 @@ const displayAnnouncements = async function (className) {
         generalInfoBlock.insertBefore(container, courseDescription);
     }
 }
-const className = "COMP232-A";
-displayAnnouncements("COMP232-A");
+displayAnnouncements(currentCourse);
+
+const addAnnouncementBtn = document.getElementById('add-announcement-btn');
+addAnnouncementBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    console.log(e.target.previousElementSibling.previousElementSibling.previousElementSibling.value);
+    var subject = e.target.previousElementSibling.previousElementSibling.previousElementSibling.value;
+    var descriptionText = e.target.previousElementSibling.value;
+
+    await createAnnouncement(currentCourse, subject, descriptionText);
+    await displayAnnouncements(currentCourse);
+})
 
 
 const displayAssessments = async function (className) {
@@ -81,6 +113,16 @@ const displayAssessments = async function (className) {
         var descriptionText = document.createElement('p');
         var file = document.createElement('a');
         var visibilityIcon = document.createElement('i');
+        var closeBtn = document.createElement('i');
+        closeBtn.classList.add('material-symbols-outlined');
+        closeBtn.innerText = "close";
+        closeBtn.style.color = "red";
+        closeBtn.style.opacity = ".8";
+
+
+        closeBtn.addEventListener('click', (e) => {
+            e.target.parentNode.parentNode.remove();
+        })
 
         let assessment = assessmentsMap[Object.keys(assessmentsMap)[i]];
         //Give them css formatting **FOR NOW COPIED FROM ABOVE
@@ -101,18 +143,20 @@ const displayAssessments = async function (className) {
         }
         //Make sure it is changeable
         //*****THIS DOES NOT UPDATE INSIDE THE DATABASE AS OF YET
-        visibilityIcon.addEventListener('click', () => {
-            if (visibilityIcon.innerText == "visibility") {
-                visibilityIcon.innerText = "visibility_off";
+        visibilityIcon.addEventListener('click', (e) => {
+            if (e.target.innerText == "visibility") {
 
-            } else if (visibilityIcon.innerText == "visibility_off") {
-                visibilityIcon.innerText = "visibility";
+                e.target.innerText = "visibility_off";
+
+            } else if (e.target.innerText == "visibility_off") {
+                e.target.innerText = "visibility";
             }
         })
 
         //get title from assessment
         let assessmentTitle = Object.keys(assessmentsMap)[i];
         title.innerText = assessmentTitle + " - " + assessment['datePublished'].toDate().toDateString();
+        title.appendChild(closeBtn);
         //get dueDate from assessment
         dueDate.innerText = "Due date: " + assessment.dueDate.toDate().toDateString();
         dueDate.style.color = "red";
@@ -147,20 +191,9 @@ const displayAssessments = async function (className) {
     }
 
 }
-displayAssessments("COMP232-A");
+displayAssessments(currentCourse);
 
 
-/*
-
-                    <li class="row-display student-grade">
-                        <a href="">Student name</a>
-                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
-                        <input type="number" value="75" name="" id="grade-nb" disabled>
-                        <label for="grade-nb">/100</label>
-                        <div style="background-color: red;">tag</div>
-                    </li>
-
-*/
 /*
         This function dynamically displays student grades ****AND**** allows user to update student grades
 */
@@ -371,12 +404,3 @@ for (let i = 0; i < AllIcons.length; i++) {
 }
 
 console.log(attachFileBtns);
-
-/*
-const gradesInput = document.querySelector('#grade-nb');
-
-gradesInput.addEventListener('click', (event) => {
-    gradesInput.disabled = false;
-});
-
-*/

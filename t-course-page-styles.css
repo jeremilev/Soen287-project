@@ -503,15 +503,15 @@ footer a:last-child {
     border-top-right-radius: 10px;
 }
 
-.announcement-description {
+#announcement-description {
     display: flex;
     flex-direction: column;
-    height: 80%;
+    height: 10em;
+    align-items: flex-start;
     background: white;
     padding-left: 5%;
     padding-right: 5%;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+
 }
 
 #announcement-layout {

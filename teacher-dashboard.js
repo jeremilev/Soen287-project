@@ -30,7 +30,7 @@ const db = getFirestore(app);
 
 //define snapshot of user and courselist
 // const id = "c1grGgLk3cTUf52t8Fb8tpbjv3f1";
-const id = localStorage.getItem("uid");
+const id = localStorage.getItem("userId");
 const userRef = doc(db, "users", id);
 const userSnap = await getDoc(userRef);
 const courselistSnap = userSnap.get("courseList");

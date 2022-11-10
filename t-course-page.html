@@ -107,7 +107,7 @@
                     <label for="assignment-title">Assignment title:</label>
                     <input id="assignment-title" type="text">
                     <label for="assignment-description">Description:</label>
-                    <input id="assignment-description" type="text">
+                    <textarea name="assignment-description" id="" cols="30" rows="10"></textarea>
                     <label for="assignment-files">Attach file:</label>
                     <input type="file" name="" id="assignment-files">
                     <label for="assignment-due-date">Due date:</label>
@@ -119,14 +119,11 @@
                 </form>
             </div>
             <div id="announcements-layout" class="overlay-panel-content">
-                <form action="">
-                    <label for="announcement-title">Announcement title:</label>
-                    <input id="announcement-title" type="text">
-                    <label for="announcement-subject">Subject:</label>
-                    <input id="announcement-subject" type="text">
-                    <label for="announcement-description">Description:</label>
-                    <input id="announcement-description" type="text">
-                </form>
+                <label for="announcement-subject">Subject:</label>
+                <input id="announcement-subject" type="text">
+                <label for="announcement-description">Description:</label>
+                <textarea name="announcement-description" id="" cols="30" rows="10"></textarea>
+                <input id="add-announcement-btn" type="submit" value="Add announcement">
                 <div id="overlay-announcement-list" class="announcement-list">
 
                 </div>
@@ -179,9 +176,7 @@
                         <div role="button" class="card-header-btn">
                             <i class="material-symbols-outlined icons-md-45 btn-icon">percent</i>
                         </div>
-                        <div role="button" class="card-header-btn">
-                            <i class="material-symbols-outlined icons-md-45 btn-icon">groups</i>
-                        </div>
+
                         <div role="button" class="card-header-btn">
                             <i class="material-symbols-outlined btn-icon">post_add</i>
                         </div>

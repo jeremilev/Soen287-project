@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
-import { getFirestore, collection, addDoc, query, where, doc, getDocs, getDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
+import { getFirestore, collection, addDoc, query, where, doc, getDocs, getDoc, updateDoc, Timestamp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
 import { getStorage, list } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js";
 
@@ -35,6 +35,25 @@ querySnapshot.forEach((doc) => {
     console.log(doc.id, " => ", doc.data());
 });
 */
+
+// Query: get user info
+export const getCurrentUserInfo = async function (userId) {
+    const docRef = doc(db, "users", userId);
+
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+
+        let userData = docSnap.data();
+        console.log(userData)
+        return userData;
+
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+        return "Server not responding... Try again in a few minutes";
+    }
+}
+await getCurrentUserInfo('c1grGgLk3cTUf52t8Fb8tpbjv3f1');
 
 //QUERY: all courses
 export const getCourses = async function () {
@@ -81,12 +100,8 @@ export const getAssessments = async function (className) {
     })
     return assessments;
 }
-/*
-let a = await getAssessments("COMP232-A");
-console.log(a);
-console.log(Object.keys(a));
-//returns {assignment 1: {...}, assignment2: {...}}
-*/
+
+
 //Query:
 export const getAssessmentGrades = async function (className, assessmentName) {
 
@@ -97,17 +112,7 @@ export const getAssessmentGrades = async function (className, assessmentName) {
     if (docSnap.exists()) {
 
         let assessment = docSnap.data();
-        /*
-        DOES NOT WORK: trying to fetch data for every student by their reference
-        for (let i = 0; i < Object.keys(assessment['submissions']).length; i++) {
-            for (let j = 0; j< Object.keys(assessment['submissions'])[i].length;j++) {
-                if (Object.keys(assessment['submissions'])[i]['userId']) {
-                    let id = Object.keys(assessment['submissions'])[i]['userId'];
-                    let studentData = await getDoc(doc(db, "users", id));
-                }
-            }
-        }
-        */
+
         console.log(assessment['submissions']);
         return assessment['submissions'];
         //Get the data from that document: IE get the FIELDS DATA
@@ -146,27 +151,50 @@ export const updateGrade = async function (className, assessmentName, studentId,
 
 }
 
-//await updateGrade("COMP232-A", "Assignment 1", "40133776", 90);
 
-//Query: change visibility of a particular assignment
+// Query: create announcement
+export const createAnnouncement = async function (className, subject, description) {
+
+    const docRef = doc(db, "courses", className);
 
 
-//Query: a particular student within a course, to display that student's grades.
+    const docSnap = await getDoc(docRef);
 
+    if (docSnap.exists()) {
+        //Get the data from that document: IE get the FIELDS DATA
+        try {
+            var classDoc = docSnap.data();
+            var announcements = classDoc['announcements'];
 
-/*
- 
-//Query:  get a file from storage DOESNT WORK
-export const getFiles = async function () {
-    const listRef = ref(storage, "assessmentInstructions");
-    const firstPage = await list(listRef, { maxResults: 10 })
- 
-    return firstPage;
+            var k = Object.keys(announcements).length;
+            k++;
+            var myTimestamp = Date.now();
+            console.log(myTimestamp);
+            announcements[k] = {}
+            console.log(announcements[k]);
+            announcements[k]['subject'] = subject;
+            announcements[k]['description'] = description;
+            announcements[k]['datePublished'] = myTimestamp;
+
+            var newData = announcements;
+            updateDoc(docRef, {
+                announcements: newData
+            }).then(docRef => {
+
+                console.log('updated successfully')
+            })
+                .catch(error => {
+                    console.log(error);
+                })
+        } catch (error) {
+            console.log(error);
+        }
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
 }
- 
-let a = getFiles();
-console.log(a);
-*/
+
 // Query: list of announcements
 export const getAnnouncements = async function (className) {
     //Specify path with commas, so you get database/courses/COMP232-A
@@ -190,23 +218,3 @@ export const getAnnouncements = async function (className) {
     }
     return announcements;
 }
-
-/*formats to access nested keys and values
-let announcementsObj = await getAnnouncements();
-let announcement = announcementsObj[Object.keys(announcementsObj)[0]];
-console.log(announcement[Object.keys(announcement)[0]]);
-
-let announcementsObj = await getAnnouncements();
-let announcement = announcementsObj[Object.keys(announcementsObj)[0]];
-console.log(announcement[Object.keys(announcement)[0]]);
-console.log(announcement['description']);
-*/
-
-
-/*
-export const addAnnouncement = async function () {
-
-}
-*/
-
-//getUserInfo
