@@ -81,8 +81,38 @@ export const getAssessments = async function (className) {
     })
     return assessments;
 }
-
+/*
+let a = await getAssessments("COMP232-A");
+console.log(a);
+console.log(Object.keys(a));
 //returns {assignment 1: {...}, assignment2: {...}}
+*/
+//Query:
+export const getAssessmentGrades = async function (className, assessmentName) {
+    var students = {};
+
+    const docRef = doc(db, "courses", className, "assessments", assessmentName);
+
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+        let assessment = docSnap.data();
+        console.log(assessment['submissions']);
+        return assessment['submissions'];
+        //Get the data from that document: IE get the FIELDS DATA
+
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+        return "Server not responding... Try again in a few minutes";
+    }
+}
+//let a = await getAssessmentGrades("COMP232-A", "Assignment 1");
+
+
+
+
 
 //Query: change visibility of a particular assignment
 

@@ -1,4 +1,4 @@
-import { getAnnouncements, getAssessments } from '/queries.js';
+import { getAnnouncements, getAssessments, getAssessmentGrades } from '/queries.js';
 
 
 
@@ -83,7 +83,6 @@ const displayAssessments = async function (className) {
         var visibilityIcon = document.createElement('i');
 
         let assessment = assessmentsMap[Object.keys(assessmentsMap)[i]];
-        console.log(assessment);
         //Give them css formatting **FOR NOW COPIED FROM ABOVE
         container.classList.add('announcement-container');
         title.classList.add('announcement-subject');
@@ -111,12 +110,10 @@ const displayAssessments = async function (className) {
             }
         })
 
-
         //get title from assessment
         let assessmentTitle = Object.keys(assessmentsMap)[i];
         title.innerText = assessmentTitle + " - " + assessment['datePublished'].toDate().toDateString();
         //get dueDate from assessment
-        console.log(assessment.dueDate.toDate());
         dueDate.innerText = "Due date: " + assessment.dueDate.toDate().toDateString();
         dueDate.style.color = "red";
         dueDate.style.fontWeight = 700;
@@ -153,6 +150,45 @@ const displayAssessments = async function (className) {
 displayAssessments("COMP232-A");
 
 
+/*
+
+                    <li class="row-display student-grade">
+                        <a href="">Student name</a>
+                        <input type="number" name="" value="40484844" minlength="8" maxlength="8" id="" disabled>
+                        <input type="number" value="75" name="" id="grade-nb" disabled>
+                        <label for="grade-nb">/100</label>
+                        <div style="background-color: red;">tag</div>
+                    </li>
+
+*/
+
+const displayStudentGrades = async function (className, assessmentName) {
+    var studentGrades = await getAssessmentGrades(className, assessmentName);
+
+    for (let i = 0; i < Object.keys(studentGrades).length; i++) {
+        var studentGradeItem = document.createElement('li');
+        var studentName = document.createElement('a');
+        var studentIdInput = document.createElement('input');
+        var studentGrade = document.createElement('input');
+
+        studentGradeItem.classList.add('row-display');
+        studentGradeItem.classList.add('student-grade');
+
+
+        studentName.innerText = studentGrades[Object.keys(studentGrades)[i]].grade;
+        console.log(studentGrades[Object.keys(studentGrades)[i]].grade)
+
+        studentIdInput.type = "text";
+        studentIdInput.disabled = true;
+        studentIdInput.value = Object.keys(studentGrades)[i];
+
+        studentGrade.type = "number";
+        console.log(Object.keys(studentGrades)[i]);
+
+    }
+}
+
+displayStudentGrades("COMP232-A", "Assignment 1");
 
 /*
     MENU ICON: OVERLAY
@@ -292,14 +328,3 @@ for (let i = 0; i < AllIcons.length; i++) {
         })
     }
 }
-
-console.log(attachFileBtns);
-
-/*
-const gradesInput = document.querySelector('#grade-nb');
-
-gradesInput.addEventListener('click', (event) => {
-    gradesInput.disabled = false;
-});
-
-*/
