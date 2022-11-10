@@ -164,27 +164,46 @@ displayAssessments("COMP232-A");
 
 const displayStudentGrades = async function (className, assessmentName) {
     var studentGrades = await getAssessmentGrades(className, assessmentName);
-
+    const studentListUl = document.getElementById("student-list-and-grades");
     for (let i = 0; i < Object.keys(studentGrades).length; i++) {
         var studentGradeItem = document.createElement('li');
         var studentName = document.createElement('a');
         var studentIdInput = document.createElement('input');
         var studentGrade = document.createElement('input');
+        var gradeTotalLabel = document.createElement('label');
+        var submissionBadge = document.createElement('div');
+        submissionBadge.style.color = "white";
+        gradeTotalLabel.innerText = "/100";
+
 
         studentGradeItem.classList.add('row-display');
         studentGradeItem.classList.add('student-grade');
 
-
-        studentName.innerText = studentGrades[Object.keys(studentGrades)[i]].grade;
-        console.log(studentGrades[Object.keys(studentGrades)[i]].grade)
+        studentName.innerText = "Dimitri Kwrjriw";
+        //studentName.innerText = studentGrades[Object.keys(studentGrades)[i]];
 
         studentIdInput.type = "text";
         studentIdInput.disabled = true;
         studentIdInput.value = Object.keys(studentGrades)[i];
 
         studentGrade.type = "number";
-        console.log(Object.keys(studentGrades)[i]);
+        studentGrade.value = studentGrades[Object.keys(studentGrades)[i]].grade;
 
+        if (studentGrades[Object.keys(studentGrades)[i]].submitted) {
+            submissionBadge.innerText = "submitted";
+            submissionBadge.style.background = "green";
+        } else {
+            submissionBadge.innerText = "pending";
+            submissionBadge.style.background = "red";
+        }
+
+        studentGradeItem.appendChild(studentName);
+        studentGradeItem.appendChild(studentIdInput);
+        studentGradeItem.appendChild(studentGrade);
+        studentGradeItem.appendChild(gradeTotalLabel);
+        studentGradeItem.appendChild(submissionBadge);
+
+        studentListUl.appendChild(studentGradeItem);
     }
 }
 

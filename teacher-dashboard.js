@@ -42,22 +42,22 @@ const size = courselistSnap.length;
 //TODO: Have each course card direct to that course's page.
 
 //Iterate over courseList and create a course card for each course
-for (var i = 0; i < size; i++){
+for (var i = 0; i < size; i++) {
   //Get the course name at index i
   var courseRef = courselistSnap[i];
   var courseSnap = await getDoc(courseRef);
-  var courseName= courseSnap.get("name");
+  var courseName = courseSnap.get("name");
 
   //Add course card div inside the main_panel
   let div = document.createElement('div');
-        div.className = 'mp_course';
-        div.setAttribute("id", "mp_course");
+  div.className = 'mp_course';
+  div.setAttribute("id", "mp_course");
 
-        div.innerHTML = `
+  div.innerHTML = `
         <div class="mp_course1">
 
         <a class="main-page-a-tag" href="t-course-page.html">
-          <h3>` + courseName +`</h3>
+          <h3>` + courseName + `</h3>
         </a>
       </div>
       <div class="mp_course2">
@@ -66,5 +66,5 @@ for (var i = 0; i < size; i++){
         <div class="mp_course2_items">View Report</div>
       </div>`;
 
-        document.getElementById('main_panel').appendChild(div);
+  document.getElementById('main_panel').appendChild(div);
 }

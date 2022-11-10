@@ -113,7 +113,6 @@ export const getAssessmentGrades = async function (className, assessmentName) {
 
 
 
-
 //Query: change visibility of a particular assignment
 
 
