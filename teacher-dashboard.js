@@ -2,6 +2,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js';
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js';
 import { getFirestore, collection, addDoc, getDoc, getDocs, doc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -25,14 +26,11 @@ const analytics = getAnalytics(app);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
-
-// ID's for reference (real database):
-const id1 = "48OqM7Q2oSWYaKRujIWG"  //1 course
-const id2 = "2bZba8mhiWTYjyayqRSH" //2 courses
-
+//ID for test user: c1grGgLk3cTUf52t8Fb8tpbjv3f1
 
 //define snapshot of user and courselist
-const id = id2;
+// const id = "c1grGgLk3cTUf52t8Fb8tpbjv3f1";
+const id = localStorage.getItem("uid");
 const userRef = doc(db, "users", id);
 const userSnap = await getDoc(userRef);
 const courselistSnap = userSnap.get("courseList");
@@ -56,7 +54,8 @@ for (var i = 0; i < size; i++) {
   div.innerHTML = `
         <div class="mp_course1">
 
-        <a class="main-page-a-tag" href="t-course-page.html">
+        <a class="main-page-a-tag" href="t-course-page.html" 
+            onclick="localStorage.setItem('currentCourse', '`+ courseName + `');" >
           <h3>` + courseName + `</h3>
         </a>
       </div>
@@ -68,5 +67,3 @@ for (var i = 0; i < size; i++) {
 
   document.getElementById('main_panel').appendChild(div);
 }
-
-console.log(localStorage.userId);
