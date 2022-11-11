@@ -89,7 +89,12 @@
                     last_login: lgDate
                 })
                     .then(() => {
-                        window.location = "teacher-dashboard.html";
+                        if(localStorage.getItem("isProf")){
+                            window.location = "teacher-dashboard.html";
+                        }
+                        else{
+                            window.location = "studentdash.html";
+                        }
                     })
                     .catch((error) => {
                         alert(error);
