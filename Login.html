@@ -48,8 +48,9 @@
 
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
-    import { getDatabase, ref, update, getDoc } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
+    import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
+    import { getFirestore, collection, addDoc, getDoc, getDocs, doc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -68,28 +69,6 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
     const database = getDatabase(app);
-
-
-        //Saves all of the user's fields in localStorage, including their uid.
-    //To access any field: use localStorage.getItem("fieldName");
-    onAuthStateChanged(auth, async (user) => {
-        if (user) { //if user is signed in
-
-            await localStorage.setItem("uid", user.uid);
-
-            //get logged-in user's data
-            const userSnap = await getDoc(doc(db, "users", user.uid));
-            const userData = userSnap.data();
-
-            // Save all fields in localStorage
-             Object.keys(userData).forEach(key => {
-                localStorage.setItem(key, userData[key]);
-            });
-        } else {
-            console.log("user is not logged in");
-        }
-    });
-
 
 
     submitButton.addEventListener('click', (e) => {
@@ -112,7 +91,8 @@
                     last_login: lgDate
                 })
                     .then( async () => {
-                        window.location = "teacher-dashboard.html";
+                            window.location.assign("teacher-dashboard.html");
+                            
                     })
                     .catch((error) => {
                         alert(error);
