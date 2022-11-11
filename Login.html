@@ -49,7 +49,7 @@
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
-    import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
+    import { getDatabase, ref, update, getDoc } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -68,6 +68,29 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
     const database = getDatabase(app);
+
+
+        //Saves all of the user's fields in localStorage, including their uid.
+    //To access any field: use localStorage.getItem("fieldName");
+    onAuthStateChanged(auth, async (user) => {
+        if (user) { //if user is signed in
+
+            await localStorage.setItem("uid", user.uid);
+
+            //get logged-in user's data
+            const userSnap = await getDoc(doc(db, "users", user.uid));
+            const userData = userSnap.data();
+
+            // Save all fields in localStorage
+             Object.keys(userData).forEach(key => {
+                localStorage.setItem(key, userData[key]);
+            });
+        } else {
+            console.log("user is not logged in");
+        }
+    });
+
+
 
     submitButton.addEventListener('click', (e) => {
 
@@ -88,13 +111,8 @@
                 update(ref(database, 'users/' + user.uid), {
                     last_login: lgDate
                 })
-                    .then(() => {
-                        if(localStorage.getItem("isProf")){
-                            window.location = "teacher-dashboard.html";
-                        }
-                        else{
-                            window.location = "studentdash.html";
-                        }
+                    .then( async () => {
+                        window.location = "teacher-dashboard.html";
                     })
                     .catch((error) => {
                         alert(error);
@@ -110,25 +128,25 @@
     });
 
 
-    //Saves all of the user's fields in localStorage, including their uid.
-    //To access any field: use localStorage.getItem("fieldName");
-    onAuthStateChanged(auth, async (user) => {
-        if (user) { //if user is signed in
+    // //Saves all of the user's fields in localStorage, including their uid.
+    // //To access any field: use localStorage.getItem("fieldName");
+    // onAuthStateChanged(auth, async (user) => {
+    //     if (user) { //if user is signed in
 
-            localStorage.setItem("uid", user.uid);
+    //         localStorage.setItem("uid", user.uid);
 
-            //get logged-in user's data
-            const userSnap = await getDoc(doc(db, "users", user.uid));
-            const userData = userSnap.data();
+    //         //get logged-in user's data
+    //         const userSnap = await getDoc(doc(db, "users", user.uid));
+    //         const userData = userSnap.data();
 
-            // Save all fields in localStorage
-            Object.keys(userData).forEach(key => {
-                localStorage.setItem(key, userData[key]);
-            });
-        } else {
-            console.log("user is not logged in");
-        }
-    });
+    //         // Save all fields in localStorage
+    //         Object.keys(userData).forEach(key => {
+    //             localStorage.setItem(key, userData[key]);
+    //         });
+    //     } else {
+    //         console.log("user is not logged in");
+    //     }
+    // });
 </script>
 
 
