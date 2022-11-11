@@ -1,4 +1,5 @@
 import { getAnnouncements, getAssessments, getAssessmentGrades, updateGrade, createAnnouncement, getCurrentUserInfo } from '/queries.js';
+import { getStorage, ref, uploadBytes } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js';
 
 const userId = localStorage.getItem('userId');
 
@@ -89,6 +90,41 @@ const displayAnnouncements = async function (className) {
     }
 }
 displayAnnouncements(currentCourse);
+
+//JOHN CODE BEGINS
+
+var assignmentFiles = [];
+document.getElementById("assignment-files").addEventListener("change", function(e) {
+assignmentFiles = e.target.files;
+});
+
+const addAssignmentBtn = document.getElementById('add-assignment-btn');
+addAssignmentBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    console.log("Hi from addAssignmentBtn");
+    var assignmentDescription = document.getElementById('assignment-description').value;
+    console.log(assignmentDescription);
+
+    //TODO: upload all files in a loop
+    //TODO: upload all related info submitted in form.
+    //get File
+    const selectedFile = document.getElementById('assignment-files').files[0];
+    const fileName = selectedFile.name;
+    console.log(fileName);
+
+
+    //create a storage reference
+    var storage = getStorage()
+    const storageRef = ref(storage, "profAssignments/" + fileName);
+
+    uploadBytes(storageRef, selectedFile).then((snapshot) => {
+        console.log('Uploaded a blob or file!');
+      });
+
+})
+
+//JOHN CODE ENDS
 
 const addAnnouncementBtn = document.getElementById('add-announcement-btn');
 addAnnouncementBtn.addEventListener('click', async (e) => {
