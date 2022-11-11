@@ -7,7 +7,7 @@ const userInfo = await getCurrentUserInfo(userId);
 
 const teacherName = document.getElementById('teacher-name-navbar');
 teacherName.innerText = userInfo['firstName'] + " " + userInfo['lastName'];
-
+//const userName = localStorage.get('firstName') + " " + localStorage.get('lastName');
 const currentCourse = localStorage.getItem('currentCourse');
 console.log(currentCourse);
 const courseName = document.getElementById('course-name');
@@ -94,8 +94,8 @@ displayAnnouncements(currentCourse);
 //JOHN CODE BEGINS
 
 var assignmentFiles = [];
-document.getElementById("assignment-files").addEventListener("change", function(e) {
-assignmentFiles = e.target.files;
+document.getElementById("assignment-files").addEventListener("change", function (e) {
+    assignmentFiles = e.target.files;
 });
 
 const addAssignmentBtn = document.getElementById('add-assignment-btn');
@@ -120,7 +120,7 @@ addAssignmentBtn.addEventListener('click', async (e) => {
 
     uploadBytes(storageRef, selectedFile).then((snapshot) => {
         console.log('Uploaded a blob or file!');
-      });
+    });
 
 })
 
@@ -138,6 +138,7 @@ addAnnouncementBtn.addEventListener('click', async (e) => {
 })
 
 
+const selectMenu = document.getElementById("assessment-list");
 const displayAssessments = async function (className) {
     var assessmentsMap = await getAssessments(className);
     for (let i = 0; i < Object.keys(assessmentsMap).length; i++) {
@@ -150,6 +151,15 @@ const displayAssessments = async function (className) {
         var file = document.createElement('a');
         var visibilityIcon = document.createElement('i');
         var closeBtn = document.createElement('i');
+        var selectedAssessment = document.createElement('option');
+
+        selectedAssessment.innerText = Object.keys(assessmentsMap)[i];
+        selectMenu.appendChild(selectedAssessment);
+        /*
+        selectMenu.addEventListener('change', (e) => {
+
+        })
+        */
         closeBtn.classList.add('material-symbols-outlined');
         closeBtn.innerText = "close";
         closeBtn.style.color = "red";
