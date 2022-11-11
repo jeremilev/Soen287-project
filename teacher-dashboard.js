@@ -31,8 +31,6 @@ const id = localStorage.getItem("userId");
 const userRef = doc(db, "users", id);
 const userSnap = await getDoc(userRef);
 const courselistSnap = await userSnap.get("courseList");
-console.log("Checking userSnap:" + userSnap.get("firstName"));
-console.log("Before checking courseListSnap.length: " + courselistSnap);
 const size = courselistSnap.length;
 
 
@@ -40,93 +38,31 @@ const size = courselistSnap.length;
 //TODO: Have each course card direct to that course's page.
 
 //Iterate over courseList and create a course card for each course
-if(localStorage.getItem("isProf")){
+for (var i = 0; i < size; i++) {
+  //Get the course name at index i
+  var courseRef = courselistSnap[i];
+  var courseSnap = await getDoc(courseRef);
+  var courseName = courseSnap.get("name");
 
-  //TODO: Make this a function. isProf is a parameter. 
-  //That way, none of the following code isn't duplicated.
-  for (var i = 0; i < size; i++) {
-    //Get the course name at index i
-    var courseRef = courselistSnap[i];
-    var courseSnap = await getDoc(courseRef);
-    var courseName = courseSnap.get("name");
-  
-    //Add course card div inside the main_panel
-    let div = document.createElement('div');
-    div.className = 'mp_course';
-    div.setAttribute("id", "mp_course");
-  
-    div.innerHTML = `
-          <div class="mp_course1">
-  
-          <a class="main-page-a-tag" href="t-course-page.html" 
-              onclick="localStorage.setItem('currentCourse', '`+ courseName + `');" >
-            <h3>` + courseName + `</h3>
-          </a>
-        </div>
-        <div class="mp_course2">
-          <div class="mp_course2_items">Add Assignment</div>
-          <div class="mp_course2_items">Input Marks</div>
-          <div class="mp_course2_items">View Report</div>
-        </div>`;
-  
-    document.getElementById('main_panel').appendChild(div);
-  }
-}
-else{
+  //Add course card div inside the main_panel
+  let div = document.createElement('div');
+  div.className = 'mp_course';
+  div.setAttribute("id", "mp_course");
 
-  for (var i = 0; i < size; i++) {
-    //Get the course name at index i
-    var courseRef = courselistSnap[i];
-    var courseSnap = await getDoc(courseRef);
-    var courseName = courseSnap.get("name");
-  
-    //Add course card div inside the main_panel
-    let div = document.createElement('div');
-    div.className = 'my-course';
+  //set HTML for each course card
+  div.innerHTML = `
+        <div class="mp_course1">
 
-    div.innerHTML = `
-      <div class="courseName-Grade">
-        <div class="courseName">
-            <h3><a class="courselink" href="student-course-page.html">`+ courseName +`</a></h3>
-        </div>
-        <div class="courseGrade">
-            67.1%
-        </div>
+        <a class="main-page-a-tag" href="t-course-page.html" 
+            onclick="localStorage.setItem('currentCourse', '`+ courseName + `');" >
+          <h3>` + courseName + `</h3>
+        </a>
       </div>
-      <div class="upcoming-deadlines">
-          <h3>Upcoming...</h3>
-          <div class="deadline">Assignment 1 submission - 1/10/2022</div>
-          <div class="deadline">Lab 2 submission - 15/10/2022</div>
-          <div class="deadline">Assignment 2 submission - 31/10/2022</div>
-      </div>`
+      <div class="mp_course2">
+        <div class="mp_course2_items">Add Assignment</div>
+        <div class="mp_course2_items">Input Marks</div>
+        <div class="mp_course2_items">View Report</div>
+      </div>`;
 
-    document.getElementById('main_panel').appendChild(div);
-  }
+  document.getElementById('main_panel').appendChild(div);
 }
-
-const auth = getAuth();
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-
-    localStorage.setItem("uid", user.uid);
-
-    //get logged-in user's data
-    const userSnap = await getDoc(doc(db, "users", user.uid));
-    const userData = userSnap.data();
-
-    // Save all fields in localStorage
-    Object.keys(userData).forEach(key => {
-      localStorage.setItem(key, userData[key]);
-      console.log(key + userData[key]);
-
-    });
-  } else {
-    // User is signed out
-  }
-});
-
-console.log("isProf: " + localStorage.getItem("isProf"));
-console.log("UID: " + localStorage.getItem("uid"));
-console.log("isProf: " + localStorage.getItem("firstName"));
