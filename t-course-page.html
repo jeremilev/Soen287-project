@@ -107,15 +107,16 @@
                     <label for="assignment-title">Assignment title:</label>
                     <input id="assignment-title" type="text">
                     <label for="assignment-description">Description:</label>
-                    <textarea name="assignment-description" id="" cols="30" rows="10"></textarea>
+                    <textarea name="assignment-description" id="assignment-description" cols="30" rows="10"></textarea>
                     <label for="assignment-files">Attach file:</label>
-                    <input type="file" name="" id="assignment-files">
+                    <input type="file" name="" id="assignment-files" multiple />
                     <label for="assignment-due-date">Due date:</label>
                     <input type="date" name="" id="assignment-due-date">
                     <div class="row-display">
                         <label for="assignment-visible">Visible to students: </label>
                         <input type="checkbox" name="" id="assignment-visible">
                     </div>
+                    <input id="add-assignment-btn" type="submit" value="Add assignment">
                 </form>
             </div>
             <div id="announcements-layout" class="overlay-panel-content">
