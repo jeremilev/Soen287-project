@@ -80,7 +80,7 @@ myCourse.className="my-course";
 myCourse.innerHTML=`
 <div class="courseName-Grade">
                             <div class="courseName">
-                                <h3><a class="courselink"href="www.google.com">${courseName}</a></h3>
+                                <h3><a class="courselink"href="student-course-page.html">${courseName}</a></h3>
                             </div>
                             <div class="courseGrade">
                                67.1%
