@@ -184,18 +184,21 @@ const displayAssessments = async function (className) {
         //Is it visible?
         if (assessment['visible']) {
             visibilityIcon.innerText = "visibility";
+            container.style.opacity = 100;
         } else {
             visibilityIcon.innerText = "visibility_off";
+            container.style.opacity = .6;
         }
         //Make sure it is changeable
         //*****THIS DOES NOT UPDATE INSIDE THE DATABASE AS OF YET
         visibilityIcon.addEventListener('click', (e) => {
             if (e.target.innerText == "visibility") {
-
+                e.target.parentNode.parentNode.parentNode.style.opacity = .6;
                 e.target.innerText = "visibility_off";
 
             } else if (e.target.innerText == "visibility_off") {
                 e.target.innerText = "visibility";
+                e.target.parentNode.parentNode.parentNode.style.opacity = 100;
             }
         })
 
