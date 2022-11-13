@@ -15,8 +15,9 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db=getFirestore(app);
-const userId="G98B1WzUm7b4aDIlEN39";
-//const userId = localStorage.getItem('userId');
+const userId="G98B1WzUm7b4aDIlEN39"; //johndoe@gmail.com
+// const userId="EZQIG2EKhRNUhzW4G8dz3RVpgTp1"; //student2@gmail.com
+// const userId = localStorage.getItem('userId');
 
 
 // const getAnnouncements = async function (className) {
@@ -135,5 +136,3 @@ displayCourseList(userId);
 // let middleBar=document.getElementById('middle-bar');
 
 // middleBar.appendChild(myCourse);
-
-
