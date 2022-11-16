@@ -218,3 +218,60 @@ export const getAnnouncements = async function (className) {
     }
     return announcements;
 }
+
+// ------------------------Beginning of John's work for 20-finalize-database-structure-------------------------------
+
+// First Name, Last Name, ID, IsProf, Email, Password, CourseList(Array or map of references to courses)
+const createUser = function(firstName, lastName, studentID){
+
+}
+
+// name, professor, announcements, studentList, Assessments, startDate, endDate
+const createCourse = function(){
+
+}
+
+//due Date, weight, type (assignment, exam, quiz), file, description, date published
+const createAssessment = function(){
+
+}
+
+// file, student, grade, submission date
+const createSubmission = function(){
+
+}
+
+// For Reference:
+
+
+// import { doc, setDoc } from "firebase/firestore"; 
+
+// // Add a new document in collection "cities"
+// await setDoc(doc(db, "cities", "LA"), {
+//   name: "Los Angeles",
+//   state: "CA",
+//   country: "USA"
+// });
+
+    // //Saves all of the user's fields in localStorage, including their uid.
+    // //To access any field: use localStorage.getItem("fieldName");
+    // onAuthStateChanged(auth, async (user) => {
+    //     if (user) { //if user is signed in
+
+    //         localStorage.setItem("uid", user.uid);
+
+    //         //get logged-in user's data
+    //         const userSnap = await getDoc(doc(db, "users", user.uid));
+    //         const userData = userSnap.data();
+
+    //         // Save all fields in localStorage
+    //         Object.keys(userData).forEach(key => {
+    //             localStorage.setItem(key, userData[key]);
+    //         });
+    //     } else {
+    //         console.log("user is not logged in");
+    //     }
+    // });
+
+
+// -------------------------End of John's work  for 20-finalize-database-structure--------------------------

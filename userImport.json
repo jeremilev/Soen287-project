@@ -1,0 +1,8 @@
+{
+    "firstName": "json",
+    "lastName": "prof",
+    "isProf": true,
+    "email": "jsonprof@gmail.com",
+    "password": "123456",
+    "courseList": ["COMP232-A", "SOEN287-Q"]
+}
