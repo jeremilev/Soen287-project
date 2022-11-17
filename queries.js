@@ -226,18 +226,23 @@ const createUser = function(firstName, lastName, studentID){
 
 }
 
-// name, professor, announcements, studentList, Assessments, startDate, endDate
+// name, announcements, studentList, Assessments, startDate, endDate, userRef(prof)
 const createCourse = function(){
 
 }
 
-//due Date, weight, type (assignment, exam, quiz), file, description, date published
+//due Date, weight, type (assignment, exam, quiz), file, description, date published, courseRef, submissionLists
 const createAssessment = function(){
 
 }
 
-// file, student, grade, submission date
+// file, studentRef, grade, submission date, assignment ref
 const createSubmission = function(){
+
+}
+
+// assignmentRef, studentRef, profRef, submissionRef, grade
+const createGrade = function(){
 
 }
 
