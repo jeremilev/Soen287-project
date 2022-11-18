@@ -636,3 +636,11 @@ input {
     width: 10px;
     background: #355070;
 }
+
+.red-border {
+    border-color: red;
+}
+
+.green-border {
+    border-color: green;
+}

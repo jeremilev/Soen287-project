@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
-import { getFirestore, collection, addDoc, query, where, doc, getDocs, getDoc, updateDoc, Timestamp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
+import { getFirestore, collection, addDoc, query, where, doc, getDocs, getDoc, setDoc, updateDoc, Timestamp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
 import { getStorage, list } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js";
 
@@ -101,6 +101,24 @@ export const getAssessments = async function (className) {
     return assessments;
 }
 
+//Query: create Assessment
+export const createAssessment = async function (className, docId, description, filePath, weight, dueDate, datePublished, visible) {
+
+    const docRef = doc(db, "courses", className, "assessments", docId);
+
+    const docData = {
+        description: description,
+        file: filePath,
+        weight: weight,
+        dueDate: dueDate,
+        datePublished: datePublished,
+        visible: visible
+    }
+
+    await setDoc(docRef, docData);
+}
+//WORKEDDDD
+//createAssessment("COMP248-D", "Assignment Name", "This is the description", "path/filepath/path", 15);
 
 //Query:
 export const getAssessmentGrades = async function (className, assessmentName) {
