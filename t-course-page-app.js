@@ -1,4 +1,4 @@
-import { getAnnouncements, getAssessments, getAssessmentGrades, updateGrade, createAnnouncement, getCurrentUserInfo } from '/queries.js';
+import { getAnnouncements, getAssessments, getAssessmentGrades, updateGrade, createAnnouncement, getCurrentUserInfo, createAssessment } from '/queries.js';
 import { getStorage, ref, uploadBytes } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js';
 
 const userId = localStorage.getItem('userId');
@@ -71,7 +71,7 @@ const displayAnnouncements = async function (className) {
 
         let date = new Date(announcement['datePublished']);
         //Get data by key name
-        subject.innerText = announcement['subject'] + " - " + date.toDateString();
+        subject.innerText = announcement['subject'] + " - " + date;
         subject.appendChild(closeBtn);
         descriptionText.innerText = announcement['description'];
 
@@ -91,7 +91,12 @@ const displayAnnouncements = async function (className) {
 }
 displayAnnouncements(currentCourse);
 
-//JOHN CODE BEGINS
+
+const newAssignmentTitle = document.getElementById('assignment-title');
+const newAssignmentDescription = document.getElementById('assignment-description');
+const newAssignmentWeight = document.getElementById('assignment-weight');
+const newAssignmentDueDate = document.getElementById('assignment-due-date');
+const newAssignmentVisible = document.getElementById('assignment-visible');
 
 var assignmentFiles = [];
 document.getElementById("assignment-files").addEventListener("change", function (e) {
@@ -100,31 +105,53 @@ document.getElementById("assignment-files").addEventListener("change", function 
 
 const addAssignmentBtn = document.getElementById('add-assignment-btn');
 addAssignmentBtn.addEventListener('click', async (e) => {
-    e.preventDefault();
+    try {
+        e.preventDefault();
 
-    console.log("Hi from addAssignmentBtn");
-    var assignmentDescription = document.getElementById('assignment-description').value;
-    console.log(assignmentDescription);
+        console.log("Hi from addAssignmentBtn");
+        var assignmentDescription = document.getElementById('assignment-description').value;
+        console.log(assignmentDescription);
 
-    //TODO: upload all files in a loop
-    //TODO: upload all related info submitted in form.
-    //get File
-    const selectedFile = document.getElementById('assignment-files').files[0];
-    const fileName = selectedFile.name;
-    console.log(fileName);
+        //TODO: upload all files in a loop
+        //TODO: upload all related info submitted in form.
+        //get File
+        const selectedFile = document.getElementById('assignment-files').files[0];
+        const fileName = selectedFile.name;
+        console.log(fileName);
 
 
-    //create a storage reference
-    var storage = getStorage()
-    const storageRef = ref(storage, "profAssignments/" + fileName);
 
-    uploadBytes(storageRef, selectedFile).then((snapshot) => {
-        console.log('Uploaded a blob or file!');
-    });
+        //create a storage reference
+        var storage = getStorage()
+        const storageRef = ref(storage, "profAssignments/" + fileName);
 
+        //VERY IMPORT LINES 
+        const datePublished = new Date().toDateString();
+        await createAssessment(currentCourse, newAssignmentTitle.value,
+            newAssignmentDescription.value, fileName, newAssignmentWeight.value,
+            newAssignmentDueDate.valueAsDate.toDateString(), datePublished, newAssignmentVisible.checked);
+
+        console.log("info added successfully, waiting on file add")
+        await uploadBytes(storageRef, selectedFile).then((snapshot) => {
+            console.log('Uploaded a blob or file!');
+        });
+        console.log('file added successfully');
+        addAssignmentBtn.style.borderColor = 'green';
+        setTimeout(() => {
+            addAssignmentBtn.classList.add('green-border');
+            setTimeout(() => {
+                addAssignmentBtn.classList.remove('red-border');
+                addAssignmentBtn.classList.remove('green-border');
+            }, 1500)
+        })
+        displayAssessments(currentCourse);
+
+    } catch (e) {
+        console.log(e);
+        addAssignmentBtn.classList.add('red-border');
+    }
 })
 
-//JOHN CODE ENDS
 
 const addAnnouncementBtn = document.getElementById('add-announcement-btn');
 addAnnouncementBtn.addEventListener('click', async (e) => {
@@ -204,10 +231,10 @@ const displayAssessments = async function (className) {
 
         //get title from assessment
         let assessmentTitle = Object.keys(assessmentsMap)[i];
-        title.innerText = assessmentTitle + " - " + assessment['datePublished'].toDate().toDateString();
+        title.innerText = assessmentTitle + " - " + assessment['datePublished'];
         title.appendChild(closeBtn);
         //get dueDate from assessment
-        dueDate.innerText = "Due date: " + assessment.dueDate.toDate().toDateString();
+        dueDate.innerText = "Due date: " + assessment.dueDate;
         dueDate.style.color = "red";
         dueDate.style.fontWeight = 700;
 
