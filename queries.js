@@ -221,10 +221,78 @@ export const getAnnouncements = async function (className) {
 
 // ------------------------Beginning of John's work for 20-finalize-database-structure-------------------------------
 
-// First Name, Last Name, ID, IsProf, Email, Password, CourseList(Array or map of references to courses)
-const createUser = function(firstName, lastName, studentID){
+// First Name, Last Name, ID, IsProf, Email, Password, courses (subcollection, which is initially empty)
+const createUser = function(filePath){
+
+    //TODO: Create a button to bulk create somewhere.
+
+    //TODO: Read that JSON file and store the fields
+    const obj = JSON.parse('{"name":"John", "age":30, "city":"New York"}');
+    console.log("name is: " + obj.name);
+    console.log("age is: " + obj.age);
+
+
+
+    //TODO: Create a user with that information in Firebase and cloud Firestore
 
 }
+
+
+//FOR REFERENCE:
+
+// //creates new user and ads to realtime databse for firebase auth
+// submitButton.addEventListener('click', async (e) => {
+//     event.preventDefault();
+//     var email = document.getElementById('username').value;
+//     var password = document.getElementById('password').value;
+
+
+//     console.log(email + " " + password);
+
+//     await createUserWithEmailAndPassword(auth, email, password, isProf)
+//         .then((userCredential) => {
+//             // Signed in 
+//             const user = userCredential.user;
+//             ////////////////////////////fix  var userID = user.uid;/////////////////
+//             const userID = user.uid;
+//             localStorage.setItem('userId', user.uid)
+
+//             // ... user.uid
+//             set(ref(database, 'users/' + userID), {
+//                 isProf: isProf,
+//                 email: email,
+//                 password: password,
+//                 uid: userID
+//             })
+//                 .then(() => {
+
+//                     alert('user created successfully');
+//                     return userID;
+//                 })
+//                 .catch((error) => {
+//                     alert(error);
+//                 });
+//         })
+//         .catch((error) => {
+//             const errorCode = error.code;
+//             const errorMessage = error.message;
+//             // ..
+//             alert(errorMessage);
+//         });
+
+//     await setDoc(doc(db, "users", localStorage.userId), {
+//         firstName: document.getElementById('firstName').value,
+//         lastName: document.getElementById('lastName').value,
+//         email: document.getElementById('username').value,
+//         password: document.getElementById('password').value,
+//         isProf: isProf
+//     }).then(() => {
+//         console.log("added doc")
+//         localStorage.clear();
+//     })
+
+
+// });
 
 // name, announcements, studentList, Assessments, startDate, endDate, userRef(prof)
 const createCourse = function(){
