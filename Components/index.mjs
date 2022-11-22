@@ -1,6 +1,6 @@
 import { navbar } from './navbar.mjs';
+import { mainLayout } from './mainLayout.mjs';
 
 
-console.log(navbar);
-
+export { navbar, mainLayout };
 
