@@ -716,3 +716,12 @@ input {
     color: black;
     margin-bottom: 5px;
 }
+
+.my-courses-header {
+    font-size: xx-large;
+    font-weight: 600;
+    color: #000000;
+    margin: 0;
+    margin-left: 5%;
+    margin-bottom: 10px;
+}
