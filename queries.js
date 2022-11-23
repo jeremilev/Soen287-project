@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
 import { getFirestore, collection, addDoc, query, where, doc, getDocs, getDoc, updateDoc, Timestamp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
-import { getStorage, list } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js";
+import { getStorage, getStream, ref as sRef, getDownloadURL, list } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -221,21 +221,94 @@ export const getAnnouncements = async function (className) {
 
 // ------------------------Beginning of John's work for 20-finalize-database-structure-------------------------------
 
-// First Name, Last Name, ID, IsProf, Email, Password, courses (subcollection, which is initially empty)
-const createUser = function(filePath){
+// // First Name, Last Name, ID, IsProf, Email, Password, courses (subcollection, which is initially empty)
+// const createUser = function(filePath){
 
-    //TODO: Create a button to bulk create somewhere.
+//     //TODO: Create a button to bulk create somewhere.
 
-    //TODO: Read that JSON file and store the fields
-    const obj = JSON.parse('{"name":"John", "age":30, "city":"New York"}');
-    console.log("name is: " + obj.name);
-    console.log("age is: " + obj.age);
+//     //TODO: Read that JSON file and store the fields
+//     const obj = JSON.parse('{"name":"John", "age":30, "city":"New York"}');
+//     console.log("name is: " + obj.name);
+//     console.log("age is: " + obj.age);
 
 
 
-    //TODO: Create a user with that information in Firebase and cloud Firestore
+//     //TODO: Create a user with that information in Firebase and cloud Firestore
 
+// }
+
+jsonTestButton.addEventListener("click", () => {
+    retrieveJSON();
+  })
+
+async function streamToString(stream) {
+    // lets have a ReadableStream as a stream variable
+    const chunks = [];
+
+    for await (const chunk of stream) {
+        chunks.push(Buffer.from(chunk));
+    }
+
+    return Buffer.concat(chunks).toString("utf-8");
 }
+
+//Grab JSON file from storage. 
+//TODO: Test to make sure it works 
+const retrieveJSON = async function(){
+
+    const obj =await JSON.parse('{"name":"John", "age":30, "city":"New York"}');
+    console.log("name: " + obj.name);
+    console.log("age: " + obj.age);
+
+    //Create a reference for the file in storage
+    const pathReference = sRef(storage, 'jsonTest1.json');
+
+    const stream = await getStream(pathReference);
+    console.log("stream: " + stream);
+
+    // const streamString = streamToString(stream);
+    // console.log(streamString);
+}
+
+// //FOR REFERENCE FOR RETRIEVEJSON():
+
+// const storage = getStorage();
+// getDownloadURL(ref(storage, 'images/stars.jpg'))
+//   .then((url) => {
+//     // `url` is the download URL for 'images/stars.jpg'
+
+//     // This can be downloaded directly:
+//     const xhr = new XMLHttpRequest();
+//     xhr.responseType = 'blob';
+//     xhr.onload = (event) => {
+//       const blob = xhr.response;
+//     };
+//     xhr.open('GET', url);
+//     xhr.send();
+
+//     // Or inserted into an <img> element
+//     const img = document.getElementById('myimg');
+//     img.setAttribute('src', url);
+//   })
+//   .catch((error) => {
+//     // Handle any errors
+//   });
+
+// //FOR REFERENCE FOR RETRIEVEJSON():
+
+// import { getStorage, ref } from "firebase/storage";
+
+// // Create a reference with an initial file path and name
+// const storage = getStorage();
+// const pathReference = ref(storage, 'images/stars.jpg');
+
+// // Create a reference from a Google Cloud Storage URI
+// const gsReference = ref(storage, 'gs://bucket/images/stars.jpg');
+
+// // Create a reference from an HTTPS URL
+// // Note that in the URL, characters are URL escaped!
+// const httpsReference = ref(storage, 'https://firebasestorage.googleapis.com/b/bucket/o/images%20stars.jpg');  
+
 
 
 //FOR REFERENCE:

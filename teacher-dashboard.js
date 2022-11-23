@@ -3,6 +3,7 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebas
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js';
 import { getFirestore, collection, addDoc, getDoc, getDocs, doc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
+import { getStorage, getStream, ref, getDownloadURL, list } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -67,3 +68,35 @@ for (var i = 0; i < size; i++) {
 
   document.getElementById('main_panel').appendChild(div);
 }
+
+
+
+async function streamToString(stream) {
+  // lets have a ReadableStream as a stream variable
+  const chunks = [];
+
+  for await (const chunk of stream) {
+      chunks.push(Buffer.from(chunk));
+  }
+
+  return Buffer.concat(chunks).toString("utf-8");
+}
+
+//Grab JSON file from storage. 
+//TODO: Test to make sure it works 
+const retrieveJSON = async function(){
+
+  //Create a reference for the file in storage
+  const pathReference = ref(storage, 'jsonTest1.json');
+
+  const stream = getStream(pathReference);
+
+  const streamString = streamToString(stream);
+  console.log(streamString);
+}
+
+jsonTestButton.addEventListener('click', (e) => {
+  console.log("Button Clicked");
+
+  // retrieveJSON();
+});
