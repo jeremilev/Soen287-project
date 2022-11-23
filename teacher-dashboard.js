@@ -1,15 +1,9 @@
-// Import the functions you need from the SDKs you need
+//setup
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js';
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js';
 import { getFirestore, collection, addDoc, getDoc, getDocs, doc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
 import { getStorage, getStream, ref, getDownloadURL, list } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js";
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyBgFGNCDCuhhPGm8dkQujxuix0VpJbS3N0",
   authDomain: "soen287-14875.firebaseapp.com",
@@ -19,12 +13,7 @@ const firebaseConfig = {
   messagingSenderId: "32157055896",
   appId: "1:32157055896:web:d35e1510c1e470604e49ed"
 };
-
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
-// Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
 //ID for test user: c1grGgLk3cTUf52t8Fb8tpbjv3f1
@@ -38,7 +27,6 @@ const courselistSnap = userSnap.get("courseList");
 const size = courselistSnap.length;
 
 //TODO: Find a way to not mix the HTML and JavaScript code like "div.innerHTML = ..."
-//TODO: Have each course card direct to that course's page.
 
 //Iterate over courseList and create a course card for each course
 for (var i = 0; i < size; i++) {
