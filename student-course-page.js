@@ -2,9 +2,9 @@ import { getGrades } from '/student-course-test.js';
 
 
 const gradesOverlayContainer = document.getElementById('grades-overlay-container');
-console.log(gradesOverlayContainer);
+// console.log(gradesOverlayContainer);
 const gradesOverlayPanel = document.getElementById('grades-overlay-panel');
-console.log(gradesOverlayPanel);
+// console.log(gradesOverlayPanel);
 const gradesOverlayLayout = document.getElementById('grades-overlay-layout'); 
 const viewGradesBtn = document.getElementById("view-grades-btn");
 console.log(viewGradesBtn);

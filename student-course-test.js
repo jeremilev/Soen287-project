@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
 import { getFirestore, collection, addDoc, query, where, doc, getDocs, getDoc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
-
+import { getAssessments } from "/queries.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBgFGNCDCuhhPGm8dkQujxuix0VpJbS3N0",
@@ -21,7 +21,7 @@ const db = getFirestore(app);
 
 export const getGrades = async function () {
     //Specify path with commas, so you get database/courses/COMP232-A
-    const docRef = doc(db, "users", "aStudent");
+    const docRef = doc(db, "users", localStorage.userId);
 
     //Get the data from the reference above
     const docSnap = await getDoc(docRef);
@@ -31,7 +31,10 @@ export const getGrades = async function () {
         console.log("Document data:", docSnap.data());
         //Get the data from that document: IE get the FIELDS DATA
         try {
+
+            console.log("we're here", localStorage.userId)
             var grades = docSnap.get("grades");
+            console.log(grades);
         } catch (error) {
             console.log(e);
         }
@@ -41,3 +44,39 @@ export const getGrades = async function () {
     }
     return grades;
 }
+
+
+//dynamically show announcements on course list
+const announcements = document.getElementById("announcements");
+
+const a = doc(db, "/courses","/COMP232-B"); 
+
+const docSnap = await getDoc(a);
+
+if(docSnap.exists()){
+    console.log(docSnap.get("announcements"))
+}else{
+    console.log("no such doc")
+}
+
+
+
+
+
+//dynamically show assignments on course lists
+const assessments = document.getElementById("assessments");
+
+//get student assignments
+const q = query(collection(db, "/courses","/COMP232-B","/assessments"));// where("capital", "==", true));
+
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, ": ", doc.get("description"));
+  const assignmentDiv = document.createElement("div");
+  assignmentDiv.className = "assignmentDiv";
+  assignmentDiv.innerHTML = `${doc.id} : ${doc.get("description")} `
+  document.getElementById("assessments").appendChild(assignmentDiv);
+  console.log("done");
+}
+);
