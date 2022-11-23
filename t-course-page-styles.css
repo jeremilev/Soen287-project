@@ -31,7 +31,7 @@ p {
 a,
 a:visited {
     text-decoration: none;
-    color: #000000;
+    color: inherit;
 }
 
 
@@ -574,7 +574,7 @@ input {
     background: white;
 }
 
-#teacher-name-navbar {
+#user-name-navbar {
     margin-left: 4em;
     font-size: xx-large;
     font-weight: 400;
@@ -643,4 +643,85 @@ input {
 
 .green-border {
     border-color: green;
+}
+
+.my-course {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background: white;
+    width: 80%;
+    height: 175px;
+    margin-left: 5%;
+    margin-top: 35px;
+    border-radius: 10px;
+    box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25);
+}
+
+.my-course:hover {
+    background: #E9E9E9;
+
+}
+
+.courseName-Grade {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.courselink {
+    background-color: #52796f;
+    text-decoration: none;
+    color: white !important;
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25);
+    transition-duration: .2s;
+}
+
+.courselink:hover {
+    background-color: white;
+    color: #52796f !important;
+}
+
+.courseGrade {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background-color: #D9D9D9;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.courseName {
+    margin-top: 25px;
+}
+
+.upcoming-deadlines {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 5%;
+}
+
+.deadline {
+    border-radius: 8px;
+    background-color: #84a98c;
+    padding: 5px;
+    border: 1px solid lightslategray;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.my-courses-header {
+    font-size: xx-large;
+    font-weight: 600;
+    color: #000000;
+    margin: 0;
+    margin-left: 5%;
+    margin-bottom: 10px;
 }

@@ -3,6 +3,7 @@ import { getFirestore, collection, addDoc, query, where, doc, getDocs, getDoc, u
 import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
 import { getStorage, list } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js";
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyBgFGNCDCuhhPGm8dkQujxuix0VpJbS3N0",
     authDomain: "soen287-14875.firebaseapp.com",
@@ -14,9 +15,11 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
 const db=getFirestore(app);
 const userId=localStorage.userId; //johndoe@gmail.com
 // const userId="EZQIG2EKhRNUhzW4G8dz3RVpgTp1"; //student2@gmail.com
+
 // const userId = localStorage.getItem('userId');
 
 
@@ -43,40 +46,41 @@ const userId=localStorage.userId; //johndoe@gmail.com
 //     return announcements;
 // }
 
-const getCourseList = async function(userId){
+const getCourseList = async function (userId) {
     //Path inside the database
-    const docRef= doc(db, 'users',userId);
+    const docRef = doc(db, 'users', userId);
     //Get the data from the reference above
     const docSnap = await getDoc(docRef);
 
-    if(docSnap.exists()){
-        console.log("Document dataL:",docSnap.data());
-        const userInfo=docSnap.data();
+    if (docSnap.exists()) {
+        console.log("Document dataL", docSnap.data());
+        const userInfo = docSnap.data();
 
-        console.log(userInfo['courseList']); 
+        console.log(userInfo['courseList']);
         return userInfo['courseList'];
     }
     else {
-                // doc.data() will be undefined in this case
-                console.log("No such document!");
-            }
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
 }
 
 
-const displayCourseList= async function(userId){
-    
-    const courseList=await getCourseList(userId); 
+const displayCourseList = async function (userId) {
+
+    const courseList = await getCourseList(userId);
     console.log(courseList.length);
-    for(let i=0;i<courseList.length;i++){
+    for (let i = 0; i < courseList.length; i++) {
         var courseRef = courseList[i];
-        const docRef = doc(db,courseRef);
+        const docRef = doc(db, courseRef);
         var courseSnap = await getDoc(docRef);
         var courseName = courseSnap.get("name");
         console.log(courseRef);
-       console.log(courseName);
-        let myCourse=document.createElement('div');
+        console.log(courseName);
+        let myCourse = document.createElement('div');
 
-myCourse.className="my-course";
+        myCourse.className = "my-course";
+
 
 myCourse.innerHTML=`
 <div class="courseName-Grade">
@@ -94,9 +98,10 @@ myCourse.innerHTML=`
     <div class="deadline">Assignment 2 submission - 31/10/2022</div>
 </div>`;
 
-let middleBar=document.getElementById('middle-bar');
 
-middleBar.appendChild(myCourse);
+        let middleBar = document.getElementById('middle-panel');
+
+        middleBar.appendChild(myCourse);
     }
 }
 

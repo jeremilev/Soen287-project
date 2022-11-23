@@ -28,6 +28,11 @@ const db = getFirestore(app);
 
 //ID for test user: c1grGgLk3cTUf52t8Fb8tpbjv3f1
 
+const middlePanel = document.getElementById('middle-panel')
+const myCoursesHeader = document.createElement('h1');
+myCoursesHeader.classList.add('my-courses-header');
+myCoursesHeader.innerText = "My Courses";
+middlePanel.appendChild(myCoursesHeader);
 //define snapshot of user and courselist
 // const id = "c1grGgLk3cTUf52t8Fb8tpbjv3f1";
 const id = localStorage.getItem("userId");
@@ -65,5 +70,5 @@ for (var i = 0; i < size; i++) {
         <div class="mp_course2_items">View Report</div>
       </div>`;
 
-  document.getElementById('main_panel').appendChild(div);
+  middlePanel.appendChild(div);
 }
