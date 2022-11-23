@@ -15,7 +15,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db=getFirestore(app);
-const userId="G98B1WzUm7b4aDIlEN39"; //johndoe@gmail.com
+const userId=localStorage.userId; //johndoe@gmail.com
 // const userId="EZQIG2EKhRNUhzW4G8dz3RVpgTp1"; //student2@gmail.com
 // const userId = localStorage.getItem('userId');
 
@@ -80,19 +80,19 @@ myCourse.className="my-course";
 
 myCourse.innerHTML=`
 <div class="courseName-Grade">
-                            <div class="courseName">
-                                <h3><a class="courselink"href="student-course-page.html">${courseName}</a></h3>
-                            </div>
-                            <div class="courseGrade">
-                               67.1%
-                            </div>
-                        </div>
-                        <div class="upcoming-deadlines">
-                            <h3>Upcoming...</h3>
-                            <div class="deadline">Assignment 1 submission - 1/10/2022</div>
-                            <div class="deadline">Lab 2 submission - 15/10/2022</div>
-                            <div class="deadline">Assignment 2 submission - 31/10/2022</div>
-                        </div>`;
+    <div class="courseName">
+        <h3><a class="courselink" id="courselink" href="student-course-page.html">${courseName}</a></h3>
+    </div>
+    <div class="courseGrade">
+        67.1%
+    </div>
+</div>
+<div class="upcoming-deadlines">
+    <h3>Upcoming...</h3>
+    <div class="deadline">Assignment 1 submission - 1/10/2022</div>
+    <div class="deadline">Lab 2 submission - 15/10/2022</div>
+    <div class="deadline">Assignment 2 submission - 31/10/2022</div>
+</div>`;
 
 let middleBar=document.getElementById('middle-bar');
 
@@ -101,6 +101,23 @@ middleBar.appendChild(myCourse);
 }
 
 displayCourseList(userId);
+
+
+//get the name of each link clicked
+const getNameOfClass = ()=>{
+    const courseLink = document.getElementById("courselink");
+
+    //try for each
+    console.log("this is it: ", courseLink)
+}
+
+getNameOfClass();
+
+
+
+
+
+
 
 //Dynamically display students name
 // let studentName=document.createElement('h1');
