@@ -5,7 +5,7 @@ const userId = localStorage.getItem('userId');
 
 const userInfo = await getCurrentUserInfo(userId);
 
-const teacherName = document.getElementById('teacher-name-navbar');
+const teacherName = document.getElementById('user-name-navbar');
 teacherName.innerText = userInfo['firstName'] + " " + userInfo['lastName'];
 //const userName = localStorage.get('firstName') + " " + localStorage.get('lastName');
 const currentCourse = localStorage.getItem('currentCourse');
@@ -71,7 +71,7 @@ const displayAnnouncements = async function (className) {
 
         let date = new Date(announcement['datePublished']);
         //Get data by key name
-        subject.innerText = announcement['subject'] + " - " + date;
+        subject.innerText = announcement['subject'] + " - " + date.toDateString();
         subject.appendChild(closeBtn);
         descriptionText.innerText = announcement['description'];
 
@@ -231,10 +231,19 @@ const displayAssessments = async function (className) {
 
         //get title from assessment
         let assessmentTitle = Object.keys(assessmentsMap)[i];
-        title.innerText = assessmentTitle + " - " + assessment['datePublished'];
+
+        try {
+            title.innerText = assessmentTitle + " - " + assessment['datePublished'].toDate().toDateString();
+        } catch (error) {
+            title.innerText = assessmentTitle + " - " + assessment['datePublished'];
+        }
         title.appendChild(closeBtn);
         //get dueDate from assessment
-        dueDate.innerText = "Due date: " + assessment.dueDate;
+        try {
+            dueDate.innerText = "Due date: " + assessment.dueDate.toDate().toDateString();
+        } catch (error) {
+            dueDate.innerText = "Due date: " + assessment.dueDate;
+        }
         dueDate.style.color = "red";
         dueDate.style.fontWeight = 700;
 
