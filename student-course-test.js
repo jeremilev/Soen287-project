@@ -4,6 +4,11 @@ import { getFirestore, collection, addDoc, query, where, doc, getDocs, getDoc } 
 import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
 
 
+const currentCourse = localStorage.getItem('currentCourse');
+console.log(currentCourse);
+const courseName = document.getElementById('course-name');
+courseName.innerText = currentCourse;
+
 const firebaseConfig = {
     apiKey: "AIzaSyBgFGNCDCuhhPGm8dkQujxuix0VpJbS3N0",
     authDomain: "soen287-14875.firebaseapp.com",
@@ -41,3 +46,30 @@ export const getGrades = async function () {
     }
     return grades;
 }
+
+export const getAnnouncements = async function (className) {
+    //Specify path with commas, so you get database/courses/COMP232-A
+    const docRef = doc(db, "courses", className);
+
+    //Get the data from the reference above
+    const docSnap = await getDoc(docRef);
+
+    //If exists
+    if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+        //Get the data from that document: IE get the FIELDS DATA
+        try {
+            var announcements = docSnap.get("announcements");
+        } catch (error) {
+            console.log(e);
+        }
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+    return announcements;
+}
+
+
+
+
