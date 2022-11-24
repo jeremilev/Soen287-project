@@ -236,3 +236,29 @@ export const getAnnouncements = async function (className) {
     }
     return announcements;
 }
+
+
+//John's work below
+
+//Logs all of the student's grades in a course's assessments to console
+const logGrades = async function(uid, course){
+    //Get submissions subcollection in this course document of student's courses collection.
+    
+        //Retrieve the array of submission references from within the student's course document
+        const courseRef = doc(db, "users", uid, "courses", course);
+        const courseSnap = await getDoc(courseRef);
+        const submissionsArr = courseSnap.get("submissions");
+        const size = submissionsArr.length;
+    
+        //Access grades inside each submission ref
+        for(var i = 0; i < size; i++){
+            var submissionRef = submissionsArr[i];
+            var submissionSnap = await getDoc(submissionRef);
+            var grade = submissionSnap.get("grade");
+            console.log(grade);
+        }
+    }
+    
+    getGradesButton.addEventListener("click", () => {
+        logGrades(localStorage.getItem("userId"), "COMP232-B");
+      })
