@@ -255,10 +255,16 @@ const logGrades = async function(uid, course){
             var submissionRef = submissionsArr[i];
             var submissionSnap = await getDoc(submissionRef);
             var grade = submissionSnap.get("grade");
-            console.log(grade);
+            
+            console.log("Name of assessment: " + submissionSnap.ref.parent.parent.id);
+            console.log("Grade: " + grade);
         }
     }
     
     getGradesButton.addEventListener("click", () => {
-        logGrades(localStorage.getItem("userId"), "COMP232-B");
+        //Use when info is saved to localStorage
+        // logGrades(localStorage.getItem("userId"), localStorage.getItem("currentCourse"));
+
+        //Hardcoded for now
+        logGrades("MsgYjevzqvTtwYf77p0CrXyM2Yy2", "COMP232-B");
       })
