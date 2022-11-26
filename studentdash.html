@@ -9,6 +9,9 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
        
     </head>
 
@@ -26,6 +29,12 @@
                     <div class="helper-icon " id="helper-icon">
                         <a id="helper-icon-box"><i class="material-symbols-outlined icons-md-45 ">Help</i></a>
                     </div>
+                        <span id="moon"class="material-symbols-outlined icons-md-25">
+                        dark_mode
+                        </span>
+                        <span id="sun"class="material-symbols-outlined icons-md-30">
+                            light_mode
+                            </span>
                     <h1 class="studentName">Student Name</h1>
                 </div>
                 <div class="studentLogo">
@@ -51,7 +60,7 @@
                 <div class="left-sidebar"></div>
                 <div class="middle-bar" id="middle-bar">
                   <div>
-                    <h1 style="background-color:white ; padding-top:30px">My Courses</h1>
+                    <h1 style="background-color:var(--middle-bar_background-color); padding-top:30px;color:var(--middle-bar_color)">My Courses</h1>
                   </div>
                     <!-- <div class="my-course">
                         <div class="courseName-Grade">
@@ -132,21 +141,41 @@
                             </ul>
                         </div>
                     </div>
+                    <!-- Calendar Setup -->
                     <div class="calendar-container">
-                        <div id="header"></div>
+                        <div id="header_calendar">
+                            <div id="display_month"></div>
+                            <div id="calendar_buttons">
+                                <button id="previousButton">Previous</button>
+                                <button id="nextButton">Next</button>
+                            </div>
+                        </div>
                         <div id="weekdays">
-                            <div>Sunday</div>
-                            <div>Monday</div>
-                            <div>Tuesday</div>
-                            <div>Wednesday</div>
-                            <div>Thursday</div>
-                            <div>Friday</div>
-                            <div>Saturday</div>
+                            <div>Su</div>
+                            <div>Mo</div>
+                            <div>Tu</div>
+                            <div>We</div>
+                            <div>Th</div>
+                            <div>Fr</div>
+                            <div>Sa</div>
                         </div>
                         <div id="calendar"></div>
                     </div>
                 </div>
         
+                <div id="newEventModal">
+                    <h2 id="taskAddition">New Task</h2>
+                    <input id="eventTitleInput" placeholder="Description">
+                    <button id="saveButton">Save</button>
+                    <button id="cancelButton">Cancel</button>
+                </div>
+                <div id="deleteTask">
+                    <h2 id="currentTask">Current Task</h2>
+                    <p id="taskDesc"></p>
+                    <button id="deleteButton">Delete</button>
+                    <button id="quitButton">Quit</button>
+                </div>
+                <div id="modalBackDrop"></div>
         </main>
 
         <footer>
