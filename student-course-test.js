@@ -4,7 +4,9 @@ import { getFirestore, collection, addDoc, query, where, doc, getDocs, getDoc } 
 import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
 
 
-const currentCourse = localStorage.getItem('currentCourse');
+/* const currentCourse = localStorage.getItem('currentCourse'); */
+
+const currentCourse = "COMP232-B";
 console.log(currentCourse);
 const courseName = document.getElementById('course-name');
 courseName.innerText = currentCourse;
