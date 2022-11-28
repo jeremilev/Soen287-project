@@ -72,6 +72,22 @@ ul {
     justify-content: flex-start;
 }
 
+.navbar-first-half {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 30%;
+    align-items: center;
+}
+
+.navbar-second-half {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 70%;
+    align-items: center;
+}
+
 .container {
     display: flex;
     flex-direction: row;
@@ -563,7 +579,6 @@ input {
 }
 
 #help-icon {
-    margin-left: 17em;
     opacity: .5;
     transition-duration: .3s;
     border-radius: 50%;
@@ -597,6 +612,7 @@ input {
 
 #menu-icon {
     margin-left: 2em;
+    margin-right: 1em;
     opacity: .7;
     cursor: pointer;
     -webkit-transition: all .5s ease-in-out;
@@ -724,4 +740,211 @@ input {
     margin: 0;
     margin-left: 5%;
     margin-bottom: 10px;
+}
+
+@media (max-height: 605px) {
+    .navbar {
+        height: 60px;
+    }
+
+    img {
+        width: 45px;
+        height: 45px;
+    }
+
+    #school-name {
+        font-size: xx-large;
+    }
+
+    .icons-md-45 {
+        font-size: 30px !important;
+    }
+
+    #user-name-navbar {
+        font-size: x-large;
+    }
+}
+
+@media (max-height: 676px) {
+    .navbar {
+        height: 3.875rem;
+    }
+
+    img {
+        width: 50px;
+        height: 50px;
+    }
+
+    #school-name {
+        font-size: xx-large;
+    }
+
+    .icons-md-45 {
+        font-size: 35px !important;
+    }
+
+    #user-name-navbar {
+        font-size: x-large;
+    }
+}
+
+@media (max-height: 776px) {
+    .navbar {
+        height: 4.275rem;
+    }
+
+    img {
+        width: 55px;
+        height: 55px;
+    }
+
+    #school-name {
+        font-size: xxx-large;
+    }
+
+    .icons-md-45 {
+        font-size: 40px !important;
+    }
+
+    #user-name-navbar {
+        font-size: xx-large;
+    }
+}
+
+@media (max-height: 876px) {
+    .navbar {
+        height: 75px;
+    }
+
+
+    img {
+        width: 55px;
+        height: 55px;
+    }
+
+    #school-name {
+        font-size: xxx-large;
+    }
+
+    .icons-md-45 {
+        font-size: 40px !important;
+    }
+
+    #user-name-navbar {
+        font-size: xx-large;
+    }
+}
+
+@media (min-width: 1px) {
+    #school-name {
+        font-size: medium;
+    }
+
+
+
+    #user-name-navbar {
+        font-size: small;
+        margin-left: 1rem
+    }
+
+    #teacher-profile-img {
+        margin-left: 1em;
+    }
+
+    .navbar-first-half {
+        width: 45%;
+    }
+
+    .navbar-second-half {
+        width: 55%;
+    }
+
+    #menu-icon {
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+}
+
+@media (min-width: 576px) {
+    #school-name {
+        font-size: x-large;
+    }
+
+    #user-name-navbar {
+        font-size: large;
+        margin-left: 1rem
+    }
+
+    #teacher-profile-img {
+        margin-left: 1em;
+    }
+
+    .navbar-first-half {
+        width: 40%;
+    }
+
+    .navbar-second-half {
+        width: 60%;
+    }
+
+    #menu-icon {
+        margin-left: 1em;
+        margin-right: 8px;
+    }
+}
+
+@media (min-width: 768px) {
+    #school-name {
+        font-size: xx-large;
+    }
+
+    #user-name-navbar {
+        font-size: x-large;
+        margin-left: 1rem
+    }
+
+    #teacher-profile-img {
+        margin-left: 1em;
+    }
+
+    .navbar-first-half {
+        width: 35%;
+    }
+
+    .navbar-second-half {
+        width: 65%;
+    }
+
+    #menu-icon {
+        margin-left: 1em;
+        margin-right: 8px;
+    }
+}
+
+@media (min-width: 992px) {
+    #school-name {
+        font-size: xxx-large;
+    }
+
+    #user-name-navbar {
+        font-size: xx-large;
+    }
+}
+
+@media (min-width: 1200px) {
+    #menu-icon {
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+
+}
+
+@media (min-width: 1400px) {
+    .navbar-first-half {
+        width: 30%;
+    }
+
+    .navbar-second-half {
+        width: 70%;
+    }
 }
