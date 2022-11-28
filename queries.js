@@ -248,7 +248,7 @@ export const getAnnouncements = async function (className) {
 //Returns:
 //  - an object containing 3 arrays (assessmentIDs, weights, and grades)
 
-const getGrades = async function (uid, course) {
+export const getGrades = async function (uid, course) {
 
     //Retrieve the array of submission references from within the student's course document
     const courseRef = doc(db, "users", uid, "courses", course);
@@ -284,19 +284,3 @@ const getGrades = async function (uid, course) {
     //return object containing the three arrays.
     return { "assessmentIDs": assessmentIDs, "weights": weights, "grades": grades };
 }
-
-/*
-getGradesButton.addEventListener("click", async () => {
-    //Use when info is saved to localStorage
-    // getGrades(localStorage.getItem("userId"), localStorage.getItem("currentCourse"));
-
-    //Hardcoded for now
-    var gradesData = await getGrades("MsgYjevzqvTtwYf77p0CrXyM2Yy2", "COMP232-B");
-
-    //Iterate over the gradesData to display data
-    const size = gradesData.assessmentIDs.length;
-    for (var i = 0; i < size; i++){
-        console.log(gradesData.assessmentIDs[i] + " - Weight: " + gradesData.weights[i] + " Grade: " + gradesData.grades[i]);
-    }
-})
-*/
