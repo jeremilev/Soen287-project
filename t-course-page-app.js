@@ -11,9 +11,11 @@ teacherName.innerText = userInfo['firstName'] + " " + userInfo['lastName'];
 const currentCourse = localStorage.getItem('currentCourse');
 console.log(currentCourse);
 const courseName = document.getElementById('course-name');
-courseName.innerText = currentCourse;
+try {
+    courseName.innerText = currentCourse;
+} catch (error) {
 
-
+}
 
 //SEMESTER START
 /*
@@ -46,7 +48,7 @@ const AllIcons = document.querySelectorAll('.material-symbols-outlined');
 
 const generalInfoBlock = document.getElementById('general-info-block');
 
-const courseDescription = document.getElementById('course-description');
+const assessmentHeader = document.getElementById('assessments-header');
 const displayAnnouncements = async function (className) {
     var announcementsMap = await getAnnouncements(className);
 
@@ -86,7 +88,7 @@ const displayAnnouncements = async function (className) {
         container.appendChild(descriptionContainer);
 
         //Add elements to the DOM at the right location
-        generalInfoBlock.insertBefore(container, courseDescription);
+        generalInfoBlock.insertBefore(container, assessmentHeader);
     }
 }
 displayAnnouncements(currentCourse);
