@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN PORTAL</title>
+</head>
+
+<body>
+    <h1>Admin</h1>
+
+    <hr>
+    <h2>How to add the Students and Professors in your institution. Courses will be automatically generated from the
+        users' courseLists.</h2>
+    <ol>
+        <li>You need to import a file in JSON format as follows:</li>
+        <pre>
+            {
+                "0": //user #
+                    {
+                        "email": "email@example.com",
+                        "isProf": "false",
+                        "firstName": "Alex",
+                        "lastName": "James",
+                        "password": "some previously generated password"
+                        "courseList": 
+                            {
+                                "0": "/courses/COMP232-A", //Where COMP232-A is the name of the course. 
+                                "1": "/courses/SOEN287-Q",
+                                "2": "/courses/COMP249-D",
+                                "3": "/courses/COMP233-E"
+                            }
+                    },
+                "1":
+                    {
+                        "email": "other@example.com",
+                        "isProf": "true",
+                        "firstName": "John",
+                        "lastName": "Wick",
+                        "password": "123456"
+                        "courseList": 
+                            {
+                                "0": "/courses/COMP232-A", //Different sections should be listed as different courses.
+                                "1": "/courses/COMP232-B",
+                                "2": "/courses/COMP249-D",
+                            }
+                    },
+                etc...
+            }
+        </pre>
+        <li>Note that all <b>fields are required</b>.</li>
+    </ol>
+    <label for="users-json-file">List of users to create: </label>
+    <input type="file" name="" id="users-json-file">
+    <br><br>
+    <button id="btn-create-users" type="submit">Create users</button>
+    <br>
+    <br>
+    <hr>
+    <h3>Export all students with their letter grade for each course.</h3>
+    <br>
+    <button type="submit">Download file</button>
+    <br>
+    <br>
+    <hr>
+    <h2>Reset Courses for New Semester.</h2>
+    <br>
+    <p>Make sure all <b>important data has already been exported.</b></p>
+    <button style="background:red" type="submit">Reset</button>
+    <script src="admin.js"></script>
+</body>
+
+</html>
