@@ -17,26 +17,20 @@ try {
 
 }
 
-//SEMESTER START
-/*
-const semesterStart = new Date(2022, 8, 5);
-const setWeekDatesSemester = function (semesterStart) {
-    console.log(semesterStart);
-    const semesterWeeks = [];
-    for (let i = 0; i < 16; i++) {
-        let weekStart = Date.prototype.addDays(semesterStart, 0)
-        console.log(weekStart);
+var semesterStart = new Date("2022-09-06");
 
-        let weekEnd = new Date()
-        weekEnd.setDate(weekStart.getDate() + 7);
-        semesterWeeks.push([weekStart, weekEnd]);
+function addWeeks(weeks, date = new Date()) {
+    date.setDate(date.getDate() + weeks * 7)
 
-    }
-    return semesterWeeks;
+    return date
 }
-let semesterWeeks = setWeekDatesSemester(semesterStart);
-console.log(semesterWeeks);
-*/
+
+const weeksDates = document.getElementsByClassName('week-dates weekweek');
+for (let i = 0; i < weeksDates.length; i++) {
+    weeksDates.item(i).innerText = "Week of " + semesterStart.toDateString() + ".";
+    semesterStart = addWeeks(1, semesterStart);
+}
+
 
 const AllIcons = document.querySelectorAll('.material-symbols-outlined');
 

@@ -1,3 +1,10 @@
+import { cardWeekBlock } from "./cardWeekBlock.mjs";
+
+var weekList = ``;
+for (let i = 0; i < 16; i++) {
+    weekList += cardWeekBlock;
+}
+console.log(weekList)
 export const coursePage =
     `
     <div class="course-card">
@@ -40,31 +47,7 @@ export const coursePage =
                     <h3 id="assessments-header" class="week-dates">Assessments</h3>
 
                 </div>
-                <div class="card-week-block">
-                    <hr>
-                    <h2 class="week-dates">16 - 22 October</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor illo nemo blanditiis quasi
-                        odit
-                        similique! Ullam quas eveniet dolores molestias in hic est, odio repellendus quia voluptates
-                        pariatur deleniti consequuntur. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error
-                        consectetur necessitatibus non sapiente, ullam perferendis facere officia laboriosam aliquam
-                        totam. Suscipit itaque natus deleniti fugit enim voluptates molestias quia unde.
-                    </p>
-                </div>
-                <div class="card-week-block">
-                    <hr>
-                    <h2 class="week-dates">23 - 29 October</h2>
-                </div>
-                <div class="card-week-block">
-                    <hr>
-                    <h2 class="week-dates">30 October - 5 November</h2>
-                    <div class="center.div">
-                        <a class="week-block-links" href="">
-                            <img class="pdf-img" src="pdf-img.png" alt="">
-                            SOEN_287_Project_description.pdf
-                        </a>
-                    </div>
-                </div>
+                ${weekList}
             </div>
         </div>
     `
