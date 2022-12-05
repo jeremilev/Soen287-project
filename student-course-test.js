@@ -65,7 +65,9 @@ export const getAnnouncements = async function (className) {
         } catch (error) {
             console.log(e);
         }
-    } else {
+    
+    } 
+    else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
     }

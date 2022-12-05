@@ -1,4 +1,5 @@
 import { getGrades } from '/student-course-test.js';
+import { getAnnouncements } from '/student-course-test.js';
 
 
 const gradesOverlayContainer = document.getElementById('grades-overlay-container');
@@ -13,6 +14,10 @@ console.log(viewGradesBtn);
 
 
 const courseAnnouncements = document.getElementById('course-announcements');
+const currentCourse = "COMP232-B";
+console.log(currentCourse);
+const courseName = document.getElementById('course-name');
+courseName.innerText = currentCourse;
 
 const courseText = document.getElementById('course-text');
 const displayAnnouncements = async function (className) {
