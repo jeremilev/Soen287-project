@@ -7,6 +7,9 @@ import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/9.1
 /* const currentCourse = localStorage.getItem('currentCourse'); */
 
 const currentCourse = "COMP232-B";
+
+//Here is a change. 
+
 console.log(currentCourse);
 const courseName = document.getElementById('course-name');
 courseName.innerText = currentCourse;
