@@ -1,4 +1,4 @@
-
+//Will hold uploaded files
 let filesArr = []
 
 const inputElement = document.getElementById('users-json-file');
@@ -15,11 +15,20 @@ inputElement.addEventListener('change', function() {
   
 const processFiles = function() {
 
+    //Grab files from the file array
     var reader = new FileReader();
     reader.readAsText(filesArr[0]);
 
     reader.onload = function() {
-        console.log(reader.result);
+        let userObjects = JSON.parse(reader.result)
+
+        //Log the object
+        console.log(userObjects);
+
+        //iterate through object key/value pairs and print to console
+        for (const key in userObjects){
+            console.log(`${key} : ${userObjects[key]}`)
+          }
     };
 };
 
