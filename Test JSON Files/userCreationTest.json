@@ -1,7 +1,16 @@
-{
-  "firstName": "json",
-  "lastName": "prof",
-  "isProf": true,
-  "email": "jsonprof@gmail.com",
-  "password": "123456"
-}
+[
+  {
+    "firstName": "json",
+    "lastName": "prof",
+    "isProf": true,
+    "email": "jsonprof@gmail.com",
+    "password": "123456"
+  },
+  {
+    "firstName": "json",
+    "lastName": "student",
+    "isProf": false,
+    "email": "jsonstudent@gmail.com",
+    "password": "123456"
+  }
+]

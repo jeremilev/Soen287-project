@@ -41,67 +41,76 @@ const processFiles = function() {
     reader.readAsText(filesArr[0]);
 
     reader.onload = async function() {
-        let userObject = JSON.parse(reader.result)
+        //Get the array of users
+        let userObjects = JSON.parse(reader.result)
 
-        //Log the object
-        console.log(userObject);
+        // let userObject = userObjects[0];
+        // console.log(userObject);
 
-        var email = userObject["email"];
-        var password = userObject["password"];
-        var isProf = userObject["isProf"];
-        var firstName = userObject["firstName"];
-        var lastName = userObject["lastName"];
+        //Loop through all userObjects, and create a user for each.
+        for(let i in userObjects){
+            let userObject = userObjects[i];
 
-        for (const key in userObject){
-        console.log(`${key} : ${userObject[key]}`)
-        }
-        console.log("isProf: " + isProf + ", email: " + email + ", Password: " + password );
+            //Log the object
+            console.log(userObject);
+
+            var email = userObject["email"];
+            var password = userObject["password"];
+            var isProf = userObject["isProf"];
+            var firstName = userObject["firstName"];
+            var lastName = userObject["lastName"];
+
+            for (const key in userObject){
+            console.log(`${key} : ${userObject[key]}`)
+            }
+            console.log("isProf: " + isProf + ", email: " + email + ", Password: " + password );
 
 
-        //Creates a user in Firebase database
-        await createUserWithEmailAndPassword(auth, email, password, isProf)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            ////////////////////////////fix  var userID = user.uid;/////////////////
-            const userID = user.uid;
-            localStorage.setItem('userId', user.uid)
-            console.log(user.uid)
+            //Creates a user in Firebase database
+            await createUserWithEmailAndPassword(auth, email, password, isProf)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                ////////////////////////////fix  var userID = user.uid;/////////////////
+                const userID = user.uid;
+                localStorage.setItem('userId', user.uid)
+                console.log(user.uid)
 
-            // ... user.uid
-            set(ref(database, 'users/' + userID), {
-                isProf: isProf,
-                email: email,
-                password: password,
-                uid: userID
-            })
-            .then(() => {
+                // ... user.uid
+                set(ref(database, 'users/' + userID), {
+                    isProf: isProf,
+                    email: email,
+                    password: password,
+                    uid: userID
+                })
+                .then(() => {
 
-                alert('user created successfully');
-                return userID;
+                    alert('user created successfully');
+                    return userID;
+                })
+                .catch((error) => {
+                    alert(error);
+                });
             })
             .catch((error) => {
-                alert(error);
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+                alert(errorCode);
+                alert(errorMessage);
             });
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
-            alert(errorCode);
-            alert(errorMessage);
-        });
 
-        await setDoc(doc(db, "users", localStorage.userId), {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password,
-            isProf: isProf
-        }).then(() => {
-            console.log("added doc")
-            localStorage.clear();
-        })
+            await setDoc(doc(db, "users", localStorage.userId), {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password,
+                isProf: isProf
+            }).then(() => {
+                console.log("added doc")
+                localStorage.clear();
+            })
+        }
     };
 };
 
