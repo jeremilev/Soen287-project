@@ -1,0 +1,7 @@
+{
+  "firstName": "json",
+  "lastName": "prof",
+  "isProf": true,
+  "email": "jsonprof@gmail.com",
+  "password": "123456"
+}
