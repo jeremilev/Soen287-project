@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
-import { getFirestore, setDoc, doc, updateDoc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
+import { getFirestore, setDoc, doc, updateDoc, arrayUnion } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 import { getStorage} from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
 import { getDatabase, set, ref} from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
@@ -120,6 +120,7 @@ const processUsers = function() {
             }
 
             await setDoc(doc(db, "users", localStorage.userId), {
+                courseList: [],
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
@@ -152,14 +153,72 @@ inputCourses.addEventListener('change', function() {
 })
 
 const createCourses = document.getElementById('btn-create-courses');
-createCourses.addEventListener('click', function(){
+createCourses.addEventListener('click', async function(){
     //TODO:Process course files and add to database
 
     var reader = new FileReader();
     reader.readAsText(coursesArr[0]);
-    reader.onload = function(){
+    reader.onload = async function(){
         let courseJSON = JSON.parse(reader.result);
         console.log(courseJSON);
+
+        //Capture data from JSON object
+        var name = courseJSON["name"];
+        var courseRef = await doc(db, "courses", name);
+        //TODO: getProfReference
+        var profID = courseJSON["profID"];
+        var profRef = await doc(db, "users", profID);
+        var studentList = courseJSON["studentList"];
+
+        console.log("Name: " + name);
+        console.log("profID: " + profID);
+        console.log("studentList: " + studentList);
+
+        let announcementMap = {
+            "1": { "datePublished" : 1668360063913,
+                    "description" : "This course has been created using JSON",
+                    "subject" : "Course Created" }
+          }
+
+        //Create Doc and set the attributes
+        await setDoc(doc(db, "courses", name), {
+            announcements: {announcementMap},
+            name: name,
+            prof: profRef,
+            studentList: studentList
+        }).then(() => {
+            console.log("added doc");
+        })
+
+        //Create reference to newly created course
+        var courseRef = await doc(db, "courses", name);
+
+        //Add this course to every student's courseList
+        studentList.forEach(async function(ID) {
+            console.log("student's ID: " + ID);
+            const studentRef = doc(db, "users", ID);
+
+            //Update courseList array for each student
+            await updateDoc(studentRef, {
+                courseList: arrayUnion(courseRef)
+            });
+
+            //Create new document in courses subcollection of student
+            await setDoc(doc(studentRef, "courses", name), {
+                courseReference: courseRef,
+                submissions: []
+            });
+        });
+
+        //Add this course to prof's courses
+        await updateDoc(profRef, {
+            courseList: arrayUnion(courseRef)
+        });
+        //Create new document in courses subcollection of professor
+        await setDoc(doc(profRef, "courses", name), {
+            courseReference: courseRef,
+            submissions: []
+        });
     }
 })
 
