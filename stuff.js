@@ -120,6 +120,12 @@ getNameOfClass();
 
 
 
+//Dark Mode
+document.getElementById("moon").addEventListener("click",()=>{
+    document.documentElement.style.setProperty("--deadlineBackgroundColor","black");
+   
+
+});
 
 
 

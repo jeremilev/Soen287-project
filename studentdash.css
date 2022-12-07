@@ -1,3 +1,6 @@
+:root{
+    --deadlineBackgroundColor:#84a98c;
+}
 *{
     box-sizing: border-box;
     margin: 0;
@@ -136,7 +139,6 @@ nav{
     padding-top: 64px;
     width: 160px;
     height:100%;
-    background-color: #84a98c;
     flex-direction: column;
 }
 .middle-bar{
@@ -148,7 +150,6 @@ nav{
     width: 60%;
     height:100%;
     background-color:white;
-
     box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25);
 }
 .my-course{
@@ -161,6 +162,7 @@ nav{
     border-radius: 10px;
     border: 1px solid white;
     box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25);
+
 }
 .courseName-Grade{
     display: flex;
@@ -200,7 +202,7 @@ nav{
 }
 .deadline{
     border-radius: 8px;
-    background-color: #84a98c;
+    background-color:var(--deadlineBackgroundColor);
     padding: 5px;
     border: 1px solid lightslategray;
     color: black;
@@ -278,14 +280,7 @@ nav{
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-  }
-
-
-
-
-
-
-
+}
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
