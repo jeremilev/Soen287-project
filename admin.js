@@ -182,7 +182,7 @@ createCourses.addEventListener('click', async function(){
 
         //Create Doc and set the attributes
         await setDoc(doc(db, "courses", name), {
-            announcements: {announcementMap},
+            announcements: announcementMap,
             name: name,
             prof: profRef,
             studentList: studentList
