@@ -43,8 +43,6 @@ export const overlayPanel =
             </div>
             <div id="announcements-layout" class="overlay-panel-content">
                 <input id="announcement-subject" type="text" required="required" placeholder="Subject">
-                <label id="subjectLabel" for="announcement-subject"></label>
-                <label for="announcement-description" id="announcementDescLabel"></label>
                 <textarea name="announcement-description" id="announcementDesc" cols="30" rows="8" placeholder="Description"></textarea>
                 <input id="add-announcement-btn" type="submit" value="Add announcement">
                 <div id="overlay-announcement-list" class="announcement-list">
