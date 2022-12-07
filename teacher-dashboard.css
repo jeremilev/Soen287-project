@@ -1,3 +1,12 @@
+:root{
+  --myCourseHeaderColor:black;
+  --courseCardBorderColor:#84A98C;
+  --courseCardBackgroundColor:#D9D9D9;
+  --courseCardTextColor:black;
+  --courseCardNameBackgroundColor:#52796F;
+}
+
+
 body {
   font-family: 'Inter';
   background-color: #D9D9D9;
@@ -142,13 +151,15 @@ body {
   box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25);
   border-radius: 2em;
 }
-
+.my-courses-header{
+  color:var(--myCourseHeaderColor);
+}
 .mp_course {
   display: flex;
   flex-direction: row;
-  background-color: #D9D9D9;
-  border: #84A98C;
-  border-style: dotted;
+  background-color: var(--courseCardBackgroundColor);
+  border: var(--courseCardBorderColor);
+  border-style:solid;
   align-items: center;
   justify-content: center;
   width: 80%;
@@ -165,7 +176,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  background-color: #52796F;
+  background-color: var(--courseCardNameBackgroundColor);
   justify-content: center;
   align-items: center;
   flex-grow: 1;
@@ -204,13 +215,14 @@ body {
   justify-content: center;
   align-items: center;
   ;
-  background-color: #84A98C;
+  background-color: var(--courseCardBorderColor);
   width: 100%;
   height: 20%;
   border-radius: 1em;
   border: #CAD2C5;
   border-style: inset;
   box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25);
+  color:var(--courseCardTextColor);
 }
 
 /* Symbols and Icons */

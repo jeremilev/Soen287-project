@@ -1,11 +1,14 @@
 import { getGrades } from '/student-course-test.js';
 import { getAnnouncements } from '/queries.js';
 
+//TODO John: Remove getGradesNew once other getGrades has been removed
+import {getGrades as getGradesNew} from '/queries.js';
+
 
 const gradesOverlayContainer = document.getElementById('grades-overlay-container');
-console.log(gradesOverlayContainer);
+// console.log(gradesOverlayContainer);
 const gradesOverlayPanel = document.getElementById('grades-overlay-panel');
-console.log(gradesOverlayPanel);
+// console.log(gradesOverlayPanel);
 const gradesOverlayLayout = document.getElementById('grades-overlay-layout'); 
 const viewGradesBtn = document.getElementById("view-grades-btn");
 console.log(viewGradesBtn);
@@ -154,6 +157,23 @@ const calculateGrade = async function(){
 // calculateGrade();
 
 
+
+//John's Demonstration of getGradesButton
+
+const getGradesButton = document.getElementById("getGradesButton");
+getGradesButton.addEventListener("click", async () => {
+    //Use when info is saved to localStorage
+    // getGrades(localStorage.getItem("userId"), localStorage.getItem("currentCourse"));
+
+    //Hardcoded for now
+    var gradesData = await getGradesNew("MsgYjevzqvTtwYf77p0CrXyM2Yy2", "COMP232-B");
+
+    //Iterate over the gradesData to display data
+    const size = gradesData.assessmentIDs.length;
+    for (var i = 0; i < size; i++){
+        console.log(gradesData.assessmentIDs[i] + " - Weight: " + gradesData.weights[i] + " Grade: " + gradesData.grades[i]);
+    }
+})
 
 
 

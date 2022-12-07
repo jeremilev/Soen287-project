@@ -236,3 +236,51 @@ export const getAnnouncements = async function (className) {
     }
     return announcements;
 }
+
+
+//John's work below
+
+
+//Logs all of the student's grades in a course's assessments to console
+//Parameters:
+//  - uid: the user ID of the student who's grade is to be fetched
+//  - course: the courseID of the course whose grades are to be fetch
+//Returns:
+//  - an object containing 3 arrays (assessmentIDs, weights, and grades)
+
+export const getGrades = async function (uid, course) {
+
+    //Retrieve the array of submission references from within the student's course document
+    const courseRef = doc(db, "users", uid, "courses", course);
+    const courseSnap = await getDoc(courseRef);
+    const submissionsArr = courseSnap.get("submissions");
+    const size = submissionsArr.length;
+    const assessmentsRef = collection(db, "courses", course, "assessments");
+
+    //Create empty arrays to add in fetched values
+    var assessmentIDs = [];
+    var weights = [];
+    var grades = [];
+
+    //Access grades inside each submission ref
+    for (var i = 0; i < size; i++) {
+        //Get grade through submission reference in student's subcollection
+        var submissionRef = submissionsArr[i];
+        var submissionSnap = await getDoc(submissionRef);
+        var grade = submissionSnap.get("grade");
+
+        //Get assessmentID and weight through courses collection
+        var assessmentID = submissionRef.parent.parent.id;
+        var assessmentRef = doc(assessmentsRef, assessmentID);
+        var assessmentSnap = await getDoc(assessmentRef);
+        var weight = assessmentSnap.get("weight");
+
+        //populate arrays with fetched data
+        assessmentIDs[i] = assessmentID;
+        weights[i] = weight;
+        grades[i] = grade;
+    }
+
+    //return object containing the three arrays.
+    return { "assessmentIDs": assessmentIDs, "weights": weights, "grades": grades };
+}
