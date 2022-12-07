@@ -28,55 +28,31 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
-
-export const getGrades = async function () {
-    //Specify path with commas, so you get database/courses/COMP232-A
-    const docRef = doc(db, "users", "aStudent");
-
-    //Get the data from the reference above
-    const docSnap = await getDoc(docRef);
-
-    //If exists
-    if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-        //Get the data from that document: IE get the FIELDS DATA
-        try {
-            var grades = docSnap.get("grades");
-        } catch (error) {
-            console.log(e);
-        }
-    } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-    }
-    return grades;
+export const getGrades = async function() {
+    console.log("GRADES");
 }
+// export const getGrades = async function () {
+//     //Specify path with commas, so you get database/courses/COMP232-A
+//     const docRef = doc(db, "users", "aStudent");
 
-export const getAnnouncements = async function (className) {
-    //Specify path with commas, so you get database/courses/COMP232-A
-    const docRef = doc(db, "courses", className);
+//     //Get the data from the reference above
+//     const docSnap = await getDoc(docRef);
 
-    //Get the data from the reference above
-    const docSnap = await getDoc(docRef);
-
-    //If exists
-    if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-        //Get the data from that document: IE get the FIELDS DATA
-        try {
-            var announcements = docSnap.get("announcements");
-        } catch (error) {
-            console.log(e);
-        }
-    
-    } 
-    else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-    }
-    return announcements;
-}
-
-
+//     //If exists
+//     if (docSnap.exists()) {
+//         console.log("Document data:", docSnap.data());
+//         //Get the data from that document: IE get the FIELDS DATA
+//         try {
+//             var grades = docSnap.get("grades");
+//         } catch (error) {
+//             console.log(e);
+//         }
+//     } else {
+//         // doc.data() will be undefined in this case
+//         console.log("No such document (GRADE FUNCTION)!");
+        
+//     }
+//     return grades;
+// }
 
 
