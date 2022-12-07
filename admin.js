@@ -28,7 +28,20 @@ const inputElement = document.getElementById('users-json-file');
 inputElement.addEventListener('change', function() {        
     filesArr = this.files;
 })
-  
+
+//Helper Function to take a JSON file and return a JSON object
+const fileToJSON = async function(file) {
+    var reader = new FileReader();
+    reader.readAsText(file);
+    var object;
+
+    reader.onload = async function() {
+        //Get the array of users
+        object = JSON.parse(reader.result);
+    }
+    return object;
+}
+
 //Takes JSON file and parses it for JSON objects. 
 //Creates users in FireBase storage, and in FireStore database based on those JSON objects
 const processFiles = function() {
@@ -114,8 +127,32 @@ const processFiles = function() {
     };
 };
 
+const createUsersBtn = document.getElementById('btn-create-users');
+createUsersBtn.addEventListener('click', processFiles)
+
+
 //TODO: Add a import courselist functionality. JSON file with coursename, and studentList
 //TO INCLUDE: - announcements map - studentList map (array?) - profInfo
 
-const createUsersBtn = document.getElementById('btn-create-users');
-createUsersBtn.addEventListener('click', processFiles)
+let coursesArr = []
+
+const inputCourses = document.getElementById('course-json-file');
+inputCourses.addEventListener('change', function() {        
+    coursesArr = this.files;
+})
+
+const createCourses = document.getElementById('btn-create-courses');
+createCourses.addEventListener('click', function(){
+    //TODO:Process course files and add to database
+
+    var reader = new FileReader();
+    reader.readAsText(coursesArr[0]);
+    reader.onload = function(){
+        let courseJSON = JSON.parse(reader.result);
+        console.log(courseJSON);
+    }
+})
+
+{/* <input type="file" name="" id="course-json-file">
+    <br><br>
+    <button id="btn-create-courses" type="submit">Create Courses</button> */}
