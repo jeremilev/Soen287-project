@@ -18,7 +18,7 @@ export const overlayPanel =
                     <i class="material-symbols-outlined btn-icon">post_add</i>
                 </div>
                 <div id="existing-assignment">
-                    list of existing assignments
+                    create assignment
                 </div>
 
             </div>
