@@ -152,8 +152,8 @@ addAssignmentBtn.addEventListener('click', async (e) => {
 const addAnnouncementBtn = document.getElementById('add-announcement-btn');
 addAnnouncementBtn.addEventListener('click', async (e) => {
     e.preventDefault();
-    console.log(e.target.previousElementSibling.previousElementSibling.previousElementSibling.value);
-    var subject = e.target.previousElementSibling.previousElementSibling.previousElementSibling.value;
+    console.log(e.target.previousElementSibling.previousElementSibling.value);
+    var subject = e.target.previousElementSibling.previousElementSibling.value;
     var descriptionText = e.target.previousElementSibling.value;
 
     await createAnnouncement(currentCourse, subject, descriptionText);
@@ -486,20 +486,20 @@ for (let i = 0; i < AllIcons.length; i++) {
 
 
 // Choose File Implementation
-const fileBtn=document.getElementById("new-file")
-const newBtn=document.getElementById("fileBtn");
-const fileTxt=document.getElementById("fileTxt");
+const fileBtn = document.getElementById("new-file")
+const newBtn = document.getElementById("fileBtn");
+const fileTxt = document.getElementById("fileTxt");
 
-newBtn.addEventListener("click",()=>{
+newBtn.addEventListener("click", () => {
     fileBtn.click();
 })
 
-fileBtn.addEventListener("change",()=>{
-    if(fileBtn.value){
-        fileTxt.innerHTML=fileBtn.value.match( /[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+fileBtn.addEventListener("change", () => {
+    if (fileBtn.value) {
+        fileTxt.innerHTML = fileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
     }
-    else{
-        fileTxt.innerHTML="No File Chosen";
+    else {
+        fileTxt.innerHTML = "No File Chosen";
     }
 })
 console.log(attachFileBtns);
