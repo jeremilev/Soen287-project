@@ -67,26 +67,27 @@ export const getCourses = async function () {
     })
 }
 
-//QUERY: all students within a course **Imperfect, need to find a way to standardized the document name inside the collection studentList
 export const getStudentList = async function (className) {
 
     //studentList is a collection and collections don't contain fields, only documents can contain fields, 
     //so collections must have documents that then, in turn, contain the data.
     //Here, studentList is a collection, jteSOJD0LO8AbUxMlXcM is a document. Else it throws an error
-    const docRef = doc(db, "courses", className, "studentList", 'jteSOJD0LO8AbUxMlXcM');
+    const docRef = doc(db, "courses", className);
 
     const docSnap = await getDoc(docRef);
 
     //If exists
     if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-        //Get the data from that document: IE get the FIELDS DATA
+        const data = docSnap.data();
 
+        console.log(data['studentList']);
+        return data['studentList'];
     } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
     }
 }
+
 
 //Query: all assessments within a course
 export const getAssessments = async function (className) {
@@ -116,11 +117,40 @@ export const createAssessment = async function (className, docId, description, f
     }
 
     await setDoc(docRef, docData);
+
+    const submissionsRef = collection(db, "courses", className, "assessments", docId, "submissions");
+    const studentList = await getStudentList(className);
+    const studentIds = Object.values(studentList); //make it an array
+    var studentListSize = Object.keys(studentList).length;
+    for (let i = 0; i < studentListSize; i++) {
+        var newDoc = doc(submissionsRef);
+        var submissionData = {
+            comments: "",
+            dateSubmitted: null,
+            file: "",
+            grade: 0,
+            studentRef: studentIds[i]
+        }
+        await setDoc(newDoc, submissionData);
+    }
+
 }
 //WORKEDDDD
 //createAssessment("COMP248-D", "Assignment Name", "This is the description", "path/filepath/path", 15);
 
 //Query:
+
+
+export const getGradesForAssessment = async function (className, assessmentName) {
+    const docsRef = collection(db, "courses", className, "assessments", assessmentName, "submissions");
+    const querySnapshot = await getDocs(docsRef);
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+    })
+}
+getGradesForAssessment("COMP232-B", "assignment1");
+
 export const getAssessmentGrades = async function (className, assessmentName) {
 
     const docRef = doc(db, "courses", className, "assessments", assessmentName);
@@ -146,6 +176,7 @@ export const getAssessmentGrades = async function (className, assessmentName) {
 //Update grades
 //the data parameter is an object of key:value pairs that are to be overridden or added inside the specified doc
 //THIS WORKS
+
 export const updateGrade = async function (className, assessmentName, studentId, newGrade) {
     const docRef = doc(db, "courses", className, "assessments", assessmentName);
 
