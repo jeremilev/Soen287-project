@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
-import { getFirestore, setDoc, doc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
+import { getFirestore, setDoc, doc, updateDoc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 import { getStorage} from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
 import { getDatabase, set, ref} from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
@@ -44,7 +44,7 @@ const fileToJSON = async function(file) {
 
 //Takes JSON file and parses it for JSON objects. 
 //Creates users in FireBase storage, and in FireStore database based on those JSON objects
-const processFiles = function() {
+const processUsers = function() {
 
     //get FireBase auth
     const auth = getAuth();
@@ -72,6 +72,9 @@ const processFiles = function() {
             var isProf = userObject["isProf"];
             var firstName = userObject["firstName"];
             var lastName = userObject["lastName"];
+            var isAdmin = userObject["isAdmin"];
+
+            console.log("isAdmin: " + isAdmin);
 
             for (const key in userObject){
             console.log(`${key} : ${userObject[key]}`)
@@ -80,11 +83,10 @@ const processFiles = function() {
 
 
             //Creates a user in Firebase database
-            await createUserWithEmailAndPassword(auth, email, password, isProf)
+            await createUserWithEmailAndPassword(auth, email, password, isProf,isAdmin)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                ////////////////////////////fix  var userID = user.uid;/////////////////
                 const userID = user.uid;
                 localStorage.setItem('userId', user.uid)
                 console.log(user.uid)
@@ -113,6 +115,10 @@ const processFiles = function() {
                 alert(errorMessage);
             });
 
+            if(isAdmin){
+
+            }
+
             await setDoc(doc(db, "users", localStorage.userId), {
                 firstName: firstName,
                 lastName: lastName,
@@ -120,15 +126,19 @@ const processFiles = function() {
                 password: password,
                 isProf: isProf
             }).then(() => {
-                console.log("added doc")
-                localStorage.clear();
+                console.log("added doc");
             })
+
+            if(isAdmin){
+                await updateDoc(doc(db, "users", localStorage.userId), {'isAdmin': isAdmin});
+                console.log("Updated isAdmin");
+            }
         }
     };
 };
 
 const createUsersBtn = document.getElementById('btn-create-users');
-createUsersBtn.addEventListener('click', processFiles)
+createUsersBtn.addEventListener('click', processUsers)
 
 
 //TODO: Add a import courselist functionality. JSON file with coursename, and studentList
