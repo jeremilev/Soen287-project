@@ -1,0 +1,10 @@
+[
+  {
+    "firstName": "json",
+    "lastName": "admin",
+    "isProf": false,
+    "isAdmin": true,
+    "email": "admin@gmail.com",
+    "password": "123456"
+  }
+]

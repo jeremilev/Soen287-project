@@ -88,8 +88,12 @@
                     .then(async () => {
                         const userSnap = await getDoc(doc(db, "users", user.uid));
                         const isProf = userSnap.get("isProf");
+                        //TODO: Test that isAdmin check doesn't fuck things up when it doesn't exist in userSnap.
+                        const isAdmin = userSnap.get("isAdmin");
                         if (isProf)
                             window.location.assign("teacher-dashboard.html");
+                        else if(isAdmin)
+                            window.location.assign("admin.html");
                         else
                             window.location.assign("studentdash.html");
                     })
