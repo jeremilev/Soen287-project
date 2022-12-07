@@ -45,7 +45,9 @@ const generalInfoBlock = document.getElementById('general-info-block');
 const assessmentHeader = document.getElementById('assessments-header');
 const displayAnnouncements = async function (className) {
     var announcementsMap = await getAnnouncements(className);
-
+    if (announcementsMap === undefined || announcementsMap === null) {
+        return
+    }
     for (let i = 0; i < Object.keys(announcementsMap).length; i++) {
         //Create elements to hold data
         var container = document.createElement('div');

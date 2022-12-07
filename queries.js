@@ -183,27 +183,43 @@ export const createAnnouncement = async function (className, subject, descriptio
         try {
             var classDoc = docSnap.data();
             var announcements = classDoc['announcements'];
-
-            var k = Object.keys(announcements).length;
-            k++;
+            var k;
             var myTimestamp = Date.now();
-            console.log(myTimestamp);
-            announcements[k] = {}
-            console.log(announcements[k]);
-            announcements[k]['subject'] = subject;
-            announcements[k]['description'] = description;
-            announcements[k]['datePublished'] = myTimestamp;
+            if (announcements === undefined || announcements === null) {
+                //setDoc(cityRef, { capital: true }, { merge: true });
+                await setDoc(docRef, {
+                    announcements: {
+                        1: {
+                            subject: subject,
+                            description: description,
+                            datePublished: myTimestamp
+                        }
+                    }
+                }, { merge: true })
+                announcements = classDoc['announcements'];
+                k = 1;
+            } else {
+                k = Object.keys(announcements).length;
+                k++;
+                console.log(myTimestamp);
+                announcements[k] = {}
+                console.log(announcements[k]);
+                announcements[k]['subject'] = subject;
+                announcements[k]['description'] = description;
+                announcements[k]['datePublished'] = myTimestamp;
 
-            var newData = announcements;
-            updateDoc(docRef, {
-                announcements: newData
-            }).then(docRef => {
+                var newData = announcements;
+                updateDoc(docRef, {
+                    announcements: newData
+                }).then(docRef => {
 
-                console.log('updated successfully')
-            })
-                .catch(error => {
-                    console.log(error);
+                    console.log('updated successfully')
                 })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            }
+
         } catch (error) {
             console.log(error);
         }
