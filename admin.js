@@ -115,6 +115,7 @@ const processFiles = function() {
 };
 
 //TODO: Add a import courselist functionality. JSON file with coursename, and studentList
+//TO INCLUDE: - announcements map - studentList map (array?) - profInfo
 
 const createUsersBtn = document.getElementById('btn-create-users');
 createUsersBtn.addEventListener('click', processFiles)
