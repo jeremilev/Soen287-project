@@ -174,15 +174,8 @@ createCourses.addEventListener('click', async function(){
         console.log("profID: " + profID);
         console.log("studentList: " + studentList);
 
-        let announcementMap = {
-            "1": { "datePublished" : 1668360063913,
-                    "description" : "This course has been created using JSON",
-                    "subject" : "Course Created" }
-          }
-
         //Create Doc and set the attributes
         await setDoc(doc(db, "courses", name), {
-            announcements: announcementMap,
             name: name,
             prof: profRef,
             studentList: studentList
@@ -192,6 +185,7 @@ createCourses.addEventListener('click', async function(){
 
         //Create reference to newly created course
         var courseRef = await doc(db, "courses", name);
+        var courseString = "/courses/"+name;
 
         //Add this course to every student's courseList
         studentList.forEach(async function(ID) {
@@ -200,7 +194,7 @@ createCourses.addEventListener('click', async function(){
 
             //Update courseList array for each student
             await updateDoc(studentRef, {
-                courseList: arrayUnion(courseRef)
+                courseList: arrayUnion(courseString)
             });
 
             //Create new document in courses subcollection of student
