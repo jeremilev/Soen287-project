@@ -85,7 +85,8 @@ const displayCourseList = async function (userId) {
         myCourse.innerHTML = `
 <div class="courseName-Grade">
     <div class="courseName">
-        <h3><a class="courselink" id="courselink" href="student-course-page.html">${courseName}</a></h3>
+        <h3><a class="courselink" id="courselink" href="student-course-page.html" 
+            onclick="localStorage.setItem('currentCourse', '${courseName}');">${courseName}</a></h3>
     </div>
     <div class="courseGrade">
         67.1%
