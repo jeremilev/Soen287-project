@@ -17,7 +17,8 @@ console.log(viewGradesBtn);
 
 
 const courseAnnouncements = document.getElementById('course-announcements');
-const currentCourse = "COMP232-A";
+const currentCourse = localStorage.getItem("currentCourse");
+// const currentCourse = "COMP232-A";
 const courseName = document.getElementById('course-name');
 courseName.innerText = currentCourse;
 
