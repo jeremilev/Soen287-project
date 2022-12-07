@@ -4,6 +4,16 @@ import { getFirestore, collection, addDoc, query, where, doc, getDocs, getDoc } 
 import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
 import { getAssessments } from "/queries.js";
 
+/* const currentCourse = localStorage.getItem('currentCourse'); */
+
+const currentCourse = "COMP232-B";
+
+//Here is a change. 
+
+console.log(currentCourse);
+const courseName = document.getElementById('course-name');
+courseName.innerText = currentCourse;
+
 const firebaseConfig = {
     apiKey: "AIzaSyBgFGNCDCuhhPGm8dkQujxuix0VpJbS3N0",
     authDomain: "soen287-14875.firebaseapp.com",
@@ -17,6 +27,32 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
+
+
+// export const getGrades = async function () {
+//     //Specify path with commas, so you get database/courses/COMP232-A
+//     const docRef = doc(db, "users", "aStudent");
+
+//     //Get the data from the reference above
+//     const docSnap = await getDoc(docRef);
+
+//     //If exists
+//     if (docSnap.exists()) {
+//         console.log("Document data:", docSnap.data());
+//         //Get the data from that document: IE get the FIELDS DATA
+//         try {
+//             var grades = docSnap.get("grades");
+//         } catch (error) {
+//             console.log(e);
+//         }
+//     } else {
+//         // doc.data() will be undefined in this case
+//         console.log("No such document (GRADE FUNCTION)!");
+        
+//     }
+//     return grades;
+// }
+
 
 
 export const getGrades = async function () {
@@ -80,3 +116,4 @@ querySnapshot.forEach((doc) => {
   console.log("done");
 }
 );
+

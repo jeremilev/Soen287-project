@@ -1,4 +1,6 @@
 import { getGrades } from '/student-course-test.js';
+import { getAnnouncements } from '/queries.js';
+
 //TODO John: Remove getGradesNew once other getGrades has been removed
 import {getGrades as getGradesNew} from '/queries.js';
 
@@ -10,6 +12,64 @@ const gradesOverlayPanel = document.getElementById('grades-overlay-panel');
 const gradesOverlayLayout = document.getElementById('grades-overlay-layout'); 
 const viewGradesBtn = document.getElementById("view-grades-btn");
 console.log(viewGradesBtn);
+
+
+
+
+const courseAnnouncements = document.getElementById('course-announcements');
+const currentCourse = "COMP232-A";
+const courseName = document.getElementById('course-name');
+courseName.innerText = currentCourse;
+
+const courseText = document.getElementById('course-text');
+const displayAnnouncements = async function (className) {
+    var announcementsMap = await getAnnouncements(className);
+    
+    for (let i = 0; i < Object.keys(announcementsMap).length; i++) {
+        //Create elements to hold data
+        var container = document.createElement('div');
+        var subject = document.createElement('div');
+        var descriptionContainer = document.createElement('div');
+        var descriptionText = document.createElement('p');
+        
+    
+
+    
+
+        //Assign data from announcementsMap
+        let announcement = announcementsMap[Object.keys(announcementsMap)[i]];
+        console.log("anouNMnet : " + announcement);
+        let date = new Date(announcement['datePublished']);
+    
+        //Get data by key name
+        subject.innerText = announcement['subject'] + " - " + date;
+        descriptionText.innerText = announcement['description'];
+
+        //Give them css formatting
+        container.classList.add('announcement-container');
+        subject.classList.add('announcement-subject');
+        descriptionContainer.classList.add('announcement-description');
+
+        //Add elements to the main container to form a component
+        descriptionContainer.appendChild(descriptionText);
+        container.appendChild(subject);
+        container.appendChild(descriptionContainer);
+
+        //Add elements to the DOM at the right location
+        courseAnnouncements.insertBefore(container, courseText); 
+    }
+}
+displayAnnouncements(currentCourse);
+
+
+
+
+
+
+
+
+
+
 
 const navItemGrades = document.querySelector('#grades-overlay-nav-item');
 
@@ -26,6 +86,8 @@ closeBtn.addEventListener("click", function() {
     gradesOverlayLayout.style.display = "none"; 
 
 })
+
+
 
 
 const gradesOverlayPanelQuery = document.getElementById('grades-overlay-panel');
@@ -57,7 +119,7 @@ const displayGrades = async function () {
     }
 }
 
-displayGrades();
+// displayGrades();
 
 const calculateGrade = async function(){
     var gradesMap = await getGrades();
@@ -92,7 +154,9 @@ const calculateGrade = async function(){
  
 }
 
-calculateGrade();
+// calculateGrade();
+
+
 
 //John's Demonstration of getGradesButton
 
