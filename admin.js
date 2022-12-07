@@ -191,6 +191,7 @@ createCourses.addEventListener('click', async function(){
         studentList.forEach(async function(ID) {
             console.log("student's ID: " + ID);
             const studentRef = doc(db, "users", ID);
+            const courseString = "/courses/" + name;
 
             //Update courseList array for each student
             await updateDoc(studentRef, {
