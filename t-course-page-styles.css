@@ -1,3 +1,20 @@
+:root{
+ --mainBackgroundColor:#E6E6E6;
+ --whiteColor:#ffffff;
+ --blackColor:#000000;
+ --leftPanelColor:#84A98C;
+ --rightPanelTopColor:#CAD2C5;
+ --rightPanelBottomColor:#52796F;
+ --itemRessourcesColor:#0072a8;
+ --teacherRessourcesColor:#000000;
+ --courseCardBackgroundColor:white;
+ --cardWeekTextColor:black;
+ --courseNameColor:black;
+ --breadCrumbTextColor:#0072a8;
+ --overlayPanelBackground: rgb(2,0,36);
+ --overlayPanelBackground2:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(31,24,138,1) 0%, rgba(116,157,103,1) 0%, rgba(57,153,149,1) 0%, rgba(225,232,191,1) 100%, rgba(0,212,255,1) 100%);
+
+}
 button {
     text-decoration: none;
 
@@ -9,7 +26,7 @@ body {
     font-family: 'Inter';
     margin: 0;
     padding: 0;
-    background: #E6E6E6;
+    background:var(--mainBackgroundColor);
 }
 
 
@@ -66,7 +83,7 @@ ul {
     z-index: 999;
     height: 5.625rem;
     width: 100%;
-    background: #E9E9E9;
+    background: var(--mainBackgroundColor);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     align-items: center;
     justify-content: flex-start;
@@ -87,19 +104,64 @@ ul {
     width: 70%;
     align-items: center;
 }
-
+#moon{
+    color:var(--blackColor);
+    font-size: 30px;
+    vertical-align: middle;
+    box-shadow: inset 0 0 0 0 #3333cc;
+    transition: ease-out 0.5s;
+    outline:none;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 50px;
+}
+#moon:hover{
+    background-color: inherit;
+    box-shadow: inset 300px 0 0 0 #3333cc;
+    color: white;
+    outline: none;
+    border-radius: 50%;
+}
+#sun{
+    color: var(--blackColor);
+    font-size: 30px;
+    vertical-align: middle;
+    box-shadow: inset 0 0 0 0 #ffc34d;
+    transition: ease-out 0.5s;
+    outline: none;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 30px;
+}
+#sun:hover{
+    background-color: inherit;
+    box-shadow: inset 300px 0 0 0 #ffc34d;
+    color: white;
+    outline: none;
+    border-radius: 50%;
+}
+#logoutBtn{
+    border: none;
+    margin-left: 10px;
+    margin-right:10px;
+    background-color: var(--mainBackgroundColor);
+    vertical-align: middle;
+    font-size: 25px;
+    border-radius: 5px;
+    color:var(--blackColor);
+}
 .container {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 100%;
-    background: #E6E6E6;
+    background:var(--mainBackgroundColor);
     padding-left: 10%;
     padding-top: 5.625rem;
 }
 
 .left-panel {
-    background: #84A98C;
+    background: var(--leftPanelColor);
     position: fixed;
     width: 10%;
     left: 0;
@@ -109,7 +171,7 @@ ul {
 }
 
 .middle-panel {
-    background: #E6E6E6;
+    background:var(--mainBackgroundColor);
     padding-left: 3%;
     padding-top: 3vh;
     display: flex;
@@ -117,11 +179,13 @@ ul {
     width: 70%;
     height: min-content;
 }
-
+.course-name-breadcrumb-container #course-name{
+  color:var(--courseNameColor);
+}
 .course-card {
     min-height: 100vh;
     margin-top: 1em;
-    background: white;
+    background:var(--courseCardBackgroundColor);
     height: 100%;
     border-top-left-radius: 45px;
     border-top-right-radius: 45px;
@@ -136,6 +200,9 @@ ul {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    background-color:inherit;
+    border-radius: 10px;
+    color: var(--cardWeekTextColor);
 }
 
 .course-name-breadcrumb-container {
@@ -150,6 +217,7 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Breadcrumb_Navi
 */
 .breadcrumb {
     padding: 0 .5rem;
+    
 }
 
 .breadcrumb ul {
@@ -161,7 +229,7 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Breadcrumb_Navi
 }
 
 .breadcrumb ul li a {
-    color: #0072a8;
+    color: var(--breadCrumbTextColor);
 
 }
 
@@ -222,6 +290,7 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Breadcrumb_Navi
 
 .card-week-block {
     margin-bottom: 3em;
+    color:var(--cardWeekTextColor);
 }
 
 .week-dates-div {
@@ -276,13 +345,13 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Breadcrumb_Navi
     padding-top: 10vh;
     padding-left: 2em;
     padding-right: 1.5em;
-    background: #CAD2C5;
+    background: var(--leftPanelColor);
 }
 
 .right-panel-top-white-div {
     margin-top: 2em;
     width: 85%;
-    background: white;
+    background: var(--whiteColor);
     padding: 0em 0em 0em 0em;
     height: fit-content;
     border-radius: 15px;
@@ -297,12 +366,12 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Breadcrumb_Navi
     align-items: center;
     position: sticky;
     top: 0;
-    background: white;
+    background:var(--whiteColor);
     border-radius: 15px;
     padding-top: 1em;
     padding-left: 1.5em;
+    color: var(--teacherRessourcesColor);
 }
-
 
 .learning-resources-header {
     font-weight: 500;
@@ -315,7 +384,7 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Breadcrumb_Navi
 
 .item-learning-resources a {
     font-size: large;
-    color: #0072a8;
+    color:var(--itemRessourcesColor);
     text-decoration: underline;
     transition-duration: 0.3s;
     text-transform: capitalize;
@@ -330,7 +399,7 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Breadcrumb_Navi
 
 
 .right-panel-bottom {
-    background: #52796F;
+    background:var(--rightPanelBottomColor);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -429,6 +498,10 @@ footer a:last-child {
     border-radius: 15px;
     background: white;
     z-index: 6;
+    /* background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,95,1) 100%, rgba(61,217,210,1) 100%, rgba(0,212,255,1) 100%); */
+    background:var(--overlayPanelBackground);
+    background:var(--overlayPanelBackground2);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -439,27 +512,48 @@ footer a:last-child {
     width: 100%;
     align-items: center;
     justify-content: space-between;
+    align-items: center;
     border-bottom: solid;
 }
 
 #overlay-navbar {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding-left: 10px;
+    width: 100%;
+    
 
 }
 
 .overlay-nav-item {
-    margin-right: 10px;
-    border: solid;
+    margin-right: 40px;
     cursor: pointer;
-}
+    position: relative;
+    font-size: 20px;
+    color:var(--blackColor) ;
 
+}
+.overlay-nav-item::after{
+    content: " ";
+    position: absolute;
+    height: 0.175rem;
+    width: 100%;
+    background-color: #000000;
+    bottom: -5px;
+    left: 0;
+    transform: scale(0,1);
+    transform-origin: 0%;
+    transition: transform 0.4s ease-in-out;
+}
+.overlay-nav-item:hover::after{
+    transform: scale(1,1);
+}
 .overlay-panel-content {
     width: 100%;
     display: none;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .overlay-panel-content form {
@@ -478,12 +572,29 @@ footer a:last-child {
 
 #overlay-new-assignment-btn {
     cursor: pointer;
+    color: var(--blackColor);
 }
 
 #assigments-layout {
     display: none;
 }
+#add-assignment-btn{
+    width: 300px;
+    height: 100px;
+    border:none;
+    margin-top: 5%;
+    margin-left: 35%;
+    border-radius: 5px;
+    box-shadow: inset 0 0 0 0 #00b359;
+    transition: ease-out 0.3s;
+    outline: none;
+    font-size: 23px;
+}
+#add-assignment-btn:hover{
+    box-shadow: inset 300px 0 0 0 #00b359;
+    color: white;
 
+}
 .announcement-list {
     display: flex;
     flex-direction: column;
@@ -513,12 +624,27 @@ footer a:last-child {
     padding-left: 5%;
     justify-content: flex-start;
     align-content: center;
-    background: #84A98C;
+    background: var(--leftPanelColor);
     color: #E9E9E9;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
-
+#add-announcement-btn{
+    width: 300px;
+    height: 100px;
+    border:none;
+    margin-top: 5%;
+    margin-left: 35%;
+    border-radius: 5px;
+    box-shadow: inset 0 0 0 0 #00b359;
+    transition: ease-out 0.3s;
+    outline: none;
+    font-size: 23px;
+}
+#add-announcement-btn:hover{
+    box-shadow: inset 300px 0 0 0 #00b359;
+    color: white;
+}
 #announcement-description {
     display: flex;
     flex-direction: column;
@@ -529,14 +655,54 @@ footer a:last-child {
     padding-right: 5%;
 
 }
+#announcement-subject{
+    margin-top: 20px;
+    margin-left: 10px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    appearance: none;
+    padding: 12px;
+    width: 250px;
+    border:2px solid #aaa;
+    outline: none;
+   
+}
+#announcement-subject:focus{
+    border-color: #ffcc00;
+    box-shadow: 0 0 8px 0 #ffcc00;
+   
+}
+#announcement-subject::placeholder{
+    font-size: 15px;
+    letter-spacing: 1.5px;
+}
 
 #announcement-layout {
     display: none;
 }
-
+#announcementDesc{
+    margin-top: 20px;
+    margin-left: 10px;
+    padding: 12px;
+    border:2px solid #aaa;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    appearance: none;
+    height: 200px;
+    outline: none;
+}
+#announcementDesc::placeholder{
+    font-size: 15px;
+    letter-spacing: 1.2px;
+}
+#announcementDesc:focus{
+    border-color: #ffcc00;
+    box-shadow: 0 0 8px 0 #ffcc00;
+}
 #grades-layout {
     display: none;
     overflow: auto;
+    color: var(--blackColor);
 }
 
 .student-grade {
@@ -548,8 +714,64 @@ footer a:last-child {
 #new-file-layout {
     display: none;
 }
+#new-file{
+    display: none;
 
-
+}
+#upload{
+    font-size: 25px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+#fileBtn{
+    margin-top: 15px;
+    margin-left: 30px;
+    padding: 10px;
+    background-color: #e6b800;
+    border-radius: 5px;
+    width: 250px;
+    transition: ease-out 0.3s;
+    box-shadow: inset 0 0 0 0 #ffcc00;
+    border: none;
+    font-size: 17px;
+    vertical-align: middle;
+}
+#fileBtn:hover{
+    cursor: pointer;
+    box-shadow: inset 250px 0 0 0 #ffcc00;
+    color: white;
+}
+#fileTxt{
+    margin-top: 10px;
+    margin-left: 100px;
+    color: white;
+}
+#dateFileLabel{
+    margin-top: 50px;
+    margin-left: 30px;
+    color: var(--blackColor);
+}
+#dateFile{
+    margin-top: 8px;
+    margin-left: 30px;
+    background-color: #0072a8;
+    padding: 15px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: ease-out 0.3s;
+    box-shadow: inset 0 0 0 0 #0099ff;
+}
+#dateFile:hover{
+    box-shadow: inset 250px 0 0 0 #0099ff;
+    color: white;
+}
+::-webkit-calendar-picker-indicator{
+    background-color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    padding:6px;
+}
 select {
     width: fit-content;
 }
@@ -572,7 +794,7 @@ input {
     font-size: xxx-large;
     font-weight: 200;
     text-transform: uppercase;
-    color: #000000;
+    color:var(--blackColor);
     margin-left: 1rem;
     opacity: .8;
     transition-duration: .5s;
@@ -590,6 +812,7 @@ input {
 }
 
 #user-name-navbar {
+    color: var(--blackColor);
     margin-left: 4em;
     font-size: xx-large;
     font-weight: 400;
@@ -611,15 +834,15 @@ input {
 }
 
 #menu-icon {
-    margin-left: 2em;
-    margin-right: 1em;
-    opacity: .7;
+    color:var(--blackColor);
+    opacity: 0.8;
     cursor: pointer;
     -webkit-transition: all .5s ease-in-out;
     -moz-transition: all .5s ease-in-out;
     -o-transition: all .5s ease-in-out;
     -ms-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
+    vertical-align: middle;
 }
 
 #info-icon {
@@ -888,8 +1111,8 @@ input {
     }
 
     #menu-icon {
-        margin-left: 1em;
-        margin-right: 8px;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 }
 
@@ -916,8 +1139,8 @@ input {
     }
 
     #menu-icon {
-        margin-left: 1em;
-        margin-right: 8px;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 }
 
@@ -933,8 +1156,8 @@ input {
 
 @media (min-width: 1200px) {
     #menu-icon {
-        margin-left: 1em;
-        margin-right: 1em;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 
 }

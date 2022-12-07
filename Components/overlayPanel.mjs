@@ -42,13 +42,12 @@ export const overlayPanel =
                 </form>
             </div>
             <div id="announcements-layout" class="overlay-panel-content">
-                <label for="announcement-subject">Subject:</label>
-                <input id="announcement-subject" type="text">
-                <label for="announcement-description">Description:</label>
-                <textarea name="announcement-description" id="" cols="30" rows="10"></textarea>
+                <input id="announcement-subject" type="text" required="required" placeholder="Subject">
+                <label id="subjectLabel" for="announcement-subject"></label>
+                <label for="announcement-description" id="announcementDescLabel"></label>
+                <textarea name="announcement-description" id="announcementDesc" cols="30" rows="8" placeholder="Description"></textarea>
                 <input id="add-announcement-btn" type="submit" value="Add announcement">
                 <div id="overlay-announcement-list" class="announcement-list">
-
                 </div>
 
             </div>
@@ -64,10 +63,13 @@ export const overlayPanel =
                 </ul>
             </div>
             <div id="new-file-layout" class="overlay-panel-content">
-                <label for="new-file">New file:</label>
                 <input type="file" name="" id="new-file">
-                <label for="">Attach to Week: </label>
-                <input type="date" name="" id="">
+                <button type="button" id="fileBtn"><span id="upload" class="material-symbols-outlined">
+                upload
+                </span>Choose New File</button>
+                <span id="fileTxt">No File Chosen</span>
+                <label id="dateFileLabel" for="">Attach to Week: </label>
+                <input type="date" name="" id="dateFile">
                 </select>
             </div>
 

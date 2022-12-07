@@ -484,4 +484,22 @@ for (let i = 0; i < AllIcons.length; i++) {
     }
 }
 
+
+// Choose File Implementation
+const fileBtn=document.getElementById("new-file")
+const newBtn=document.getElementById("fileBtn");
+const fileTxt=document.getElementById("fileTxt");
+
+newBtn.addEventListener("click",()=>{
+    fileBtn.click();
+})
+
+fileBtn.addEventListener("change",()=>{
+    if(fileBtn.value){
+        fileTxt.innerHTML=fileBtn.value.match( /[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+    }
+    else{
+        fileTxt.innerHTML="No File Chosen";
+    }
+})
 console.log(attachFileBtns);
