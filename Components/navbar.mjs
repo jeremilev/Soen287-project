@@ -10,8 +10,6 @@ export const navbar =
             <span id="sun"class="material-symbols-outlined">light_mode</span>
             <a id="user-name-navbar">User Name</a>
             <img id="teacher-profile-img" src="img-teacher-profile.png" alt="">
-
-          
             <button id="logoutBtn" data-dropdown-button=""><a href="Login.html"><i id="menu-icon" class="material-symbols-outlined icons-md-45">logout</i></a></button>
         </div>
     </nav>

@@ -125,11 +125,6 @@ nav{
 .link :hover{
     cursor:pointer;
 }
-
-
-
-
-
 .sidebars-container{
     display: flex;
     justify-content: space-between;
