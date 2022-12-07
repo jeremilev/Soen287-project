@@ -9,6 +9,10 @@ const teacherName = document.getElementById('user-name-navbar');
 teacherName.innerText = userInfo['firstName'] + " " + userInfo['lastName'];
 //const userName = localStorage.get('firstName') + " " + localStorage.get('lastName');
 const currentCourse = localStorage.getItem('currentCourse');
+const pageTitle = document.getElementsByTagName("title")[0];
+pageTitle.innerText = currentCourse;
+console.log(pageTitle);
+
 console.log(currentCourse);
 const courseName = document.getElementById('course-name');
 try {
