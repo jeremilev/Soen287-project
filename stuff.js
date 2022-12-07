@@ -16,8 +16,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const db=getFirestore(app);
-const userId=localStorage.userId; //johndoe@gmail.com
+const db = getFirestore(app);
+const userId = localStorage.userId; //johndoe@gmail.com
 // const userId="EZQIG2EKhRNUhzW4G8dz3RVpgTp1"; //student2@gmail.com
 
 // const userId = localStorage.getItem('userId');
@@ -82,7 +82,7 @@ const displayCourseList = async function (userId) {
         myCourse.className = "my-course";
 
 
-myCourse.innerHTML=`
+        myCourse.innerHTML = `
 <div class="courseName-Grade">
     <div class="courseName">
         <h3><a class="courselink" id="courselink" href="student-course-page.html">${courseName}</a></h3>
@@ -109,7 +109,7 @@ displayCourseList(userId);
 
 
 //get the name of each link clicked
-const getNameOfClass = ()=>{
+const getNameOfClass = () => {
     const courseLink = document.getElementById("courselink");
 
     //try for each
@@ -121,13 +121,20 @@ getNameOfClass();
 
 
 //Dark Mode
-document.getElementById("moon").addEventListener("click",()=>{
-    document.documentElement.style.setProperty("--deadlineBackgroundColor","black");
-   
+document.getElementById("moon").addEventListener("click", () => {
+    document.documentElement.style.setProperty("--deadlineBackgroundColor", "black");
+
 
 });
 
 
+import { getCurrentUserInfo } from './queries.js';
+
+
+const userInfo = await getCurrentUserInfo(userId);
+
+const teacherName = document.getElementById('user-name-navbar');
+teacherName.innerText = userInfo['firstName'] + " " + userInfo['lastName'];
 
 
 //Dynamically display students name
