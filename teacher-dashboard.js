@@ -72,3 +72,11 @@ for (var i = 0; i < size; i++) {
 
   middlePanel.appendChild(div);
 }
+
+import { getCurrentUserInfo } from './queries.js';
+const userId = localStorage.getItem('userId');
+
+const userInfo = await getCurrentUserInfo(userId);
+
+const teacherName = document.getElementById('user-name-navbar');
+teacherName.innerText = userInfo['firstName'] + " " + userInfo['lastName'];
