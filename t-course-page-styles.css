@@ -401,8 +401,6 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Breadcrumb_Navi
 .right-panel-bottom {
     background:var(--rightPanelBottomColor);
     display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     height: 60vh;
     padding-top: 0px;
@@ -410,19 +408,198 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Breadcrumb_Navi
     padding-bottom: 30px;
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-
-.calendar-container {
-    width: 80%;
-    background: white;
-    margin-right: 1.5em;
-    height: 65%;
-    border-radius: 15px;
-    margin-bottom: 6em;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+button {
+    width: 75px;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px gray;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+  }
+  
+  #header {
+    padding: 10px;
+    color: #d36c6c;
+    font-size: 26px;
+    font-family: sans-serif;
     display: flex;
-    justify-content: center;
-}
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+  }
+  #container {
+    width: 100%;
+    background:var(--rightPanelBottomColor);
+  }
+  #weekdays {
+    width: 100%;
+    display: flex;
+    color: var(--blackColor);
+  }
+  #weekdays div {
+    width: 100px;
+    padding: 10px;
+  }
+  #calendar {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .day {
+    font-size: 9px;
+    width: 43px;
+    padding: 10px;
+    height: 43px;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-color: white;
+    margin: 5px;
+    box-shadow: inset 0 0 0 0 #b3ffb3;
+    transition: ease-out 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .day:hover {
+    box-shadow: inset 43px 0 0 0 #b3ffb3;
+    color: black;
+  }
+  
+  .day + #currentDay {
+    background-color:#cc3399;
+  }
+  .event {
+    font-size: 9px;
+    padding: 3px;
+    background-color:inherit;
+    color: blue;
+    border-radius: 5px;
+    max-height: 43px;
+    overflow: hidden;
+  }
+  .padding {
+    cursor: default !important;
+    background-color: #FFFCFF !important;
+    box-shadow: none !important;
+  }
+  #newEventModal, #deleteEventModal {
+    display: none;
+    z-index: 20;
+    padding: 25px;
+    background-color: #e8f4fa;
+    box-shadow: 0px 0px 3px black;
+    border-radius: 5px;
+    width: 350px;
+    top: 100px;
+    left: calc(50% - 175px);
+    position: absolute;
+    font-family: sans-serif;
+  }
+  #eventTitleInput {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    box-shadow: 0px 0px 3px gray;
+  }
+  #eventTitleInput.error {
+    border: 2px solid red;
+  }
+  #cancelButton{
+    background-color: #ff4d4d;
+    box-shadow: inset 0 0 0 0 #ff0000;
+    transition: ease-out 0.3s;
+    width: 125px;
+    height: 40px;
+    color: black;
+  }
+  #cancelButton:hover{
+    color: white;
+    box-shadow: inset 125px 0 0 0 #ff0000;
 
+  }
+  #deleteButton{
+    background-color: #ff4d4d;
+    box-shadow: inset 0 0 0 0 #ff0000;
+    transition: ease-out 0.3s;
+    width: 125px;
+    height: 40px;
+    margin-right: 40px;
+    color: black;
+  }
+  #deleteButton:hover{
+    box-shadow: inset 125px 0 0 0 #ff0000;
+    color: white;
+  }
+  #saveButton{
+    background-color: #6699ff;
+    box-shadow: inset 0 0 0 0 #1a66ff;
+    transition: ease-out 0.3s;
+    width: 125px;
+    height: 40px;
+    margin-right: 40px;
+    color: black;
+  }
+  #saveButton:hover{
+    box-shadow: inset 125px 0 0 0 #1a66ff;
+    color: white;
+  }
+  #closeButton{
+    box-shadow: inset 0 0 0 0 #1a66ff;
+    transition: ease-out 0.3s;
+    background-color: #6699ff;
+    width: 125px;
+    height: 40px;
+    color: black;
+  }
+  #closeButton:hover{
+    box-shadow: inset 125px 0 0 0 #1a66ff;
+    color: white;
+  }
+  #eventText {
+    font-size: 25px;
+  }
+  #modalBackDrop {
+    display: none;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(0,0,0,0.8);
+  }
+#monthDisplay{
+    color: White;
+}
+#backButton{
+    width: 100px;
+    height: 30px;
+    background-color: #009999;
+    box-shadow: inset 0 0 0 0 #00cccc;
+    transition: ease-out 0.3s;
+}
+#backButton:hover{
+    box-shadow: inset 100px 0 0 0 #00cccc;
+    color: black;
+}
+#nextButton{
+    width: 100px;
+    height: 30px;
+    background-color: #009999;
+    box-shadow: inset 0 0 0 0 #00cccc;
+    transition: ease-out 0.3s;
+}
+#nextButton:hover{
+    box-shadow: inset 100px 0 0 0 #00cccc;
+    color: black;
+}
 footer {
     position: fixed;
     bottom: 0;
@@ -857,7 +1034,17 @@ input {
     margin: 0;
     margin-bottom: 10px;
 }
-
+.calendar-container {
+    width: 570px;
+    background: white;
+    margin-right: 1.5em;
+    border-radius: 15px;
+    margin-bottom: 6em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    justify-content: center;
+}
+/* Calendar Styling */
 .material-symbols-outlined {
     font-variation-settings:
         'FILL' 0,
