@@ -81,12 +81,12 @@ viewGradesBtn.addEventListener("click", function() {
     gradesOverlayPanel.style.display = "flex";
     gradesOverlayLayout.style.display = "flex"; 
 })
-closeBtn.addEventListener("click", function() {
-    gradesOverlayContainer.style.display = "none";
-    gradesOverlayPanel.style.display = "none";
-    gradesOverlayLayout.style.display = "none"; 
+// closeBtn.addEventListener("click", function() {
+//     gradesOverlayContainer.style.display = "none";
+//     gradesOverlayPanel.style.display = "none";
+//     gradesOverlayLayout.style.display = "none"; 
 
-})
+// })
 
 
 
