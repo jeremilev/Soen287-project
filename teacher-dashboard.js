@@ -65,9 +65,9 @@ for (var i = 0; i < size; i++) {
         </a>
       </div>
       <div class="mp_course2">
-        <div class="mp_course2_items">Add Assignment</div>
-        <div class="mp_course2_items">Input Marks</div>
-        <div class="mp_course2_items">View Report</div>
+        <div class="mp_course2_items" id="addAssignment"><a href="t-course-page.html">Add Assignment</a></div>
+        <div class="mp_course2_items"><a href="t-course-page.html">Input Marks</a></div>
+        <div class="mp_course2_items"><a href="t-course-page.html">View Report</a></div>
       </div>`;
 
   middlePanel.appendChild(div);

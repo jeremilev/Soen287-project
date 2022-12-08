@@ -3,40 +3,41 @@
 let currentMonth = 0;
 //daySelected represents whichever day we have currently clicked on in the calendar
 let daySelected = null;
+//Array of event objects
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
 
 const calendar = document.getElementById('calendar');
-const newEventModal = document.getElementById('newEventModal');
-const deleteEventModal = document.getElementById('deleteEventModal');
-const backDrop = document.getElementById('modalBackDrop');
-const eventTitleInput = document.getElementById('eventTitleInput');
+const newTask = document.getElementById('newTask');
+const deleteTaskDisplay = document.getElementById('deleteTaskDisplay');
+const backDrop = document.getElementById('taskBackDrop');
+const addTaskTitle = document.getElementById('addTaskTitle');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-function openModal(date) {
+function openOverlay(date) {
   daySelected = date;
-
+     
   const eventForDay = events.find(e => e.date === daySelected);
 
   if (eventForDay) {
-    document.getElementById('eventText').innerText = eventForDay.title;
-    deleteEventModal.style.display = 'block';
+    document.getElementById('taskDesc').innerText = eventForDay.title;
+    deleteTaskDisplay.style.display = 'block';
   } else {
-    newEventModal.style.display = 'block';
+    newTask.style.display = 'block';
   }
 
   backDrop.style.display = 'block';
 }
 
-function load() {
-  const dt = new Date();
+function displayCalendar() {
+  const date = new Date();
 
   if (currentMonth !== 0) {
-    dt.setMonth(new Date().getMonth() + currentMonth);
+    date.setMonth(new Date().getMonth() + currentMonth);
   }
 
-  const day = dt.getDate();
-  const month = dt.getMonth();
-  const year = dt.getFullYear();
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
 
   const firstDayOfMonth = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -50,7 +51,7 @@ function load() {
   const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
 
   document.getElementById('monthDisplay').innerText = 
-    `${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`;
+    `${date.toLocaleDateString('en-us', { month: 'long' })} ${year}`;
 
   calendar.innerHTML = '';
 
@@ -70,68 +71,68 @@ function load() {
 
       if (eventForDay) {
         const eventDiv = document.createElement('div');
-        eventDiv.classList.add('event');
+        eventDiv.classList.add('task');
         eventDiv.innerText = eventForDay.title;
         daySquare.appendChild(eventDiv);
       }
 
-      daySquare.addEventListener('click', () => openModal(dayString));
+      daySquare.addEventListener('click', () => openOverlay(dayString));
     } else {
-      daySquare.classList.add('padding');
+      daySquare.classList.add('paddingDays');
     }
 
     calendar.appendChild(daySquare);    
   }
 }
 
-function closeModal() {
-  eventTitleInput.classList.remove('error');
-  newEventModal.style.display = 'none';
-  deleteEventModal.style.display = 'none';
+function closeOverlay() {
+  addTaskTitle.classList.remove('error');
+  newTask.style.display = 'none';
+  deleteTaskDisplay.style.display = 'none';
   backDrop.style.display = 'none';
-  eventTitleInput.value = '';
+  addTaskTitle.value = '';
   daySelected = null;
-  load();
+  displayCalendar();
 }
 
-function saveEvent() {
-  if (eventTitleInput.value) {
-    eventTitleInput.classList.remove('error');
+function saveTask() {
+  if (addTaskTitle.value) {
+    addTaskTitle.classList.remove('error');
 
     events.push({
       date: daySelected,
-      title: eventTitleInput.value,
+      title: addTaskTitle.value,
     });
 
     localStorage.setItem('events', JSON.stringify(events));
-    closeModal();
+    closeOverlay();
   } else {
-    eventTitleInput.classList.add('error');
+    addTaskTitle.classList.add('error');
   }
 }
 
-function deleteEvent() {
+function deleteTask() {
   events = events.filter(e => e.date !== daySelected);
   localStorage.setItem('events', JSON.stringify(events));
-  closeModal();
+  closeOverlay();
 }
 
-function initButtons() {
+function initializeButtons() {
   document.getElementById('nextButton').addEventListener('click', () => {
     currentMonth++;
-    load();
+    displayCalendar();
   });
 
   document.getElementById('backButton').addEventListener('click', () => {
     currentMonth--;
-    load();
+    displayCalendar();
   });
 
-  document.getElementById('saveButton').addEventListener('click', saveEvent);
-  document.getElementById('cancelButton').addEventListener('click', closeModal);
-  document.getElementById('deleteButton').addEventListener('click', deleteEvent);
-  document.getElementById('closeButton').addEventListener('click', closeModal);
+  document.getElementById('addButton').addEventListener('click', saveTask);
+  document.getElementById('cancelButton').addEventListener('click', closeOverlay);
+  document.getElementById('deleteButton').addEventListener('click', deleteTask);
+  document.getElementById('closeButton').addEventListener('click', closeOverlay);
 }
 
-initButtons();
-load();
+initializeButtons();
+displayCalendar();
