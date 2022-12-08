@@ -11,142 +11,7 @@
 html,body{
     height: 100%;
 }
-nav{
-    display: flex;
-    justify-content:space-between;
-    box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25);
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-.logoAndnameWrapper{
-    display: inline-block;
-    margin-left: 1.5%;
-}
-.uni-logo{
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 15px;
-}
-.uni-logo>img{
-    width: 60px;
-    height: 60px;
-    border: 0px solid black;
-    border-radius: 50%;
-}
-.uni-name{
-    display: inline-block;
-    vertical-align: middle;
-}
 
-.studentName-logo-dropDown{
-    display: inline-block;
-    margin-right: 1%;
-}
-.helper-icon{
-    display: inline-block;
-    vertical-align: middle;
-
-}
-.helper-icon:hover{
-    cursor: pointer;
-}
-#helper-icon-box{
-    padding-top:10px;
-}
-#name_logo-wrapper{
-    display: inline-block;
-    vertical-align: middle;
-
-}
-.studentName{
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 75px;
-    margin-right: 25px;
- 
-}
-.studentLogo{
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 25px;
-}
-.studentLogo>img{
-    width: 60px;
-    height: 60px;
-    border: 0px solid black;
-    border-radius: 50%;
-}
-.dropDown-container{
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-}
-.dropDown-menu{
-    position: absolute;
-    right: 0;
-    top: calc(100% + .25rem);
-    background-color:#52796f;
-    padding: .75rem;
-    border-radius: .25rem;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .2);
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 150ms ease-in-out,transform 150ms ease-in-out;
-}
-.dropDown-menu-items{
-    background-color: #52796f;
-    list-style: none;
-    color: white;
-    padding: 10px;
-
-}
-
-.dropDown-container >.link:focus-within + .dropDown-menu
-{
-    opacity: 1;
-    transform: translateY(0);
-}
-.dropdown-link{
-    list-style: none;
-    color: white;
-    background-color: #52796f;
-    text-decoration: none;
-}
-.dropdown-link:hover{
-    cursor: pointer;
-    color: lightblue;
-}
-.link{
-    background:nones;
-    padding: 0px;
-    
-}
-.link :hover{
-    cursor:pointer;
-}
-.sidebars-container{
-    display: flex;
-    justify-content: space-between;
-    height:100%;
-}
-.left-sidebar{
-    padding-top: 64px;
-    width: 160px;
-    height:100%;
-    flex-direction: column;
-}
-.middle-bar{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 64px;
-    width: 60%;
-    height:100%;
-    background-color:white;
-    box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25);
-}
 .my-course{
     display: flex;
     flex-direction: row;
@@ -201,81 +66,15 @@ nav{
     padding: 5px;
     border: 1px solid lightslategray;
     color: black;
+    box-shadow: inset 0 0 0 0 #1a66ff;
+  transition: ease-out 0.5s;
 }
-.right-sidebar{
-    padding-top: 64px;
-    display: flex;
-    flex-direction: column;
-    width: 585px;
-    height:100%;
-    background-color: #52796f;
-}
-.learning-resources{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #CAD2C5;
-    width: 100%;
-    height: 55%;
-}
-.resources{
-  background-color: #CAD2C5;
-}
-.resources>h3{
-    background-color: #CAD2C5;
-  }
-.resources>ul{
-    background-color: #CAD2C5;
-  }
-.resources a{
-    background-color: #CAD2C5;
-    color: black;
-  }
-.resource a:hover{
+.deadline:hover{
+    box-shadow: inset 500px 0 0 0 #1a66ff;
     cursor: pointer;
-    color: white;
 }
-.resource-list{
-    list-style: none;
-    margin-top: 15px;
-}
-.resource{
-    margin-top: 8px;
-}
-.calendar-container{
-    display: flex;
-    justify-content: center;
-    border-radius: 10px;
-    background-color: white;
-    margin-top:30px ;
-    margin-bottom:60px ;
-    margin-left:45px ;
-    margin-right:25px;
-    width: 70%;
-    height: 35%;
-    box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25);
-}
-.calendar-container{
-    background-color: white;
-    width: 585px;
-    margin: 0;
-}
-#weekdays{
-    width: 100%;
-    display: flex;
-    color: #247BA0;
-  }
-#weekdays div {
-    width: 100px;
-    padding: 10px;
-}
-#calendar {
-    width: 100%;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-}
+
+
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,

@@ -388,15 +388,15 @@ const announcementLayout = document.getElementById('announcements-layout');
 const gradesLayout = document.getElementById('grades-layout');
 const filesLayout = document.getElementById('new-file-layout');
 
-navItemAssignment.addEventListener('click', function () {
+function addAssignment(){
     assigmentOptions.style.display = "flex";
 
     assignmentLayout.style.display = "none"
     announcementLayout.style.display = "none";
     gradesLayout.style.display = "none";
     filesLayout.style.display = "none";
-
-})
+}
+navItemAssignment.addEventListener('click', addAssignment())
 navItemAnnouncements.addEventListener('click', function () {
 
 

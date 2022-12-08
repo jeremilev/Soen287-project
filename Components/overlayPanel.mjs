@@ -24,18 +24,15 @@ export const overlayPanel =
             </div>
             <div id="assignments-layout" class="overlay-panel-content">
                 <form action="">
-                    <label for="assignment-title" required>Assignment title:</label>
-                    <input id="assignment-title" type="text">
-                    <label for="assignment-description">Description:</label>
-                    <textarea name="assignment-description" id="assignment-description" cols="30" rows="10"></textarea>
-                    <label for="assignment-files">Attach file:</label>
+                    <input id="assignment-title" type="text" placeholder="Assignment Title">
+                    <textarea name="assignment-description" id="assignment-description" cols="30" rows="10" placeholder="Description"></textarea>
                     <input type="file" name="" id="assignment-files" multiple />
-                    <label for="assignment-weight">Weight out of 100%:</label>
+                    <label for="assignment-weight" id="assignmentWeight">Weight out of 100%:</label>
                     <input type="number" name="" id="assignment-weight" value="0" required>
-                    <label for="assignment-due-date">Due date:</label>
+                    <label for="assignment-due-date" id="assignmentDueDate">Due date:</label>
                     <input type="date" name="" id="assignment-due-date" required>
                     <div class="row-display">
-                        <label for="assignment-visible">Visible to students: </label>
+                        <label for="assignment-visible" id="visibleToStudents">Visible to students: </label>
                         <input type="checkbox" name="" id="assignment-visible">
                     </div>
                     <input id="add-assignment-btn" type="submit" value="Add assignment">

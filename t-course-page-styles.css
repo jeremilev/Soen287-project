@@ -408,17 +408,6 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Breadcrumb_Navi
     padding-bottom: 30px;
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-button {
-    width: 75px;
-    cursor: pointer;
-    box-shadow: 0px 0px 2px gray;
-    border: none;
-    outline: none;
-    padding: 5px;
-    border-radius: 5px;
-    color: white;
-  }
-  
   #header {
     padding: 10px;
     color: #d36c6c;
@@ -462,6 +451,7 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-radius: 5px;
   }
   .day:hover {
     box-shadow: inset 43px 0 0 0 #b3ffb3;
@@ -471,7 +461,7 @@ button {
   .day + #currentDay {
     background-color:#cc3399;
   }
-  .event {
+  .task {
     font-size: 9px;
     padding: 3px;
     background-color:inherit;
@@ -480,25 +470,32 @@ button {
     max-height: 43px;
     overflow: hidden;
   }
-  .padding {
+  #taskDesc{
+    margin-top: 15px;
+    margin-bottom: 12px;
+    text-decoration: underline;
+    font-size: 25px;
+  }
+  .paddingDays {
     cursor: default !important;
-    background-color: #FFFCFF !important;
+    background-color: lightslategrey!important;
     box-shadow: none !important;
   }
-  #newEventModal, #deleteEventModal {
+  #newTask, #deleteTaskDisplay {
     display: none;
     z-index: 20;
     padding: 25px;
     background-color: #e8f4fa;
     box-shadow: 0px 0px 3px black;
     border-radius: 5px;
-    width: 350px;
+    width: 300px;
     top: 100px;
     left: calc(50% - 175px);
     position: absolute;
     font-family: sans-serif;
   }
-  #eventTitleInput {
+  #addTaskTitle {
+    margin-top: 15px;
     padding: 10px;
     width: 100%;
     box-sizing: border-box;
@@ -508,10 +505,16 @@ button {
     border: none;
     box-shadow: 0px 0px 3px gray;
   }
-  #eventTitleInput.error {
-    border: 2px solid red;
+  #addTaskTitle.error {
+    border: 1px solid red;
+  }
+  #addTaskTitle.error::placeholder{
+    color: red;
   }
   #cancelButton{
+    border-radius: 5px;
+    border: none;
+    outline: none;
     background-color: #ff4d4d;
     box-shadow: inset 0 0 0 0 #ff0000;
     transition: ease-out 0.3s;
@@ -525,6 +528,9 @@ button {
 
   }
   #deleteButton{
+    border-radius: 5px;
+    border: none;
+    outline: none;
     background-color: #ff4d4d;
     box-shadow: inset 0 0 0 0 #ff0000;
     transition: ease-out 0.3s;
@@ -537,7 +543,10 @@ button {
     box-shadow: inset 125px 0 0 0 #ff0000;
     color: white;
   }
-  #saveButton{
+  #addButton{
+    border-radius: 5px;
+    border: none;
+    outline: none;
     background-color: #6699ff;
     box-shadow: inset 0 0 0 0 #1a66ff;
     transition: ease-out 0.3s;
@@ -546,11 +555,14 @@ button {
     margin-right: 40px;
     color: black;
   }
-  #saveButton:hover{
+  #addButton:hover{
     box-shadow: inset 125px 0 0 0 #1a66ff;
     color: white;
   }
   #closeButton{
+    border-radius: 5px;
+    border: none;
+    outline: none;
     box-shadow: inset 0 0 0 0 #1a66ff;
     transition: ease-out 0.3s;
     background-color: #6699ff;
@@ -562,10 +574,8 @@ button {
     box-shadow: inset 125px 0 0 0 #1a66ff;
     color: white;
   }
-  #eventText {
-    font-size: 25px;
-  }
-  #modalBackDrop {
+ 
+  #taskBackDrop{
     display: none;
     top: 0px;
     left: 0px;
@@ -579,17 +589,27 @@ button {
     color: White;
 }
 #backButton{
+    color: white;
+    border-radius: 5px;
+    border: none;
+    outline: none;
     width: 100px;
     height: 30px;
     background-color: #009999;
     box-shadow: inset 0 0 0 0 #00cccc;
     transition: ease-out 0.3s;
+    cursor: pointer;
 }
 #backButton:hover{
     box-shadow: inset 100px 0 0 0 #00cccc;
     color: black;
 }
 #nextButton{
+    color: white;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
     width: 100px;
     height: 30px;
     background-color: #009999;
@@ -600,6 +620,23 @@ button {
     box-shadow: inset 100px 0 0 0 #00cccc;
     color: black;
 }
+
+
+.deadline{
+    border-radius: 8px;
+    background-color:var(--deadlineBackgroundColor);
+    padding: 5px;
+    border: 1px solid lightslategray;
+    color: black;
+    box-shadow: inset 0 0 0 0 #1a66ff;
+  transition: ease-out 0.5s;
+}
+.deadline:hover{
+    box-shadow: inset 500px 0 0 0 #1a66ff;
+    cursor: pointer;
+}
+
+
 footer {
     position: fixed;
     bottom: 0;
@@ -739,10 +776,25 @@ footer a:last-child {
 }
 
 #assignment-description {
-    width: 60%;
-    height: 70px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 12px;
+    border:2px solid #aaa;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    appearance: none;
+    height: 100px;
+    outline: none;
 }
-
+#assignment-description::placeholder{
+    font-size: 15px;
+    letter-spacing: 1.2px;
+}
+#assignment-description:focus{
+    border-color: #ffcc00;
+    box-shadow: 0 0 8px 0 #ffcc00;
+}
 #overlay-assignment-options {
     display: none;
 }
@@ -751,15 +803,67 @@ footer a:last-child {
     cursor: pointer;
     color: var(--blackColor);
 }
+#announcement-subject:focus{
+    border-color: #ffcc00;
+    box-shadow: 0 0 8px 0 #ffcc00;
+   
+}
+#announcement-subject::placeholder{
+    font-size: 15px;
+    letter-spacing: 1.5px;
+}
 
+#assignment-title{
+    margin-top: 20px;
+    margin-left: 10px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    appearance: none;
+    padding: 12px;
+    width: 250px;
+    border:2px solid #aaa;
+    outline: none;
+}
+#assignment-title:focus{
+    border-color: #ffcc00;
+    box-shadow: 0 0 8px 0 #ffcc00;
+}
+#assignment-title::placeholder{
+    font-size: 15px;
+    letter-spacing: 1.5px;
+}
+#assignment-due-date{
+    margin-top: 8px;
+    margin-left: 10px;
+    background-color: #0072a8;
+    padding: 15px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: ease-out 0.3s;
+    box-shadow: inset 0 0 0 0 #0099ff;
+}
+#visibleToStudents{
+    margin-left: 10px;
+    color: var(--blackColor);
+}
+#assignment-weight{
+    margin-left: 10px;
+    border: none;
+    outline: none;
+}
+#assignment-due-date:hover{
+    box-shadow: inset 250px 0 0 0 #0099ff;
+    color: white;
+}
 #assigments-layout {
     display: none;
 }
 #add-assignment-btn{
-    width: 300px;
-    height: 100px;
+    width: 340px;
+    height: 80px;
     border:none;
-    margin-top: 5%;
+    margin-top:1%;
     margin-left: 35%;
     border-radius: 5px;
     box-shadow: inset 0 0 0 0 #00b359;
@@ -768,7 +872,7 @@ footer a:last-child {
     font-size: 23px;
 }
 #add-assignment-btn:hover{
-    box-shadow: inset 300px 0 0 0 #00b359;
+    box-shadow: inset 340px 0 0 0 #00b359;
     color: white;
 
 }
@@ -914,6 +1018,32 @@ footer a:last-child {
     vertical-align: middle;
 }
 #fileBtn:hover{
+    cursor: pointer;
+    box-shadow: inset 250px 0 0 0 #ffcc00;
+    color: white;
+}
+#assignmentWeight{
+    color:var(--blackColor);
+    margin-left: 10px;
+}
+#assignmentDueDate{
+    color:var(--blackColor);
+    margin-left: 10px;
+}
+#assignment-files{
+    margin-top: 15px;
+    margin-left: 10px;
+    padding: 10px;
+    background-color: #e6b800;
+    border-radius: 5px;
+    width: 250px;
+    transition: ease-out 0.3s;
+    box-shadow: inset 0 0 0 0 #ffcc00;
+    border: none;
+    font-size: 17px;
+    vertical-align: middle;
+}
+#assignment-files:hover{
     cursor: pointer;
     box-shadow: inset 250px 0 0 0 #ffcc00;
     color: white;
@@ -1133,13 +1263,21 @@ input {
     justify-content: space-evenly;
     margin-bottom: 5%;
 }
-
+.courselink{
+    background-color: var(--rightPanelBottomColor);
+}
+.my-course{
+    background-color:var(--whiteColor);
+}
+.my-course:hover{
+    background-color: var(--rightPanelTopColor);
+}
 .deadline {
     border-radius: 8px;
-    background-color: #84a98c;
+    background-color:var(--leftPanelColor);
     padding: 5px;
     border: 1px solid lightslategray;
-    color: black;
+    color: var(--blackColor);
     margin-bottom: 5px;
 }
 

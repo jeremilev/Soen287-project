@@ -56,25 +56,25 @@ export const rightPanel =
       <div id="calendar"></div>
     </div>
 
-    <div id="newEventModal">
+    <div id="newTask">
       <h2>New Task</h2>
 
-      <input id="eventTitleInput" placeholder="Event Title" />
+      <input id="addTaskTitle" placeholder="Task Description" />
 
-      <button id="saveButton">Save</button>
+      <button id="addButton">Add</button>
       <button id="cancelButton">Cancel</button>
     </div>
 
-    <div id="deleteEventModal">
+    <div id="deleteTaskDisplay">
       <h2>Current Task</h2>
 
-      <p id="eventText"></p>
+      <p id="taskDesc"></p>
 
       <button id="deleteButton">Delete</button>
       <button id="closeButton">Close</button>
     </div>
 
-    <div id="modalBackDrop"></div>
+    <div id="taskBackDrop"></div>
         </div>
     </div>
     `;
